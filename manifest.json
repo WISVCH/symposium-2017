@@ -1,0 +1,6 @@
+{
+  "name": "symposium",
+  "short_name": "symposium",
+  "start_url": "/",
+  "display": "standalone"
+}
