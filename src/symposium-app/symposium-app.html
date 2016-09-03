@@ -39,21 +39,7 @@
         min-width: 60px;
       }
 
-      wisvch-footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 50vw;
-        margin: 0 auto;
-        padding: 10px;
-      }
-
-      @media (max-width: 750px) {
-        wisvch-footer {
-          width: calc(100% - 20px);
-
-      app-header {
+      app-toolbar {
         color: var(--paper-grey-50);
         background-color: var(--paper-indigo-700);
       }
@@ -76,15 +62,25 @@
         font-weight: 600;
       }
 
-      .page-content {
+      .content {
         max-width: 800px;
         margin: auto;
+      }
+
+      .page-content {
         /* Ensure that the footer stays at the bottom of the page. */
         min-height: calc(100vh - 64px - 272px);
       }
 
+      .footer {
+        display: block;
+        padding: 32px 0;
+        background-color: var(--paper-indigo-700);
+        color: var(--paper-grey-50);
+      }
+
       @media (max-width: 800px) {
-        .page-content {
+        .content {
           padding: 0 8px;
         }
       }
@@ -97,7 +93,11 @@
 
         <!-- an empty toolbar in the drawer looks like a
            continuation of the main toolbar. It's optional. -->
-        <app-toolbar class="page-content"></app-toolbar>
+        <app-toolbar>
+          <div main-title>
+            Symposium
+          </div>
+        </app-toolbar>
 
         <!-- Nav on mobile: side nav menu -->
         <paper-menu selected="{{selected}}" on-tap="scrollTop">
@@ -138,7 +138,7 @@
         </app-header>
 
         <iron-pages selected="{{selected}}">
-          <div class="page-content">
+          <div class="content page-content">
             <symposium-home></symposium-home>
             <symposium-home></symposium-home>
             <symposium-home></symposium-home>
@@ -148,8 +148,9 @@
           <div class="page-content">page 3</div>
         </iron-pages>
 
-      <wisvch-footer></wisvch-footer>
-        <symposium-footer></symposium-footer>
+        <div class="footer">
+          <wisvch-footer class="content"></wisvch-footer>
+        </div>
       
       </app-header-layout>
     </app-drawer-layout>
@@ -170,10 +171,8 @@
       },
 
       scrollTop: function() {
-        // TODO: Make scroll appear on screen.
         this.$.header.scroll(0, 0);
         this.$.drawer.close();
-        console.log(this.wideLayout);
       }
     });
   </script>
