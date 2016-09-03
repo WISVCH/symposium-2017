@@ -4,6 +4,8 @@
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/wisvch-footer/wisvch-footer.html">
+
 
 <link rel="import" href="symposium-testcontent.html">
 
@@ -14,10 +16,27 @@
     <style>
       :host {
         display: block;
+        min-height: 100vh;
       }
 
       paper-tab {
         min-width: 60px;
+      }
+
+      wisvch-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 50vw;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      @media (max-width: 750px) {
+        wisvch-footer {
+          width: calc(100% - 20px);
+        }
       }
     </style>
 
@@ -39,6 +58,8 @@
         <div>page 2</div>
         <div>page 3</div>
       </iron-pages>
+
+      <wisvch-footer></wisvch-footer>
     </app-header-layout>
 
   </template>
