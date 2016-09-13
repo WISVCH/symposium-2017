@@ -85,7 +85,8 @@
       }
     </style>
 
-
+     <!-- force-narrow prevents the drawer from ever being displayed
+       in persistent mode -->
     <app-drawer-layout force-narrow>
       <app-drawer id="drawer">
 
@@ -93,7 +94,7 @@
            continuation of the main toolbar. It's optional. -->
         <app-toolbar>
           <div main-title>
-            The key to your privacy, the science behind cyber security
+            Symposium
           </div>
         </app-toolbar>
 
@@ -102,6 +103,7 @@
             <paper-item>Home </paper-item>
             <paper-item>Program</paper-item>
             <paper-item>Location</paper-item>
+            <paper-item>Committee</paper-item>
         </paper-menu>
       </app-drawer>
 
@@ -113,7 +115,7 @@
             <app-toolbar>
               <paper-icon-button class="menu-button" icon="menu" drawer-toggle></paper-icon-button>
               <div main-title>
-                The key to your privacy, the science behind cyber security
+                Symposium
               </div>
             </app-toolbar>
           </template>
@@ -129,18 +131,21 @@
                 <paper-tab>Home</paper-tab>
                 <paper-tab>Program </paper-tab>
                 <paper-tab>Location</paper-tab>
+                <paper-tab>Committee</paper-tab>
               </paper-tabs>
             </app-toolbar>
+
           </template>
 
         </app-header>
 
         <iron-pages selected="{{selected}}">
           <div class="content page-content">
-            <symposium-home></symposium-home>
+            <symposium-home></symposium-home> 
           </div>
-          <div class="page-content">page 2</div>
-          <div class="page-content">page 3</div>
+          <div class="page-content">Program</div>
+          <div class="page-content">Location</div>
+          <div class="page-content">Committee</div>
         </iron-pages>
 
         <div class="footer">
