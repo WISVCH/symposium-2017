@@ -1,13 +1,28 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
-<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/wisvch-footer/wisvch-footer.html">
 
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
-<link rel="import" href="symposium-testcontent.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="/bower_components/paper-styles/color.html">
+
+<link rel="import" href="symposium-home.html">
 
 
 <dom-module id="symposium-app">
@@ -23,52 +38,119 @@
         min-width: 60px;
       }
 
-      wisvch-footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 50vw;
-        margin: 0 auto;
-        padding: 10px;
+      app-toolbar {
+        color: var(--paper-grey-50);
+        background-color: var(--paper-indigo-700);
       }
 
-      @media (max-width: 750px) {
-        wisvch-footer {
-          width: calc(100% - 20px);
+      paper-icon-button {
+        color: var(--paper-grey-50);
+      }
+
+      paper-tabs {
+        --paper-tabs-selection-bar-color: var(--paper-orange-500);
+        --paper-tabs-selection-bar: {
+          height: 4px;
+        };
+
+        height: 100%;
+      }
+
+      .title {
+        color: var(--paper-orange-500);
+        font-weight: 600;
+      }
+
+      .content {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      .page-content {
+        /* Ensure that the footer stays at the bottom of the page. */
+        min-height: calc(100vh - 64px - 272px);
+      }
+
+      .footer {
+        display: block;
+        padding: 32px 0;
+        background-color: var(--paper-indigo-700);
+        color: var(--paper-grey-50);
+      }
+
+      @media (max-width: 800px) {
+        .content {
+          padding: 0 8px;
         }
       }
     </style>
 
-    <app-header-layout>
-      <app-toolbar class="paper-header layout horizontal center">
-        <div>
-          The key to your privacy, the science behind cyber security
-        </div>
-        <div class="flex"></div>
-        <paper-tabs selected="{{selected}}">
-          <paper-tab>Home</paper-tab>
-          <paper-tab>Program</paper-tab>
-          <paper-tab>Location</paper-tab>
-          <paper-tab>The committee</paper-tab>
-        </paper-tabs>
-      </app-toolbar>
 
-      <iron-pages selected="{{selected}}">
-        <div> <!--<h1>The key to your privacy, the science behind cyber security</h1>-->
-          <p> On the 1st of May, our symposium about Cyber Security will take place.
-            This symposium, organized by the symposium committee of W.I.S.V. 'Christiaan Huygens' will take place in Theater de Veste, Delft.</p>
-          <p>During the day, there will be two separated tracks, one specialized on the mathematical aspects and one specialized on computer science side.</p>
-          <p>At the end of the day, we will finish with a discussion about the ethics behind cyber security, followed by drinks and the possibility to network
-            and share thoughts on the discussed topics. </p>
-        </div>
-        <div>page 2</div>
-        <div>page 3</div>
-        <div>the committee</div>
-      </iron-pages>
+    <app-drawer-layout force-narrow>
+      <app-drawer id="drawer">
 
-      <wisvch-footer></wisvch-footer>
-    </app-header-layout>
+        <!-- an empty toolbar in the drawer looks like a
+           continuation of the main toolbar. It's optional. -->
+        <app-toolbar>
+          <div main-title>
+            The key to your privacy, the science behind cyber security
+          </div>
+        </app-toolbar>
+
+        <!-- Nav on mobile: side nav menu -->
+        <paper-menu selected="{{selected}}" on-tap="scrollTop">
+            <paper-item>Home </paper-item>
+            <paper-item>Program</paper-item>
+            <paper-item>Location</paper-item>
+        </paper-menu>
+      </app-drawer>
+
+      <app-header-layout fullbleed>
+        <app-header id="header" class="main-header layout horizontal center" fixed effects="waterfall">
+
+          <!-- Nav on mobile: side nav menu -->
+          <template is="dom-if" if="{{!wideLayout}}">
+            <app-toolbar>
+              <paper-icon-button class="menu-button" icon="menu" drawer-toggle></paper-icon-button>
+              <div main-title>
+                The key to your privacy, the science behind cyber security
+              </div>
+            </app-toolbar>
+          </template>
+
+          <!-- Nav on desktop: tabs -->
+          <template is="dom-if" if="{{wideLayout}}">
+            <app-toolbar class="tabs-bar">
+              <div main-title>
+                Symposium
+              </div>
+              <div class="flex"></div>
+              <paper-tabs selected="{{selected}}" on-tap="scrollTop">
+                <paper-tab>Home</paper-tab>
+                <paper-tab>Program </paper-tab>
+                <paper-tab>Location</paper-tab>
+              </paper-tabs>
+            </app-toolbar>
+          </template>
+
+        </app-header>
+
+        <iron-pages selected="{{selected}}">
+          <div class="content page-content">
+            <symposium-home></symposium-home>
+          </div>
+          <div class="page-content">page 2</div>
+          <div class="page-content">page 3</div>
+        </iron-pages>
+
+        <div class="footer">
+          <wisvch-footer class="content"></wisvch-footer>
+        </div>
+      
+      </app-header-layout>
+    </app-drawer-layout>
+
+    <iron-media-query query="min-width: 600px" query-matches="{{wideLayout}}"></iron-media-query>
 
   </template>
 
@@ -82,6 +164,11 @@
           value: 0,
         },
       },
+
+      scrollTop: function() {
+        this.$.header.scroll(0, 0);
+        this.$.drawer.close();
+      }
     });
   </script>
 </dom-module>
