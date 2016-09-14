@@ -68,12 +68,13 @@
 
       .page-content {
         /* Ensure that the footer stays at the bottom of the page. */
-        min-height: calc(100vh - 64px - 250px);
+        padding: 16px 0 0 0;
+        min-height: calc(100vh - 64px /* Header height */ - 272px /* Footer height */ - 16px /* top of page padding height */);
       }
 
       .footer {
         display: block;
-        padding: 42px 0 0 0;
+        padding: 32px 0;
         background-color: var(--paper-indigo-700);
         color: var(--paper-grey-50);
       }
