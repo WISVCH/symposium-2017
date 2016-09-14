@@ -23,6 +23,9 @@
 <link rel="import" href="/bower_components/paper-styles/color.html">
 
 <link rel="import" href="symposium-home.html">
+<link rel="import" href="symposium-program.html">
+<link rel="import" href="symposium-location.html">
+<link rel="import" href="symposium-committee.html">
 
 
 <dom-module id="symposium-app">
@@ -144,9 +147,15 @@
           <div class="content page-content">
             <symposium-home></symposium-home> 
           </div>
-          <div class="page-content">Program</div>
-          <div class="page-content">Location</div>
-          <div class="page-content">Committee</div>
+          <div class="content page-content">
+            <symposium-program></symposium-program>
+          </div>
+          <div class="content page-content">
+            <symposium-location></symposium-location>
+          </div>
+          <div class="content page-content">
+            <symposium-committee></symposium-committee>
+          </div>
         </iron-pages>
 
         <div class="footer">
