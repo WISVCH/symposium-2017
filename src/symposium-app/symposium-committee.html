@@ -1,5 +1,18 @@
+<link rel="import" href="./symposium-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/notification-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/editor-icons.html">
+
 <dom-module id="symposium-committee">
   <template>
+    <style include="iron-flex iron-flex-alignment">
     <style>
     :host {
       display: block;
@@ -9,28 +22,82 @@
     h1 {
       margin-top: 0;
     }
+
+    paper-material {
+      margin: 32px auto;
+      max-width: 300px;
+    }
+
+    iron-icon {
+      margin-right: 16px;
+    }
     </style>
 
+    <symposium-card>
       <h1>Committee</h1>
 
-      <p>This symposium is organized by the Symposium Committee of Mathematics and Computer Science Study Association 'Christiaan Huygens'.</p>
+        <p>This symposium is organized by the Symposium Committee of Mathematics and Computer Science Study Association 'Christiaan Huygens'.</p>
 
-      <ul>
-        <li>Chantal Olieman<br><i>Chairman</i></li>
-        <li>Roy Klip<br><i>Secretary</i></li>
-        <li>Daphne van Tetering<br><i>Treasurer</i></li>
-        <li>Jacqueline Zijdenbos<br><i>Promotional affairs</i></li>
-        <li>Elsje Burgers<br><i>Lecture affairs</i></li>
-        <li>Menno Looman<br><i>Lecture affairs</i></li>
-        <li>Beer van der Drift<br><i>Qualitate Qua</i></li>
-      </ul>
-    </template>
+        <paper-material elevation="1">
+          <template is="dom-repeat" items="{{members}}">
 
+            <paper-item class="layout horizontal">
+              <iron-icon icon="{{item.icon}}"></iron-icon>
+              <paper-item-body class="flex" two-line>
+                <div>{{item.name}}</div>
+                <div secondary>{{item.function}}</div>
+              </paper-item-body>
+            </paper-item>
+
+          </template>
+        </paper-material>
+
+    </symposium-card>
+  
+  </template>
   <script>
     Polymer({
       is: 'symposium-committee',
 
       properties: {
+        members: {
+          type: Array,
+          value: [{
+            name: "Chantal Olieman",
+            function: "Chairman",
+            icon: "social:group"
+          },
+          {
+            name: "Roy Klip",
+            function: "Secretary",
+            icon: "notification:event-note"
+          },
+          {
+            name: "Daphne van Tetering",
+            function: "Treasurer",
+            icon: "editor:attach-money"
+          },
+          {
+            name: "Jacqueline Zijdenbos",
+            function: "Promotional affairs",
+            icon: "social:whatshot"
+          },
+          {
+            name: "Elsje Burgers",
+            function: "Lecture affairs",
+            icon: "social:school"
+          },
+          {
+            name: "Menno Looman",
+            function: "Lecture affairs",
+            icon: "social:school"
+          },
+          {
+            name: "Beer van der Drift",
+            function: "Qualitate Qua",
+            icon: "notification:sms-failed"
+          }]
+        }
       },
     });
   </script>

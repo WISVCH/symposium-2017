@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="symposium-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-card {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        max-width: 800px;
+      }
+    </style>
+
+    <paper-card>
+      <div class="card-content">
+        <content></content>
+      </div>
+    </paper-card>
+  </template>
+  <script>
+  (function() {
+    Polymer({
+      is: 'symposium-card',
+      properties: {
+      }
+    });
+  })();
+  </script>
+</dom-module>

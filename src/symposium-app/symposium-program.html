@@ -1,3 +1,5 @@
+<link rel="import" href="./symposium-card.html">
+
 <dom-module id="symposium-program">
   <template>
     <style>
@@ -24,99 +26,101 @@
       }
     </style>
 
-    <h1>Program</h1>
+    <symposium-card>
+      
+      <h1>Program</h1>
+      <p>On two moments the program is divided in tracks. One track will be more focused on computer science. The other track will be more focused on mathematics</p>
 
-    <p>On two moments the program is divided in tracks. One track will be more focused on computer science. The other track will be more focused on mathematics</p>
+      <p><b>Please note that all lectures are in English</b></p>
 
-    <p><b>Please note that all lectures are in English</b></p>
+      <table>
+        <thead class="table-head">
+        <tr>
+          <th>Time</th>
+          <th colspan="2">Program</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>8:30</td>
+          <td colspan="2">Registration</td>
+        </tr>
+        <tr>
+          <td>9:15</td>
+          <td colspan="2">Official opening</td>
+        </tr>
+        <tr>
+          <td>9:30</td>
+          <td colspan="2">Opening lecture</td>
+        </tr>
+        <tr>
+          <td>10:00</td>
+          <td colspan="2">Coffee break</td>
+        </tr>
+        <tr>
+          <td>10:30</td>
+          <td>Lecture track 1</td>
+          <td>Lecture track 2</td>
+        </tr>
+        <tr>
+          <td>11:15</td>
+          <td colspan="2">Transfer</td>
+        </tr>
+        <tr>
+          <td>11:30</td>
+          <td colspan="2">Live hacking</td>
+        </tr>
+        <tr>
+          <td>12:15</td>
+          <td colspan="2">Transfer</td>
+        </tr>
+        <tr>
+          <td>12:30</td>
+          <td colspan="2">PhD projects</td>
+        </tr>
+        <tr>
+          <td>13:00</td>
+          <td colspan="2">Lunch</td>
+        </tr>
+        <tr>
+          <td>13:45</td>
+          <td colspan="2">Introduction debate</td>
+        </tr>
+        <tr>
+          <td>14:15</td>
+          <td colspan="2">Transfer</td>
+        </tr>
+        <tr>
+          <td>14:30</td>
+          <td>Lecture track 1</td>
+          <td>Lecture track 2</td>
+        </tr>
+        <tr>
+          <td>15:15</td>
+          <td colspan="2">Coffee break</td>
+        </tr>
+        <tr>
+          <td>15:45</td>
+          <td colspan="2">Final lecture</td>
+        </tr>
+        <tr>
+          <td>16:30</td>
+          <td colspan="2">Transfer</td>
+        </tr>
+        <tr>
+          <td>16:45</td>
+          <td colspan="2">Debate</td>
+        </tr>
+        <tr>
+          <td>17:15</td>
+          <td colspan="2">Drinks</td>
+        </tr>
+        </tbody>
+      </table>
 
-    <table>
-      <thead class="table-head">
-      <tr>
-        <th>Time</th>
-        <th colspan="2">Program</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>8:30</td>
-        <td colspan="2">Registration</td>
-      </tr>
-      <tr>
-        <td>9:15</td>
-        <td colspan="2">Official opening</td>
-      </tr>
-      <tr>
-        <td>9:30</td>
-        <td colspan="2">Opening lecture</td>
-      </tr>
-      <tr>
-        <td>10:00</td>
-        <td colspan="2">Coffee break</td>
-      </tr>
-      <tr>
-        <td>10:30</td>
-        <td>Lecture track 1</td>
-        <td>Lecture track 2</td>
-      </tr>
-      <tr>
-        <td>11:15</td>
-        <td colspan="2">Transfer</td>
-      </tr>
-      <tr>
-        <td>11:30</td>
-        <td colspan="2">Live hacking</td>
-      </tr>
-      <tr>
-        <td>12:15</td>
-        <td colspan="2">Transfer</td>
-      </tr>
-      <tr>
-        <td>12:30</td>
-        <td colspan="2">PhD projects</td>
-      </tr>
-      <tr>
-        <td>13:00</td>
-        <td colspan="2">Lunch</td>
-      </tr>
-      <tr>
-        <td>13:45</td>
-        <td colspan="2">Introduction debate</td>
-      </tr>
-      <tr>
-        <td>14:15</td>
-        <td colspan="2">Transfer</td>
-      </tr>
-      <tr>
-        <td>14:30</td>
-        <td>Lecture track 1</td>
-        <td>Lecture track 2</td>
-      </tr>
-      <tr>
-        <td>15:15</td>
-        <td colspan="2">Coffee break</td>
-      </tr>
-      <tr>
-        <td>15:45</td>
-        <td colspan="2">Final lecture</td>
-      </tr>
-      <tr>
-        <td>16:30</td>
-        <td colspan="2">Transfer</td>
-      </tr>
-      <tr>
-        <td>16:45</td>
-        <td colspan="2">Debate</td>
-      </tr>
-      <tr>
-        <td>17:15</td>
-        <td colspan="2">Drinks</td>
-      </tr>
-      </tbody>
-    </table>
+    </symposium-card>
 
   </template>
-
   <script>
     Polymer({
       is: 'symposium-program',
