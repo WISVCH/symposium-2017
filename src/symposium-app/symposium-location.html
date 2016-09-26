@@ -1,9 +1,10 @@
+<link rel="import" href="./symposium-card.html">
+
 <dom-module id="symposium-location">
   <template>
     <style>
     :host {
       display: block;
-      padding: 0 0 16px;
     }
 
     h1 {
@@ -11,29 +12,33 @@
     }
 
     img {
+      margin: 32px 0 0;
       display: block;
       margin: auto;
+      max-width: 100%;
     }
     </style>
 
-      <h1>Location</h1>
+    <symposium-card>
+        <h1>Location</h1>
 
-      <p>The symposium will take place in Theater de Veste, which is located at the center of Delft. It is easily accessible by public transport, car and bike. It is a five-minute walk from Delft Central Station. There is a bus stop called "Zuidpoort" near the entrance, you can get there by taking bus 60, 62, 69, 80, 81 or 121. </p>
+        <p>The symposium will take place in Theater de Veste, which is located at the center of Delft. It is easily accessible by public transport, car and bike. It is a five-minute walk from Delft Central Station. There is a bus stop called "Zuidpoort" near the entrance, you can get there by taking bus 60, 62, 69, 80, 81 or 121. </p>
 
-      <p>The parking facility "Zuidpoort" is right next to the theatre. Please follow the signs to "Parking Zuidpoort". </p>
+        <p>The parking facility "Zuidpoort" is right next to the theatre. Please follow the signs to "Parking Zuidpoort". </p>
 
-      <p>For more information on the location see: <a href="http://www.theaterdeveste.nl/">www.theaterdeveste.nl</a>.</p>
+        <p>For more information on the location see: <a href="http://www.theaterdeveste.nl">www.theaterdeveste.nl</a>.</p>
 
-      <p>
-        <b>Theater de Veste</b><br>
-        <i>Vesteplein 1<br>
-        Delft</i>
-      </p>
+        <p>
+          <b>Theater de Veste</b><br>
+          <i>Vesteplein 1<br>
+          Delft</i>
+        </p>
 
-      <img src="./images/deveste.jpg">
+        <img src="./images/deveste.jpg"></img>
 
-    </template>
+    </symposium-card>
 
+  </template>
   <script>
     Polymer({
       is: 'symposium-location',

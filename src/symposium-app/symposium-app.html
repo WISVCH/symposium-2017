@@ -73,9 +73,8 @@
       }
 
       .page-content {
-        /* Ensure that the footer stays at the bottom of the page. */
-        padding: 16px 0 0 0;
-        min-height: calc(100vh - 64px /* Header height */ - 272px /* Footer height */ - 16px /* top of page padding height */);
+        padding: 0 0 16px 0;
+        min-height: calc(100vh - 64px /* Header height */ - 272px /* Footer height */ - 16px /* Bottom padding */);
       }
 
       .footer {
@@ -87,7 +86,7 @@
 
       @media (max-width: 800px) {
         .content {
-          padding: 0 8px;
+          padding: 0 8px 16px;
         }
       }
     </style>
