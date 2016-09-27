@@ -1,28 +1,49 @@
 <link rel="import" href="./symposium-card.html">
 
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
 <dom-module id="symposium-program">
   <template>
+    <style include="iron-flex iron-flex-alignment">
     <style>
       :host {
         display: block;
         padding: 0 0 16px;
       }
-      /*TODO: moet nog beter gelayout worden!*/
+
       h1 {
         margin-top: 0;
       }
-      table {
-        width: 100%;
+
+      paper-material {
+        padding: 8px;
+        margin: 4px 2px;
       }
-      .table-head {
-        background-color: orange;
-        margin: 0;
+
+      paper-item {
+        background-color: #FFFFFF;
+        margin: 4px;
       }
-      td, th {
-        padding: 0;
-        margin: 0;
+
+      .heading {
+        background-color: #231657;
+        color: #FFFFFF;
+      }
+
+      .time {
+        width: 100px;
+      }
+
+      paper-material {
         text-align: center;
-        border: rgb(35,22,87) 1px solid;
+      }
+
+      @media (max-width: 800px) {
+        .time {
+          width: 50px;
+        }        
       }
     </style>
 
@@ -33,91 +54,30 @@
 
       <p><b>Please note that all lectures are in English</b></p>
 
-      <table>
-        <thead class="table-head">
-        <tr>
-          <th>Time</th>
-          <th colspan="2">Program</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>8:30</td>
-          <td colspan="2">Registration</td>
-        </tr>
-        <tr>
-          <td>9:15</td>
-          <td colspan="2">Official opening</td>
-        </tr>
-        <tr>
-          <td>9:30</td>
-          <td colspan="2">Opening lecture</td>
-        </tr>
-        <tr>
-          <td>10:00</td>
-          <td colspan="2">Coffee break</td>
-        </tr>
-        <tr>
-          <td>10:30</td>
-          <td>Lecture track 1</td>
-          <td>Lecture track 2</td>
-        </tr>
-        <tr>
-          <td>11:15</td>
-          <td colspan="2">Transfer</td>
-        </tr>
-        <tr>
-          <td>11:30</td>
-          <td colspan="2">Live hacking</td>
-        </tr>
-        <tr>
-          <td>12:15</td>
-          <td colspan="2">Transfer</td>
-        </tr>
-        <tr>
-          <td>12:30</td>
-          <td colspan="2">PhD projects</td>
-        </tr>
-        <tr>
-          <td>13:00</td>
-          <td colspan="2">Lunch</td>
-        </tr>
-        <tr>
-          <td>13:45</td>
-          <td colspan="2">Introduction debate</td>
-        </tr>
-        <tr>
-          <td>14:15</td>
-          <td colspan="2">Transfer</td>
-        </tr>
-        <tr>
-          <td>14:30</td>
-          <td>Lecture track 1</td>
-          <td>Lecture track 2</td>
-        </tr>
-        <tr>
-          <td>15:15</td>
-          <td colspan="2">Coffee break</td>
-        </tr>
-        <tr>
-          <td>15:45</td>
-          <td colspan="2">Final lecture</td>
-        </tr>
-        <tr>
-          <td>16:30</td>
-          <td colspan="2">Transfer</td>
-        </tr>
-        <tr>
-          <td>16:45</td>
-          <td colspan="2">Debate</td>
-        </tr>
-        <tr>
-          <td>17:15</td>
-          <td colspan="2">Drinks</td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="layout vertical">
+        <div class="layout horizontal">
+          <paper-material class="heading time" elevation="2">
+            Time
+          </paper-material>
+          <paper-material class="flex heading timeslot" elevation="2">
+            Program
+          </paper-material>
+        </div>
 
+        <template is="dom-repeat" items="{{schedule}}">
+          <div class="layout horizontal">
+            <paper-material class="time">
+              {{item.time}}
+            </paper-material>
+            <template is="dom-repeat" items="{{item.activities}}" as="activity">
+              <paper-material class$="{{activity.flex}} timeslot">
+                {{activity.activity}}
+              </paper-material>
+            </template>
+          </div>
+        </template>
+
+      </div>
     </symposium-card>
 
   </template>
@@ -125,6 +85,126 @@
     Polymer({
       is: 'symposium-program',
       properties: {
+        schedule: {
+          type: Array,
+          value: [{
+              time: "8:30",
+              activities: [{
+                activity: "Registration",
+                flex: "flex"
+            }]},
+            {
+              time: "9:15",
+              activities: [{
+                activity: "Official opening",
+                flex: "flex"
+            }]},
+            {
+              time: "9:30",
+              activities: [{
+                activity: "Opening lecture",
+                flex: "flex"
+            }]},
+            {
+              time: "10:00",
+              activities: [{
+                activity: "Coffee break",
+                flex: "flex"
+            }]},
+            {
+              time: "10:30",
+              activities: [{
+                activity: "Lecture track 1",
+                flex: "flex"
+              },
+              {
+                activity: "Lecture track 2",
+                flex: "flex"
+            }]},
+            {
+              time: "11:15",
+              activities: [{
+                activity: "Transfer",
+                flex: "flex"
+            }]},
+            {
+              time: "11:30",
+              activities: [{
+                activity: "Live hacking",
+                flex: "flex"
+            }]},
+            {
+              time: "12:15",
+              activities: [{
+                activity: "Transfer",
+                flex: "flex"
+            }]},
+            {
+              time: "12:30",
+              activities: [{
+                activity: "PhD projects",
+                flex: "flex"
+            }]},
+            {
+              time: "13:00",
+              activities: [{
+                activity: "Lunch",
+                flex: "flex"
+            }]},
+            {
+              time: "13:45",
+              activities: [{
+                activity: "Introduction debate",
+                flex: "flex"
+            }]},
+            {
+              time: "14:15",
+              activities: [{
+                activity: "Transfer",
+                flex: "flex"
+            }]},
+            {
+              time: "14:30",
+              activities: [{
+                activity: "Lecture track 1",
+                flex: "flex"
+              },
+              {
+                activity: "Lecture track 2",
+                flex: "flex"
+            }]},
+            {
+              time: "15:15",
+              activities: [{
+                activity: "Coffee break",
+                flex: "flex"
+            }]},
+            {
+              time: "15:45",
+              activities: [{
+                activity: "Final lecture",
+                flex: "flex"
+            }]},
+            {
+              time: "16:30",
+              activities: [{
+                activity: "Transfer",
+                flex: "flex"
+            }]},
+            {
+              time: "16:45",
+              activities: [{
+                activity: "Debate",
+                flex: "flex"
+            }]},
+            {
+              time: "17:15",
+              activities: [{
+                activity: "Drinks",
+                flex: "flex"
+            }]},
+          ]
+        }
       },
     });
   </script>
