@@ -26,8 +26,12 @@
         width: 100px;
       }
 
+      .underline {
+        border-bottom: 1px rgba(128,128,128,0.3) solid;
+        margin: 0 8px;
+      }
+
       paper-item {
-        /*border-bottom: 1px rgba(128,128,128,0.3) solid;*/
         padding: 4px 0 0;
         text-align: center;
       }
@@ -58,11 +62,11 @@
 
         <template is="dom-repeat" items="{{schedule}}">
           <paper-item class="layout horizontal">
-            <div class="time" style="border-bottom: 1px rgba(128,128,128,0.3) solid; margin: 0 8px;">
+            <div class="time underline">
               {{item.time}}
             </div>
             <template is="dom-repeat" items="{{item.activities}}" as="activity">
-              <div style="border-bottom: 1px rgba(128,128,128,0.3) solid; margin: 0 8px;" class$="{{activity.flex}}">
+              <div class$="{{activity.flex}} underline">
                 {{activity.activity}}
               </div>
             </template>
