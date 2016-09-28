@@ -84,9 +84,15 @@
         color: var(--paper-grey-50);
       }
 
+      wisvch-footer {
+        max-width: 768px;
+        padding: 0 16px;
+        margin: auto;
+      }
+
       @media (max-width: 800px) {
         .content {
-          padding: 0 8px 16px;
+          padding: 0 0 16px;
         }
       }
     </style>
@@ -161,7 +167,7 @@
         </iron-pages>
 
         <div class="footer">
-          <wisvch-footer class="content"></wisvch-footer>
+          <wisvch-footer></wisvch-footer>
         </div>
 
       </app-header-layout>
