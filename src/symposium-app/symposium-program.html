@@ -27,7 +27,8 @@
       }
 
       paper-item {
-        border-bottom: 1px rgba(128,128,128,0.3) solid;
+        /*border-bottom: 1px rgba(128,128,128,0.3) solid;*/
+        padding: 4px 0 0;
         text-align: center;
       }
 
@@ -57,11 +58,11 @@
 
         <template is="dom-repeat" items="{{schedule}}">
           <paper-item class="layout horizontal">
-            <div class="time">
+            <div class="time" style="border-bottom: 1px rgba(128,128,128,0.3) solid; margin: 0 8px;">
               {{item.time}}
             </div>
             <template is="dom-repeat" items="{{item.activities}}" as="activity">
-              <div class$="{{activity.flex}}">
+              <div style="border-bottom: 1px rgba(128,128,128,0.3) solid; margin: 0 8px;" class$="{{activity.flex}}">
                 {{activity.activity}}
               </div>
             </template>
