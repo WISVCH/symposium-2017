@@ -1,6 +1,6 @@
-<link rel="import" href="./symposium-card.html">
+<link rel="import" href="./symposium-page-card.html">
 
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
@@ -17,16 +17,6 @@
         margin-top: 0;
       }
 
-      paper-material {
-        padding: 8px;
-        margin: 4px 2px;
-      }
-
-      paper-item {
-        background-color: #FFFFFF;
-        margin: 4px;
-      }
-
       .heading {
         background-color: #231657;
         color: #FFFFFF;
@@ -36,7 +26,13 @@
         width: 100px;
       }
 
-      paper-material {
+      .underline {
+        border-bottom: 1px rgba(128,128,128,0.3) solid;
+        margin: 0 8px;
+      }
+
+      paper-item {
+        padding: 4px 0 0;
         text-align: center;
       }
 
@@ -47,7 +43,7 @@
       }
     </style>
 
-    <symposium-card>
+    <symposium-page-card>
       
       <h1>Program</h1>
       <p>On two moments the program is divided in tracks. One track will be more focused on computer science. The other track will be more focused on mathematics</p>
@@ -55,30 +51,30 @@
       <p><b>Please note that all lectures are in English</b></p>
 
       <div class="layout vertical">
-        <div class="layout horizontal">
-          <paper-material class="heading time" elevation="2">
+        <paper-item class="layout horizontal heading">
+          <div class="time">
             Time
-          </paper-material>
-          <paper-material class="flex heading timeslot" elevation="2">
+          </div>
+          <div class="flex">
             Program
-          </paper-material>
-        </div>
+          </div>
+        </paper-item>
 
         <template is="dom-repeat" items="{{schedule}}">
-          <div class="layout horizontal">
-            <paper-material class="time">
+          <paper-item class="layout horizontal">
+            <div class="time underline">
               {{item.time}}
-            </paper-material>
+            </div>
             <template is="dom-repeat" items="{{item.activities}}" as="activity">
-              <paper-material class$="{{activity.flex}} timeslot">
+              <div class$="{{activity.flex}} underline">
                 {{activity.activity}}
-              </paper-material>
+              </div>
             </template>
-          </div>
+          </paper-item>
         </template>
 
       </div>
-    </symposium-card>
+    </symposium-page-card>
 
   </template>
   <script>
