@@ -43,7 +43,7 @@
 
       app-toolbar {
         color: var(--paper-grey-50);
-        background-color: rgb(35,22,87);
+        background-color: #231657;
         /*background-image: url("./images/banner.jpg");*/
         background-size: contain;
         background-repeat: no-repeat;
@@ -74,19 +74,24 @@
 
       .page-content {
         padding: 0 0 16px 0;
-        min-height: calc(100vh - 64px /* Header height */ - 272px /* Footer height */ - 16px /* Bottom padding */);
       }
 
       .footer {
         display: block;
         padding: 32px 0;
-        background-color: rgb(35,22,87);
+        background-color: #231657;
         color: var(--paper-grey-50);
+      }
+
+      wisvch-footer {
+        max-width: 768px;
+        padding: 0 16px;
+        margin: auto;
       }
 
       @media (max-width: 800px) {
         .content {
-          padding: 0 8px 16px;
+          padding: 0;
         }
       }
     </style>
@@ -161,7 +166,7 @@
         </iron-pages>
 
         <div class="footer">
-          <wisvch-footer class="content"></wisvch-footer>
+          <wisvch-footer></wisvch-footer>
         </div>
 
       </app-header-layout>

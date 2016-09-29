@@ -1,8 +1,7 @@
-<link rel="import" href="./symposium-card.html">
+<link rel="import" href="./symposium-page-card.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
@@ -23,9 +22,12 @@
       margin-top: 0;
     }
 
-    paper-material {
-      margin: 32px auto;
-      max-width: 300px;
+    paper-item {
+      border-bottom: 1px rgba(128,128,128,0.3) solid;
+    }
+
+    .committee {
+      margin: 16px 0 0;
     }
 
     iron-icon {
@@ -33,12 +35,12 @@
     }
     </style>
 
-    <symposium-card>
+    <symposium-page-card>
       <h1>Committee</h1>
 
-        <p>This symposium is organized by the Symposium Committee of Mathematics and Computer Science Study Association 'Christiaan Huygens'.</p>
+        <p>This symposium is organized by the Symposium Committee of Mathematics and Computer Science Study Association 'Christiaan Huygens'. The members of the committee are:</p>
 
-        <paper-material elevation="1">
+        <div class="committee">
           <template is="dom-repeat" items="{{members}}">
 
             <paper-item class="layout horizontal">
@@ -50,9 +52,9 @@
             </paper-item>
 
           </template>
-        </paper-material>
+        </div>
 
-    </symposium-card>
+    </symposium-page-card>
   
   </template>
   <script>
@@ -65,7 +67,7 @@
           value: [{
             name: "Chantal Olieman",
             function: "Chairman",
-            icon: "social:group"
+            icon: "icons:gavel"
           },
           {
             name: "Roy Klip",
@@ -80,7 +82,7 @@
           {
             name: "Jacqueline Zijdenbos",
             function: "Promotional affairs",
-            icon: "social:whatshot"
+            icon: "social:group"
           },
           {
             name: "Elsje Burgers",
