@@ -8,6 +8,7 @@
   ],
   "includeDependencies": [
     "manifest.json",
+    "favicon.ico",
     "bower_components/webcomponentsjs/webcomponents-lite.min.js"
   ]
 }
