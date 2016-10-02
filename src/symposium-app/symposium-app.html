@@ -99,7 +99,7 @@
 
     <!-- app-location binds to the app's URL -->
     <app-location route="{{route}}"></app-location> 
-    <app-route route="{{route}}" pattern="/:page" data="{{data}}" tail="{{tail}}"></app-route>
+    <app-route route="{{route}}" pattern="/:page" data="{{data}}"></app-route>
 
 
      <!-- force-narrow prevents the drawer from ever being displayed
@@ -187,12 +187,6 @@
       is: 'symposium-app',
 
       properties: {
-        data: {
-          type: Object,
-          value: function (){
-            return {tabName: "home",};
-          },
-        },
       },
 
       scrollTop: function() {
