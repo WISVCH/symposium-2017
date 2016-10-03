@@ -19,14 +19,13 @@
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
-<link rel="import" href="/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="/bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
 
 <link rel="import" href="symposium-home.html">
 <link rel="import" href="symposium-program.html">
 <link rel="import" href="symposium-location.html">
 <link rel="import" href="symposium-committee.html">
-
 
 <dom-module id="symposium-app">
   <template>
@@ -44,7 +43,7 @@
       app-toolbar {
         color: var(--paper-grey-50);
         background-color: #231657;
-        /*background-image: url("./images/banner.jpg");*/
+        /*background-image: url("../../images/banner.jpg");*/
         background-size: contain;
         background-repeat: no-repeat;
       }
@@ -152,7 +151,7 @@
 
         <iron-pages selected="{{selected}}">
           <div class="content page-content">
-            <symposium-home></symposium-home> 
+            <symposium-home></symposium-home>
           </div>
           <div class="content page-content">
             <symposium-program></symposium-program>

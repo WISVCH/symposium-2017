@@ -1,15 +1,14 @@
 <!doctype html>
-
-<!doctype html>
 <html lang="en">
   <head>
+    <base href="2017">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
     <title>Symposium</title>
     <meta name="description" content="The key to your privacy, the science behind cyber security">
 
-    <link rel="icon" href="/images/favicon.ico">
+    <link rel="icon" href="favicon.ico">
 
     <!-- See https://goo.gl/OOhYW5 -->
     <link rel="manifest" href="/manifest.json">
@@ -64,7 +63,7 @@
         if (!webComponentsSupported) {
           var script = document.createElement('script');
           script.async = true;
-          script.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+          script.src = 'bower_components/webcomponentsjs/webcomponents-lite.min.js';
           script.onload = onload;
           document.head.appendChild(script);
         } else {
