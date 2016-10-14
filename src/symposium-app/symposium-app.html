@@ -116,11 +116,11 @@
         </app-toolbar>
 
         <!-- Nav on mobile: side nav menu -->
-        <paper-menu selected="{{data.page}}" attr-for-selected="key" on-tap="scrollTop">
-            <paper-item key="">Home</paper-item>
-            <paper-item key="program">Program</paper-item>
-            <paper-item key="location">Location</paper-item>
-            <paper-item key="committee">Committee</paper-item>
+        <paper-menu selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
+            <paper-item data-key="">Home</paper-item>
+            <paper-item data-key="program">Program</paper-item>
+            <paper-item data-key="location">Location</paper-item>
+            <paper-item data-key="committee">Committee</paper-item>
         </paper-menu>
       </app-drawer>
 
@@ -144,11 +144,11 @@
                 Symposium
               </div>
               <div class="flex"></div>
-              <paper-tabs selected="{{data.page}}" attr-for-selected="key" on-tap="scrollTop">
-                <paper-tab key="">Home</paper-tab>
-                <paper-tab key="program">Program</paper-tab>
-                <paper-tab key="location">Location</paper-tab>
-                <paper-tab key="committee">Committee</paper-tab>
+              <paper-tabs selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
+                <paper-tab data-key="">Home</paper-tab>
+                <paper-tab data-key="program">Program</paper-tab>
+                <paper-tab data-key="location">Location</paper-tab>
+                <paper-tab data-key="committee">Committee</paper-tab>
               </paper-tabs>
             </app-toolbar>
 
@@ -156,17 +156,17 @@
 
         </app-header>
 
-        <iron-pages selected="{{data.page}}" attr-for-selected="key">
-          <div class="content page-content" key="">
+        <iron-pages selected="{{data.page}}" attr-for-selected="data-key">
+          <div class="content page-content" data-key="">
             <symposium-home></symposium-home> 
           </div>
-          <div class="content page-content" key="program">
+          <div class="content page-content" data-key="program">
             <symposium-program></symposium-program>
           </div>
-          <div class="content page-content" key="location">
+          <div class="content page-content" data-key="location">
             <symposium-location></symposium-location>
           </div>
-          <div class="content page-content" key="committee">
+          <div class="content page-content" data-key="committee">
             <symposium-committee></symposium-committee>
           </div>
         </iron-pages>
