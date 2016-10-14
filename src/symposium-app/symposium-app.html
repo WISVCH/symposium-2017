@@ -7,6 +7,8 @@
 <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
 
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
@@ -95,6 +97,11 @@
       }
     </style>
 
+    <!-- app-location binds to the app's URL -->
+    <app-location route="{{route}}"></app-location> 
+    <app-route route="{{route}}" pattern="/:page" data="{{data}}"></app-route>
+
+
      <!-- force-narrow prevents the drawer from ever being displayed
        in persistent mode -->
     <app-drawer-layout force-narrow>
@@ -109,11 +116,11 @@
         </app-toolbar>
 
         <!-- Nav on mobile: side nav menu -->
-        <paper-menu selected="{{selected}}" on-tap="scrollTop">
-            <paper-item>Home </paper-item>
-            <paper-item>Program</paper-item>
-            <paper-item>Location</paper-item>
-            <paper-item>Committee</paper-item>
+        <paper-menu selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
+            <paper-item data-key="">Home</paper-item>
+            <paper-item data-key="program">Program</paper-item>
+            <paper-item data-key="location">Location</paper-item>
+            <paper-item data-key="committee">Committee</paper-item>
         </paper-menu>
       </app-drawer>
 
@@ -137,11 +144,11 @@
                 Symposium
               </div>
               <div class="flex"></div>
-              <paper-tabs selected="{{selected}}" on-tap="scrollTop">
-                <paper-tab>Home</paper-tab>
-                <paper-tab>Program </paper-tab>
-                <paper-tab>Location</paper-tab>
-                <paper-tab>Committee</paper-tab>
+              <paper-tabs selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
+                <paper-tab data-key="">Home</paper-tab>
+                <paper-tab data-key="program">Program</paper-tab>
+                <paper-tab data-key="location">Location</paper-tab>
+                <paper-tab data-key="committee">Committee</paper-tab>
               </paper-tabs>
             </app-toolbar>
 
@@ -149,17 +156,17 @@
 
         </app-header>
 
-        <iron-pages selected="{{selected}}">
-          <div class="content page-content">
-            <symposium-home></symposium-home>
+        <iron-pages selected="{{data.page}}" attr-for-selected="data-key">
+          <div class="content page-content" data-key="">
+            <symposium-home></symposium-home> 
           </div>
-          <div class="content page-content">
+          <div class="content page-content" data-key="program">
             <symposium-program></symposium-program>
           </div>
-          <div class="content page-content">
+          <div class="content page-content" data-key="location">
             <symposium-location></symposium-location>
           </div>
-          <div class="content page-content">
+          <div class="content page-content" data-key="committee">
             <symposium-committee></symposium-committee>
           </div>
         </iron-pages>
@@ -180,10 +187,6 @@
       is: 'symposium-app',
 
       properties: {
-        selected: {
-          type: Number,
-          value: 0,
-        },
       },
 
       scrollTop: function() {
