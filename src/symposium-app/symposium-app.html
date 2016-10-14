@@ -24,7 +24,7 @@
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 
-<link rel="import" href="symposium-home.html">
+<link rel="import" href="symposium-info.html">
 <link rel="import" href="symposium-program.html">
 <link rel="import" href="symposium-location.html">
 <link rel="import" href="symposium-committee.html">
@@ -94,6 +94,10 @@
         .content {
           padding: 0;
         }
+
+        .page-content {
+          padding: 0;
+        }
       }
     </style>
 
@@ -119,8 +123,8 @@
         <paper-menu selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
             <paper-item data-key="">Home</paper-item>
             <paper-item data-key="program">Program</paper-item>
-            <paper-item data-key="location">Location</paper-item>
-            <paper-item data-key="committee">Committee</paper-item>
+            <paper-item data-key="lecturers">Lecturers</paper-item>
+            <paper-item data-key="tickets">Tickets</paper-item>
         </paper-menu>
       </app-drawer>
 
@@ -147,8 +151,8 @@
               <paper-tabs selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
                 <paper-tab data-key="">Home</paper-tab>
                 <paper-tab data-key="program">Program</paper-tab>
-                <paper-tab data-key="location">Location</paper-tab>
-                <paper-tab data-key="committee">Committee</paper-tab>
+                <paper-tab data-key="lecturers">Lecturers</paper-tab>
+                <paper-tab data-key="tickets">Tickets</paper-tab>
               </paper-tabs>
             </app-toolbar>
 
@@ -158,16 +162,18 @@
 
         <iron-pages selected="{{data.page}}" attr-for-selected="data-key">
           <div class="content page-content" data-key="">
-            <symposium-home></symposium-home> 
+            <symposium-info></symposium-info>
+            <symposium-location></symposium-location>
+            <symposium-committee></symposium-committee>
           </div>
           <div class="content page-content" data-key="program">
             <symposium-program></symposium-program>
           </div>
-          <div class="content page-content" data-key="location">
-            <symposium-location></symposium-location>
+          <div class="content page-content" data-key="lecturers">
+            Lecturers content
           </div>
-          <div class="content page-content" data-key="committee">
-            <symposium-committee></symposium-committee>
+          <div class="content page-content" data-key="tickets">
+            Tickets content
           </div>
         </iron-pages>
 
