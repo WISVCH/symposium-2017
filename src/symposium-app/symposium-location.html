@@ -1,3 +1,4 @@
+<link rel="import" href="../../bower_components/google-map/google-map.html">
 <link rel="import" href="./symposium-page-card.html">
 
 <dom-module id="symposium-location">
@@ -10,16 +11,11 @@
     h1 {
       margin-top: 0;
     }
-
-    img {
-      margin: 32px 0 0;
-      display: block;
-      margin: auto;
-      max-width: 100%;
-    }
     </style>
 
     <symposium-page-card>
+        <google-map latitude="52.0085314" longitude="4.3605602"></google-map>
+        
         <h1>Location</h1>
 
         <p>The symposium will take place in Theater de Veste, which is located at the center of Delft. It is easily accessible by public transport, car and bike. It is a five-minute walk from Delft Central Station. There is a bus stop called "Zuidpoort" near the entrance, you can get there by taking bus 60, 62, 69, 80, 81 or 121. </p>
@@ -29,12 +25,11 @@
         <p>For more information on the location see: <a href="http://www.theaterdeveste.nl">www.theaterdeveste.nl</a>.</p>
 
         <p>
-          <b>Theater de Veste</b><br>
-          <i>Vesteplein 1<br>
+          <b>Theater de Veste</b><br />
+          <i>Vesteplein 1<br />
+          2611 WG<br />
           Delft</i>
         </p>
-
-        <img src="../../images/deveste.jpg"></img>
 
     </symposium-page-card>
 
@@ -46,5 +41,5 @@
       properties: {
       },
     });
-  </script>
+  </script> 
 </dom-module>
