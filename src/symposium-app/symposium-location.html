@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/google-map/google-map.html">
+<link rel="import" href="../../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="./symposium-page-card.html">
 
 <dom-module id="symposium-location">
@@ -13,14 +14,17 @@
       }
 
       google-map {
-        width: 100%;
-        height: 250px;
+        width: calc(100% + 32px);
+        margin: -16px -16px 0;
+        height: 400px;
         max-height: 50vh;
       }
     </style>
 
     <symposium-page-card>
-        <google-map latitude="52.0085314" longitude="4.3605602" api-key="AIzaSyCyFpVar9C1a9QuybOwfjj25vjRmWNn1hg"></google-map>
+        <google-map latitude="52.0085314" longitude="4.362748900000042" zoom="18" api-key="AIzaSyCyFpVar9C1a9QuybOwfjj25vjRmWNn1hg" disable-map-type-control disable-zoom draggable="false">
+          <google-map-marker latitude="52.0085314" longitude="4.362748900000042" title="Theater de Veste"></google-map-marker>
+        </google-map>
 
         <h1>Location</h1>
 
