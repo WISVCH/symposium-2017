@@ -1,0 +1,80 @@
+<link rel="import" href="./symposium-page-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/notification-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/editor-icons.html">
+
+<dom-module id="symposium-partners">
+    <template>
+        <style include="iron-flex iron-flex-alignment">
+            <style>
+            :host {
+                display: block;
+                padding: 0 0 16px;
+            }
+
+            h1 {
+                margin-top: 0;
+            }
+
+            paper-item {
+                border-bottom: 1px rgba(128,128,128,0.3) solid;
+            }
+
+            .committee {
+                margin: 16px 0 0;
+            }
+
+            iron-icon {
+                margin-right: 16px;
+                color: orange;
+            }
+        </style>
+
+        <symposium-page-card>
+            <h1>Partners</h1>
+
+            <div class="partners">
+                <template is="dom-repeat" items="{{members}}">
+
+                    <paper-item class="layout horizontal">
+                        <iron-icon icon="{{item.logo}}"></iron-icon>
+                        <paper-item-body class="flex" two-line>
+                            <div>{{item.name}}</div>
+                            <div secondary>{{item.company}}</div>
+                        </paper-item-body>
+                    </paper-item>
+
+                </template>
+            </div>
+
+        </symposium-page-card>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'symposium-partners',
+
+            properties: {
+                members: {
+                    type: Array,
+                    value: [{
+                        name: "TU Delft",
+                        company: "",
+                        logo: "icons:gavel"
+                    },
+                    {
+                        name: "W.I.S.V. 'Christiaan Huygens'",
+                        company: "",
+                        logo: "notification:event-note"
+                    }]
+                }
+            },
+        });
+    </script>
+</dom-module>
