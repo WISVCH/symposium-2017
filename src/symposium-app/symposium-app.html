@@ -38,15 +38,23 @@
         min-height: 100vh;
       }
 
+      iron-pages {
+        background-color: #231657;
+      }
+
       paper-tab {
         min-width: 60px;
+        font-style: normal;
       }
 
       app-toolbar {
-        color: var(--paper-grey-50);
-        background-color: #231657;
+        color: black;
+        background-color: var(--paper-grey-50);
+        /*background-image: url("../../images/banner.jpg");*/
         background-size: contain;
         background-repeat: no-repeat;
+        font-size: 18px;
+        font-style: italic;
       }
 
       paper-icon-button {
@@ -76,11 +84,25 @@
         padding: 0 0 16px 0;
       }
 
+      .banner {
+        text-align: center;
+        margin: -16px -16px 0;
+        width: calc(100% + 16px + 16px);
+        background-color: #231657;
+      }
+
+      img {
+        margin-top: 40px;
+        margin-bottom: -5px;
+        width: 95%;
+        height: auto;
+      }
+
       .footer {
         display: block;
         padding: 32px 0;
-        background-color: #231657;
-        color: var(--paper-grey-50);
+        color: black;
+        background-color: var(--paper-grey-50);
       }
 
       wisvch-footer {
@@ -98,6 +120,7 @@
           padding: 0;
         }
       }
+
     </style>
     <script>
       if (window.location.href.indexOf("#/", window.location.href.length - 2) === -1) {
@@ -118,7 +141,7 @@
            continuation of the main toolbar. It's optional. -->
         <app-toolbar>
           <div main-title>
-            Symposium
+            W.I.S.V. 'Christiaan Huygens' presents:
           </div>
         </app-toolbar>
 
@@ -139,7 +162,7 @@
             <app-toolbar>
               <paper-icon-button class="menu-button" icon="menu" drawer-toggle></paper-icon-button>
               <div main-title>
-                Symposium
+                W.I.S.V. 'Christiaan Huygens' presents:
               </div>
             </app-toolbar>
           </template>
@@ -148,7 +171,7 @@
           <template is="dom-if" if="{{wideLayout}}">
             <app-toolbar class="tabs-bar">
               <div main-title>
-                Symposium
+                W.I.S.V. 'Christiaan Huygens' presents:
               </div>
               <div class="flex"></div>
               <paper-tabs selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
@@ -165,6 +188,9 @@
 
         <iron-pages selected="{{data.page}}" attr-for-selected="data-key">
           <div class="content page-content" data-key="">
+            <div class="banner">
+              <img src="../../images/logo_nobg.png" alt="The key to your privacy.">
+            </div>
             <symposium-info></symposium-info>
             <symposium-location></symposium-location>
             <symposium-committee></symposium-committee>
