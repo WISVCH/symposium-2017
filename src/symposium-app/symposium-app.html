@@ -45,7 +45,6 @@
       app-toolbar {
         color: var(--paper-grey-50);
         background-color: #231657;
-        /*background-image: url("../../images/banner.jpg");*/
         background-size: contain;
         background-repeat: no-repeat;
       }
@@ -127,8 +126,8 @@
         <paper-menu selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
             <paper-item data-key="">Home</paper-item>
             <paper-item data-key="program">Program</paper-item>
-            <paper-item data-key="lecturers">Lecturers</paper-item>
-            <paper-item data-key="tickets">Tickets</paper-item>
+            <!-- <paper-item data-key="lecturers">Lecturers</paper-item> -->
+            <!-- <paper-item data-key="tickets">Tickets</paper-item> -->
         </paper-menu>
       </app-drawer>
 
@@ -155,8 +154,8 @@
               <paper-tabs selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
                 <paper-tab data-key="">Home</paper-tab>
                 <paper-tab data-key="program">Program</paper-tab>
-                <paper-tab data-key="lecturers">Lecturers</paper-tab>
-                <paper-tab data-key="tickets">Tickets</paper-tab>
+                <!-- <paper-tab data-key="lecturers">Lecturers</paper-tab> -->
+                <!-- <paper-tab data-key="tickets">Tickets</paper-tab> -->
               </paper-tabs>
             </app-toolbar>
 
@@ -173,12 +172,12 @@
           <div class="content page-content" data-key="program">
             <symposium-program></symposium-program>
           </div>
-          <div class="content page-content" data-key="lecturers">
-            Lecturers content
-          </div>
-          <div class="content page-content" data-key="tickets">
-            Tickets content
-          </div>
+          <!-- <div class="content page-content" data-key="lecturers"> -->
+            <!-- Lecturers content -->
+          <!-- </div> -->
+          <!-- <div class="content page-content" data-key="tickets"> -->
+            <!-- Tickets content -->
+          <!-- </div> -->
         </iron-pages>
 
         <div class="footer">
