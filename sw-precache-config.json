@@ -7,8 +7,15 @@
     "/bower_components/webcomponentsjs/webcomponents-lite.min.js"
   ],
   "navigateFallback": "/index.html",
+   "replacePrefix": "/2017",
   "runtimeCaching": [{
     "urlPattern": "/https:\\/\\/fonts\\.googleapis\\.com\\//",
+    "handler": "cacheFirst"
+  }, {
+    "urlPattern": "/https:\\/\\/maps\\.googleapis\\.com\\//",
+    "handler": "cacheFirst"
+  }, {
+    "urlPattern": "/https:\\/\\/maps\\.gstatic\\.com\\//",
     "handler": "cacheFirst"
   }]
 }
