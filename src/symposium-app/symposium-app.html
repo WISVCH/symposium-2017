@@ -29,17 +29,18 @@
 <link rel="import" href="symposium-location.html">
 <link rel="import" href="symposium-committee.html">
 
+<link rel="import" href="../theme.html" />
+
 <dom-module id="symposium-app">
   <template>
-    <style include="iron-flex iron-flex-alignment"></style>
-    <style>
+    <style include="iron-flex iron-flex-alignment shared-styles">
       :host {
         display: block;
         min-height: 100vh;
       }
 
       iron-pages {
-        background-color: #231657;
+        background-color: var(--wisvch-background-color);
       }
 
       paper-tab {
@@ -86,16 +87,12 @@
 
       .banner {
         text-align: center;
-        margin: -16px -16px 0;
-        width: calc(100% + 16px + 16px);
-        background-color: #231657;
       }
 
-      img {
-        margin-top: 40px;
-        margin-bottom: -5px;
-        width: 95%;
+      .banner img {
+        width: calc(100% - 16px - 16px);
         height: auto;
+        margin: 16px;
       }
 
       .footer {
