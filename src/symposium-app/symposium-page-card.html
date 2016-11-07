@@ -14,6 +14,10 @@
         display: block;
         margin-top: 16px;
         max-width: 800px;
+
+        --paper-card-header-text: {
+          font-weight: 400;
+        }
       }
 
       @media (max-width: 800px) {
@@ -25,7 +29,7 @@
       }
     </style>
 
-    <paper-card>
+    <paper-card heading="{{heading}}">
       <div class="card-content">
         <content></content>
       </div>
@@ -36,6 +40,7 @@
     Polymer({
       is: 'symposium-page-card',
       properties: {
+        heading: String
       }
     });
   })();

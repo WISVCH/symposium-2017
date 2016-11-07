@@ -22,10 +22,10 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="../../bower_components/paper-styles/color.html">
 
 <link rel="import" href="symposium-info.html">
 <link rel="import" href="symposium-program.html">
+<link rel="import" href="symposium-map.html">
 <link rel="import" href="symposium-location.html">
 <link rel="import" href="symposium-committee.html">
 
@@ -40,7 +40,7 @@
       }
 
       iron-pages {
-        background-color: var(--wisvch-background-color);
+        background-color: var(--paper-grey-50);
       }
 
       paper-tab {
@@ -49,34 +49,19 @@
       }
 
       app-toolbar {
-        color: black;
-        background-color: var(--paper-grey-50);
+        color: var(--paper-grey-50);
+        background-color: var(--primary-color);
         font-size: 18px;
         font-style: italic;
       }
 
-      .mobile-view-header {
-        color: var(--paper-grey-50);
-        background-color: var(--wisvch-background-color);
-        font-size: 10px;
-      }
-
-      paper-icon-button {
-        color: var(--paper-orange-500);
-      }
-
       paper-tabs {
-        --paper-tabs-selection-bar-color: var(--paper-orange-500);
+        --paper-tabs-selection-bar-color: var(--secondary-color);
         --paper-tabs-selection-bar: {
           height: 4px;
         };
 
         height: 100%;
-      }
-
-      .title {
-        color: var(--paper-orange-500);
-        font-weight: 600;
       }
 
       .content {
@@ -89,25 +74,20 @@
       }
 
       .banner {
-        text-align: center;
+        background-color: var(--primary-color);
       }
 
-      .banner img {
+      img {
+        width: 100%;
         width: calc(100% - 16px - 16px);
-        height: auto;
         margin: 16px;
       }
 
       .footer {
         display: block;
         padding: 32px 0;
-        color: black;
-        background-color: var(--paper-grey-50);
-      }
-
-      .mobile-view-footer {
         color: var(--paper-grey-50);
-        background-color: var(--wisvch-background-color);
+        background-color: var(--primary-color);
       }
 
       wisvch-footer {
@@ -144,11 +124,7 @@
 
         <!-- an empty toolbar in the drawer looks like a
            continuation of the main toolbar. It's optional. -->
-        <app-toolbar>
-          <div main-title>
-            W.I.S.V. 'Christiaan Huygens' presents:
-          </div>
-        </app-toolbar>
+        <app-toolbar></app-toolbar>
 
         <!-- Nav on mobile: side nav menu -->
         <paper-menu selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
@@ -164,7 +140,7 @@
 
           <!-- Nav on mobile: side nav menu -->
           <template is="dom-if" if="{{!wideLayout}}">
-            <app-toolbar class="mobile-view-header">
+            <app-toolbar>
               <paper-icon-button class="menu-button" icon="menu" drawer-toggle></paper-icon-button>
               <div main-title>
                 W.I.S.V. 'Christiaan Huygens' presents:
@@ -186,9 +162,7 @@
                 <!-- <paper-tab data-key="tickets">Tickets</paper-tab> -->
               </paper-tabs>
             </app-toolbar>
-
           </template>
-
         </app-header>
 
         <iron-pages selected="{{data.page}}" attr-for-selected="data-key">
@@ -198,6 +172,7 @@
             </div>
             <symposium-info></symposium-info>
             <symposium-location></symposium-location>
+            <symposium-map></symposium-map>
             <symposium-committee></symposium-committee>
           </div>
           <div class="content page-content" data-key="program">
@@ -211,16 +186,9 @@
           <!-- </div> -->
         </iron-pages>
 
-        <template is="dom-if" if="{{wideLayout}}">
-          <div class="footer">
-            <wisvch-footer></wisvch-footer>
-          </div>
-        </template>
-        <template is="dom-if" if="{{!wideLayout}}">
-          <div class="footer mobile-view-footer">
-            <wisvch-footer></wisvch-footer>
-          </div>
-        </template>
+        <div class="footer">
+          <wisvch-footer></wisvch-footer>
+        </div>
 
       </app-header-layout>
     </app-drawer-layout>
