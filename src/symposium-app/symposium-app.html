@@ -51,15 +51,18 @@
       app-toolbar {
         color: black;
         background-color: var(--paper-grey-50);
-        /*background-image: url("../../images/banner.jpg");*/
-        background-size: contain;
-        background-repeat: no-repeat;
         font-size: 18px;
         font-style: italic;
       }
 
-      paper-icon-button {
+      .mobile-view-header {
         color: var(--paper-grey-50);
+        background-color: var(--wisvch-background-color);
+        font-size: 10px;
+      }
+
+      paper-icon-button {
+        color: var(--paper-orange-500);
       }
 
       paper-tabs {
@@ -100,6 +103,11 @@
         padding: 32px 0;
         color: black;
         background-color: var(--paper-grey-50);
+      }
+
+      .mobile-view-footer {
+        color: var(--paper-grey-50);
+        background-color: var(--wisvch-background-color);
       }
 
       wisvch-footer {
@@ -156,7 +164,7 @@
 
           <!-- Nav on mobile: side nav menu -->
           <template is="dom-if" if="{{!wideLayout}}">
-            <app-toolbar>
+            <app-toolbar class="mobile-view-header">
               <paper-icon-button class="menu-button" icon="menu" drawer-toggle></paper-icon-button>
               <div main-title>
                 W.I.S.V. 'Christiaan Huygens' presents:
@@ -203,9 +211,16 @@
           <!-- </div> -->
         </iron-pages>
 
-        <div class="footer">
-          <wisvch-footer></wisvch-footer>
-        </div>
+        <template is="dom-if" if="{{wideLayout}}">
+          <div class="footer">
+            <wisvch-footer></wisvch-footer>
+          </div>
+        </template>
+        <template is="dom-if" if="{{!wideLayout}}">
+          <div class="footer mobile-view-footer">
+            <wisvch-footer></wisvch-footer>
+          </div>
+        </template>
 
       </app-header-layout>
     </app-drawer-layout>
