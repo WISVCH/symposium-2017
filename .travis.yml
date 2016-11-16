@@ -4,7 +4,7 @@ node_js:
 before_script:
   - 'npm i -g bower polymer-cli'
   - 'bower install'
-script: "polymer build"
+script: "npm run build"
 cache:
   directories:
     - node_modules
