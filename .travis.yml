@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '4.0'
+before_script:
+  - 'npm i -g bower polymer-cli'
+  - 'bower install'
+script: "npm run build"
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
+
