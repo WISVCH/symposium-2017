@@ -22,51 +22,48 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="../../bower_components/paper-styles/color.html">
 
 <link rel="import" href="symposium-info.html">
 <link rel="import" href="symposium-recommendations.html">
 <link rel="import" href="symposium-program.html">
+<link rel="import" href="symposium-map.html">
 <link rel="import" href="symposium-location.html">
 <link rel="import" href="symposium-committee.html">
 <link rel="import" href="symposium-contact.html">
 
+<link rel="import" href="../theme.html" />
+
 <dom-module id="symposium-app">
   <template>
-    <style include="iron-flex iron-flex-alignment"></style>
-    <style>
+    <style include="iron-flex iron-flex-alignment shared-styles">
       :host {
         display: block;
         min-height: 100vh;
       }
 
+      iron-pages {
+        background-color: var(--paper-grey-50);
+      }
+
       paper-tab {
         min-width: 60px;
+        font-style: normal;
       }
 
       app-toolbar {
         color: var(--paper-grey-50);
-        background-color: #231657;
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
-
-      paper-icon-button {
-        color: var(--paper-grey-50);
+        background-color: var(--primary-color);
+        font-size: 18px;
+        font-style: italic;
       }
 
       paper-tabs {
-        --paper-tabs-selection-bar-color: var(--paper-orange-500);
+        --paper-tabs-selection-bar-color: var(--secondary-color);
         --paper-tabs-selection-bar: {
           height: 4px;
         };
 
         height: 100%;
-      }
-
-      .title {
-        color: var(--paper-orange-500);
-        font-weight: 600;
       }
 
       .content {
@@ -78,11 +75,21 @@
         padding: 0 0 16px 0;
       }
 
+      .banner {
+        background-color: var(--primary-color);
+      }
+
+      img {
+        width: 100%;
+        width: calc(100% - 16px - 16px);
+        margin: 16px;
+      }
+
       .footer {
         display: block;
         padding: 32px 0;
-        background-color: #231657;
         color: var(--paper-grey-50);
+        background-color: var(--primary-color);
       }
 
       wisvch-footer {
@@ -100,6 +107,7 @@
           padding: 0;
         }
       }
+
     </style>
     <script>
       if (window.location.href.indexOf("#/", window.location.href.length - 2) === -1) {
@@ -118,11 +126,7 @@
 
         <!-- an empty toolbar in the drawer looks like a
            continuation of the main toolbar. It's optional. -->
-        <app-toolbar>
-          <div main-title>
-            Symposium
-          </div>
-        </app-toolbar>
+        <app-toolbar></app-toolbar>
 
         <!-- Nav on mobile: side nav menu -->
         <paper-menu selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
@@ -141,7 +145,7 @@
             <app-toolbar>
               <paper-icon-button class="menu-button" icon="menu" drawer-toggle></paper-icon-button>
               <div main-title>
-                Symposium
+                W.I.S.V. 'Christiaan Huygens' presents:
               </div>
             </app-toolbar>
           </template>
@@ -150,7 +154,7 @@
           <template is="dom-if" if="{{wideLayout}}">
             <app-toolbar class="tabs-bar">
               <div main-title>
-                Symposium
+                W.I.S.V. 'Christiaan Huygens' presents:
               </div>
               <div class="flex"></div>
               <paper-tabs selected="{{data.page}}" attr-for-selected="data-key" on-tap="scrollTop">
@@ -160,16 +164,18 @@
                 <!-- <paper-tab data-key="tickets">Tickets</paper-tab> -->
               </paper-tabs>
             </app-toolbar>
-
           </template>
-
         </app-header>
 
         <iron-pages selected="{{data.page}}" attr-for-selected="data-key">
           <div class="content page-content" data-key="">
+            <div class="banner">
+              <img src="../../images/logo_nobg.png" alt="The key to your privacy.">
+            </div>
             <symposium-info></symposium-info>
             <symposium-recommendations></symposium-recommendations>
             <symposium-location></symposium-location>
+            <symposium-map></symposium-map>
             <symposium-committee></symposium-committee>
             <symposium-contact></symposium-contact>
           </div>
