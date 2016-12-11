@@ -1,0 +1,27 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="symposium-card.html">
+
+<dom-module id="symposium-page-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <symposium-card>
+      <div class="card-content">
+        <content></content>
+      </div>
+    </symposium-card>
+  </template>
+  <script>
+  (function() {
+    Polymer({
+      is: 'symposium-page-card',
+      properties: {
+      },
+    });
+  })();
+  </script>
+</dom-module>
