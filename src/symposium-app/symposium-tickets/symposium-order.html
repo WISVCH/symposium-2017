@@ -1,0 +1,117 @@
+<link rel="import" href="../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../symposium-card/symposium-card.html">
+<link rel="import" href="symposium-form.html">
+
+<dom-module id="symposium-order">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+
+      paper-item {
+        border-bottom: 1px solid #e8e8e8;
+      }
+
+      .price {
+        width: 50px;
+      }
+    </style>
+    
+    <symposium-ajax
+    id="ajaxOrder"
+    method="POST"
+    refurl="orders"
+    on-response="onCheckout"
+    ></symposium-ajax>
+
+    <symposium-card heading="Order">
+      
+      <div class="card-content layout vertical">
+      
+        <div hidden$="{{hasItems}}">Start adding items to your order.</div>
+
+        <div class="tickets">
+          <template is="dom-repeat" items="{{order}}">
+            <paper-item class="layout horizontal">
+              <paper-item-body class="flex" three-line>
+                <div>[[item.name]]</div>
+                <div secondary>[[item.description]]</div>
+              </paper-item-body>
+              <div class="price">[[item.price]]</div>
+              <iron-icon icon="icons:delete" on-tap="removeTicket"></iron-icon>
+            </paper-item>
+          </template>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <symposium-form id="form"></symposium-form>
+      </div>
+
+      <div class="card-actions">
+        <paper-button on-tap="tryCheckout" disabled$="{{!readyForCheckout}}">Checkout</paper-button>
+      </div>
+
+    </symposium-card>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'symposium-order',
+
+      properties: {
+        order: Array,
+        readyForCheckout: Boolean
+      },
+      observers: [
+        '_orderChanged(order.*)',
+      ],
+
+      tryCheckout: function() {
+        if (this.$.form.validate()) {
+          var tickets = this.order.map(function(t) {return t.key;});
+          this.$.ajaxOrder.body = {
+            productKeys: tickets,
+            name: this.$.form.getName(),
+            email: this.$.form.getEmail(),
+            returnUrl: 'https://localhost:8080/ordercompleted',
+          };
+          this.$.ajaxOrder.generateRequest();
+        }
+      },
+
+      onCheckout: function(e, request) {
+        if (request.succeeded) {
+          window.location = request.response.url;
+        } else {
+          console.log('error');
+        }
+      },
+
+      removeTicket: function(e) {
+        var index = this.order.indexOf(e.model.item);
+        this.splice('order', index, 1);
+      },
+
+      _orderChanged: function() {
+        if (this.order.length < 1) {
+          this.readyForCheckout = false;
+          return;
+        }
+        this.readyForCheckout = true;
+      },
+      
+    });
+  })();
+  </script>
+</dom-module>
