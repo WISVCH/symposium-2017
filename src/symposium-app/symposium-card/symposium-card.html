@@ -1,7 +1,7 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
 
-<dom-module id="symposium-page-card">
+<dom-module id="symposium-card">
   <template>
     <style>
       :host {
@@ -9,10 +9,8 @@
       }
 
       paper-card {
-        margin-left: auto;
-        margin-right: auto;
+        margin: 16px auto 0;
         display: block;
-        margin-top: 16px;
         max-width: 800px;
       }
 
@@ -25,19 +23,19 @@
       }
     </style>
 
-    <paper-card>
-      <div class="card-content">
-        <content></content>
-      </div>
+    <paper-card heading={{heading}}>
+      <content></content>
     </paper-card>
   </template>
   <script>
   (function() {
     Polymer({
-      is: 'symposium-page-card',
+      is: 'symposium-card',
       properties: {
-      }
+        heading: String,
+      },
+      
     });
   })();
   </script>
-</dom-module>
+</dom-module
