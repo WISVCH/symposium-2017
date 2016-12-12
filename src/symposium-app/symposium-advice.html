@@ -1,0 +1,76 @@
+<link rel="import" href="symposium-card/symposium-page-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item-body.html">
+
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="symposium-advice">
+    <template>
+        <style include="iron-flex iron-flex-alignment"></style>
+        <style>
+            :host {
+                display: block;
+            }
+
+            h1 {
+                margin-top: 0;
+            }
+
+            paper-item {
+                border-bottom: 1px rgba(128,128,128,0.3) solid;
+            }
+
+            .advice {
+                margin: 16px 0 0;
+            }
+        </style>
+
+        <symposium-page-card>
+            <h1>Board of Advice</h1>
+
+            <p>For acquiring contacts with several parties, we have turned to the long experience and wisdom of professors, researchers and employees from our university for support and tips. These people form the Board of Advice. Our Board of Advice consists of:</p>
+
+            <div class="advice">
+                <template is="dom-repeat" items="{{members}}">
+
+                    <paper-item class="layout horizontal">
+                        <paper-item-body class="flex" two-line>
+                            <div>{{item.name}}</div>
+                            <div secondary>{{item.faculty}}</div>
+                        </paper-item-body>
+                    </paper-item>
+
+                </template>
+            </div>
+
+        </symposium-page-card>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'symposium-advice',
+
+            properties: {
+                members: {
+                    type: Array,
+                    value: [{
+                        name: "Prof. dr. ir. G. Jongbloed",
+                        faculty: "Professor of Statistics | Faculty of EEMCS TU Delft"
+                    },
+                    {
+                        name: "E.M. Vreede",
+                        faculty: "Institute Program Manager | Faculty of EEMCS TU Delft"
+                    },
+                    {
+                        name: "S.E. Verwer",
+                        faculty: "Assistant Professor in Cyber Security Group | Faculty of EEMCS TU Delft"
+                    },
+                    {
+                        name: "Z. Erkin",
+                        faculty: "Assistant Professor in Cyber Security Group | Faculty of EEMCS TU Delft"
+                    }]
+                }
+            }
+        });
+    </script>
+</dom-module>
