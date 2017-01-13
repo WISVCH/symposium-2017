@@ -1,0 +1,70 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../symposium-card/symposium-card.html">
+<link rel="import" href="../symposium-ajax.html">
+<link rel="import" href="symposium-ticket.html">
+<link rel="import" href="symposium-order.html">
+
+<dom-module id="symposium-tickets">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+
+      symposium-ticket {
+        min-width: 300px;
+      }
+    </style>
+
+    <symposium-ajax auto
+    refurl="products/SYMPOSIUM/2016"
+    on-response="onTickets"
+    ></symposium-ajax>
+
+    <symposium-card heading="Tickets">
+      <div class="card-content layout horizontal wrap">
+        <template is="dom-repeat" items="{{tickets}}">
+          <symposium-ticket class="flex" ticket="{{item}}" order="{{order}}"></symposium-ticket>
+        </template>
+      </div>
+    </symposium-card>
+
+    <symposium-order order="{{order}}"></symposium-order>
+  
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'symposium-tickets',
+
+      properties: {
+        tickets: {
+          type: Array,
+        },
+        order: {
+          type: Array,
+          value: function() {
+            return [];
+          },
+          notify: true,
+        }
+      },
+
+      onTickets: function(e, request) {
+        if (request.succeeded) {
+          this.tickets = request.response.filter(function(t) {
+            return t.available;
+          }).sort(function(a, b) {
+            return a.price - b.price;
+          });
+        } else {
+          console.log('Handle error');
+        }
+      },
+    });
+  })();
+  </script>
+</dom-module>

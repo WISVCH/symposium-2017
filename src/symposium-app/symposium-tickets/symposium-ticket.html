@@ -1,0 +1,64 @@
+<link rel="import" href="../../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="symposium-ticket">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+
+      paper-material {
+        padding: 8px;
+        margin: 8px;
+      }
+
+      paper-material > * {
+        width: 100%;
+      }
+
+      .name {
+        font-size: 28px;
+        font-weight: 400;
+      }
+
+      .information {
+        color: #666666;
+        font-size: 18px;
+        padding: 8px 0;
+        border-top: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;
+      }
+    </style>
+
+    <paper-material>
+      <div class="name">[[ticket.name]]</div>
+      <div class="information">
+        <div class="description">[[ticket.description]]</div>
+        <div class="price">[[ticket.price]]</div>
+      </div>
+      <paper-button on-tap="addToOrder">Add to basket</paper-button>
+    </paper-material>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'symposium-ticket',
+
+      properties: {
+        ticket: Object,
+        order: Array,
+      },
+
+      addToOrder: function() {
+        this.push('order', this.ticket);
+      },
+      
+    });
+  })();
+  </script>
+</dom-module>

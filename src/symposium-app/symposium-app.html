@@ -31,6 +31,8 @@
 <link rel="import" href="symposium-committee.html">
 <link rel="import" href="symposium-advice.html">
 <link rel="import" href="symposium-contact.html">
+<link rel="import" href="symposium-tickets/symposium-tickets.html">
+<link rel="import" href="symposium-tickets/symposium-ordercompleted.html">
 
 <dom-module id="symposium-app">
   <template>
@@ -72,7 +74,7 @@
 
       .content {
         max-width: 800px;
-        margin: auto;
+        margin: 0 auto;
       }
 
       .page-content {
@@ -125,7 +127,7 @@
             <paper-item data-key="">Home</paper-item>
             <paper-item data-key="program">Program</paper-item>
             <!-- <paper-item data-key="lecturers">Lecturers</paper-item> -->
-            <!-- <paper-item data-key="tickets">Tickets</paper-item> -->
+             <paper-item data-key="tickets">Tickets</paper-item> 
         </paper-menu>
       </app-drawer>
 
@@ -153,7 +155,7 @@
                 <paper-tab data-key="">Home</paper-tab>
                 <paper-tab data-key="program">Program</paper-tab>
                 <!-- <paper-tab data-key="lecturers">Lecturers</paper-tab> -->
-                <!-- <paper-tab data-key="tickets">Tickets</paper-tab> -->
+                 <paper-tab data-key="tickets">Tickets</paper-tab> 
               </paper-tabs>
             </app-toolbar>
 
@@ -176,9 +178,12 @@
           <!-- <div class="content page-content" data-key="lecturers"> -->
             <!-- Lecturers content -->
           <!-- </div> -->
-          <!-- <div class="content page-content" data-key="tickets"> -->
-            <!-- Tickets content -->
-          <!-- </div> -->
+           <div class="content page-content" data-key="tickets"> 
+             <symposium-tickets></symposium-tickets>
+           </div>
+           <div class="content page-content" data-key="ordercompleted"> 
+             <symposium-ordercompleted></symposium-ordercompleted>
+           </div>  
         </iron-pages>
 
         <div class="footer">
@@ -197,6 +202,10 @@
       is: 'symposium-app',
 
       properties: {
+      },
+
+      ready: function() {
+        console.log(this.route);
       },
 
       scrollTop: function() {

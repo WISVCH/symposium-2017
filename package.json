@@ -5,7 +5,8 @@
     "node": ">=4.0"
   },
   "scripts": {
-    "build": "node ./node_modules/gulp/bin/gulp.js"
+    "build": "node ./node_modules/gulp/bin/gulp.js",
+    "serve": "node ./node_modules/polyserve/bin/polyserve -p 8080 -P h2 --proxy-path api --proxy-target http://localhost:9000/api/"
   },
   "devDependencies": {
     "css-slam": "^1.1.0",
@@ -17,6 +18,7 @@
     "gulp-uglify": "^2.0.0",
     "merge-stream": "^1.0.0",
     "plylog": "^0.4.0",
-    "polymer-build": "^0.4.0"
+    "polymer-build": "^0.4.0",
+    "polyserve": "^0.16.0-prerelease.1"
   }
 }

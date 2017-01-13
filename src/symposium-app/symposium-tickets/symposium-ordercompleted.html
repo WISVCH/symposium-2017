@@ -1,0 +1,35 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../symposium-card/symposium-page-card.html">
+
+<dom-module id="symposium-ordercompleted">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <symposium-page-card>
+        Here the different ordering outcomes will be handled in the front-end.
+    </symposium-page-card>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'symposium-ordercompleted',
+
+      properties: {
+      },
+
+      ready: function() {
+          var order = window.location.href.split('order=')[1];
+          console.log(order);
+      },
+      
+    });
+  })();
+  </script>
+</dom-module>
