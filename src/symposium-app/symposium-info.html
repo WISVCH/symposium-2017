@@ -26,13 +26,11 @@
       }
 
       .photo {
-        padding: 0 5px 0 5px;
-        flex-basis: 50%;
+        padding: 0 5px;
       }
 
       .photo img {
-        width: 100%;
-        min-height: 200px;
+        max-width: 100%;
       }
     </style>
 
@@ -49,13 +47,13 @@
     
       <p>At the end of the day, we will finish with a discussion about the ethics behind cyber security, followed by drinks and the possibility to network and share thoughts on the discussed topics. </p>
 
-    <div class="photos display flex">
-      <!--<div class="photo">-->
-        <img class="flex 1" src="../../images/sympo_01.jpg" alt="Symposium 2013/2014 01">
-      <!--</div>-->
-      <!--<div class="photo">-->
-        <img class="flex 1" src="../../images/sympo_02.jpg" alt="Symposium 2013/2014 02">
-      <!--</div>-->
+    <div class="photos layout horizontal">
+      <div class="flex photo">
+        <img src="../../images/sympo_01.jpg" alt="Symposium 2013/2014 01">
+      </div>
+      <div class="flex photo">
+        <img src="../../images/sympo_02.jpg" alt="Symposium 2013/2014 02">
+      </div>
     </div>
     </symposium-page-card>
   
