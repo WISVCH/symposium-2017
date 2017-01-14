@@ -10,7 +10,9 @@
     "app-layout": "PolymerElements/app-layout#^0.10.4",
     "app-route": "PolymerElements/app-route#^0.9.2",
     "google-map": "GoogleWebComponents/google-map#^1.1.14",
-    "wisvch-footer": "wisvch/wisvch-footer#^1.0.0"
+    "wisvch-footer": "wisvch/wisvch-footer#^1.0.0",
+    "polymer-simple-slider": "^1.0.1",
+    "polymer-image-slider": "^2.5.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.7",
