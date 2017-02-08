@@ -1,12 +1,12 @@
 {
   "entrypoint": "index.html",
   "shell": "src/symposium-app/symposium-app.html",
-  "sourceGlobs": [
+  "sources": [
    "src/**/*",
    "images/**/*",
    "bower.json"
   ],
-  "includeDependencies": [
+  "extraDependencies": [
     "manifest.json",
     "favicon.ico",
     "bower_components/webcomponentsjs/webcomponents-lite.min.js"
