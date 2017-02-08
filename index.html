@@ -37,11 +37,13 @@
     <meta name="msapplication-TileColor" content="#EEEEEE">
     <meta name="msapplication-tap-highlight" content="no">
 
+    <link rel="import" href="index-imports.html" async>
+
     <script>
       if (window.location.href.indexOf("#/") === -1) {
         window.location.href += "#/";
       }
-    
+
       // Setup Polymer options
       window.Polymer = {
         dom: 'shadow',
@@ -82,19 +84,170 @@
       }
     </script>
 
-    <link rel="import" href="src/symposium-app/symposium-app.html">
-
     <style>
+      html {
+        margin: 0;
+        --primary-color: #5DC5EA;
+        --secondary-color: #F39200;
+        --tertiary-color: #8BD1EF;
+
+        --header-height: 64px;
+      }
+
       body {
         margin: 0;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        line-height: 1.5;
-        min-height: 100vh;
-        background-color: #eeeeee;
+        color: #212121;
+        font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        letter-spacing: 0.02em;
+      }
+
+      header {
+        position: fixed;
+        height: 64px;
+        background-color: white;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        text-transform: uppercase;
+        font-weight: bold;
+        top: 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+      }
+
+      header label {
+        display: none;
+        margin: 20px;
+      }
+
+      header input {
+        display: none;
+      }
+
+      nav {
+        margin: 20px;
+        background-color: white;
+      }
+
+      nav a {
+        margin: 0 10px;
+        color: #212121;
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      nav a:hover {
+        opacity: 0.6;
+      }
+
+      .logo {
+        margin: 5px 20px;
+      }
+
+      @media (max-width: 400px) {
+        nav {
+          display: block;
+          margin: 0;
+          padding: 10px;
+          width: 100%;
+          border-top: solid 1px #e7e7e7;
+          text-align: center;
+          line-height: 25px;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+          visibility: collapse;
+          opacity: 0;
+          transition: visibility 0s, opacity 0.25s;
+        }
+
+        header input:checked ~ nav {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        iron-selector {
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        a {
+          padding: 8px 0;
+        }
+
+        header label {
+          display: block;
+        }
+      }
+
+      .spacing {
+        margin-top: 64px;
+      }
+
+      [data-route="404"] {
+        display: none;
+      }
+
+      .title {
+        color: var(--paper-orange-500);
+        font-weight: 600;
       }
     </style>
   </head>
   <body>
-    <symposium-app></symposium-app>
+    <!-- app-location binds to the app's URL -->
+    <app-location id="location" use-hash-as-path></app-location>
+    <app-route id="route" pattern="/:page"></app-route>
+
+    <header>
+      <span>Symposium</span>
+      <label for="menu">Menu</label>
+      <input id="menu" type="checkbox" />
+      <nav>
+        <iron-selector attr-for-selected="data-route" id="navigation">
+          <a data-route="" href="#/">Home</a>
+          <a data-route="" href="#/program">Program</a>
+        </iron-selector>
+      </nav>
+    </header>
+
+    <div class="spacing"></div>
+
+    <iron-lazy-pages id="pages" attr-for-selected="data-route" fallback-selection="404">
+      <symposium-homepage data-route="" data-path="src/symposium-homepage.html"></symposium-homepage>
+      <symposium-program data-route="program" data-path="src/symposium-program.html"></symposium-program>
+    </iron-lazy-pages>
+
+    <footer>
+      <wisvch-footer></wisvch-footer>
+    </footer>
+
+    <script>
+    (function(document, window) {
+      const navigation = document.getElementById('navigation');
+      const location = document.getElementById('location');
+      const route = document.getElementById('route');
+      const pages = document.getElementById('pages');
+      const menu = document.getElementById('menu');
+      navigation.addEventListener('selected-changed', function(e) {
+        const selected = e.detail.value;
+        route.data.page = selected;
+        location.path = '/' + selected;
+        pages.selected = selected;
+        menu.checked = false;
+      });
+      location.addEventListener('route-changed', function(e) {
+        route.route = e.detail.value;
+      });
+      route.addEventListener('data-changed', function(e) {
+        navigation.selected = e.detail.value.page;
+      });
+      if ('serviceWorker' in window.navigator) {
+        window.navigator.serviceWorker.register('/service-worker.js')
+      }
+    })(document, window);
+    </script>
   </body>
 </html>
