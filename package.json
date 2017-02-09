@@ -6,7 +6,8 @@
   },
   "scripts": {
     "build": "node ./node_modules/gulp/bin/gulp.js",
-    "serve": "polymer serve --proxy-path 2017 --proxy-target http://127.0.0.1:8081/"
+    "serve": "polymer serve -p 8737 --proxy-path 2017 --proxy-target http://127.0.0.1:8737/",
+    "serve-build": "polymer serve -p 8737 build"
   },
   "devDependencies": {
     "babel-preset-babili": "^0.0.9",

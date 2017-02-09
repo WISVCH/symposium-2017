@@ -4,20 +4,21 @@ This is the code for the Symposium website. This website provides information ab
 
 ## Install the Polymer-CLI
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
+First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `yarn run serve` to serve your application locally.
 
 ## Installing dependencies
 
 If you do not have bower yet, install it by running:
 
 ```
-$ npm install -g bower
+$ yarn global add bower
 ```
 
 After you have done this, install all the dependencies with:
 
 ```
 $ bower install
+$ yarn
 ```
 
 When adding dependencies later, it is advised to add them to the `bower.json` file.
@@ -25,30 +26,20 @@ When adding dependencies later, it is advised to add them to the `bower.json` fi
 ## Viewing Your Application
 
 ```
-$ polymer serve
+$ yarn run serve
 ```
 
 ## Building Your Application
 
 ```
-$ polymer build
+$ yarn run build
 ```
 
-This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
-containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
-CSS, and JS optimizers.
+This will create a `build/` folder containing an unbundled builds,
+both run through HTML, CSS, and JS optimizers.
 
-You can serve the built versions by giving `polymer serve` a folder to serve
-from:
+You can serve the built version with:
 
 ```
-$ polymer serve build/bundled
+$ yarn run serve-build
 ```
-
-## Running Tests
-
-```
-$ polymer test
-```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
