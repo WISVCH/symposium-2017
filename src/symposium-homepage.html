@@ -1,19 +1,301 @@
-<link rel="import" href="symposium-info.html">
-<link rel="import" href="symposium-recommendations.html">
-<link rel="import" href="symposium-program.html">
-<link rel="import" href="symposium-location.html">
-<link rel="import" href="symposium-committee.html">
-<link rel="import" href="symposium-advice.html">
-<link rel="import" href="symposium-contact.html">
+<link rel="import" async href="../bower_components/google-map/google-map.html">
+<link rel="import" async href="../bower_components/google-map/google-map-marker.html">
+<link rel="import" async href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" async href="../../bower_components/iron-icons/social-icons.html">
+<link rel="import" async href="../../bower_components/iron-icons/notification-icons.html">
+<link rel="import" async href="../../bower_components/iron-icons/editor-icons.html">
 
 <dom-module id="symposium-homepage">
   <template>
-    <symposium-info></symposium-info>
-    <symposium-recommendations></symposium-recommendations>
-    <symposium-location></symposium-location>
-    <symposium-committee></symposium-committee>
-    <symposium-advice></symposium-advice>
-    <symposium-contact></symposium-contact>
+    <style>
+      :host {
+        display: block;
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: 2em;
+      }
+
+      .banner {
+        text-align: center;
+        background-color: #231657;
+      }
+
+      .banner img {
+        margin-top: 10px;
+        width: 95%;
+        height: auto;
+      }
+
+      section {
+        padding: 15px;
+        margin-bottom: 20px;
+        background-color: white;
+      }
+
+      .photos {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .photos div {
+        padding: 0 5px;
+        flex: 1;
+        flex-basis: 250px;
+      }
+
+      .photos img {
+        max-width: 100%;
+      }
+
+      .recommendations {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+      }
+
+      .recommendations > div {
+        flex: 1;
+        flex-basis: 250px;
+        max-width: 250px;
+        margin: 16px auto;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .recommendations img {
+        margin: 0 auto;
+        max-width: 80%;
+        max-height: 80%;
+      }
+
+      .recommendations .function {
+        color: rgb(115, 115, 115);
+        font-size: 14px;
+      }
+
+      google-map {
+        height: 400px;
+      }
+
+      .committee > div, .advice > div {
+        border-bottom: 1px rgba(128,128,128,0.3) solid;
+        display: flex;
+        height: 75px;
+      }
+
+      .committee div div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .committee .function, .advice .faculty {
+        color: #737373;
+      }
+
+      iron-icon {
+        margin: 25px;
+        color: var(--paper-orange-500);
+      }
+
+      .advice > div {
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 15px;
+      }
+    </style>
+    <div class="banner">
+      <img src="../images/banner_nobg.png" alt="The key to your privacy.">
+    </div>
+
+    <section class="description">
+      <h1>Information</h1>
+
+      <p> On the 1st of May, our symposium about Cyber Security will take place. This symposium, organized by the symposium committee of W.I.S.V. 'Christiaan Huygens' will take place in Theater de Veste, Delft.</p>
+
+      <p>During the day, there will be two separated tracks, one specialized on the mathematical aspects and one specialized on computer science side.</p>
+
+      <p>At the end of the day, we will finish with a discussion about the ethics behind cyber security, followed by drinks and the possibility to network and share thoughts on the discussed topics. </p>
+    </section>
+
+    <section class="photos">
+      <div class="flex photo">
+        <img src="../images/sympo_01.jpg" alt="Symposium 2013/2014 01">
+      </div>
+      <div class="flex photo">
+        <img src="../images/sympo_02.jpg" alt="Symposium 2013/2014 02">
+      </div>
+    </section>
+    <section>
+      <h1>Board of Recommendation</h1>
+
+      <p>For the organization of our symposium several companies and universities were contacted. By their participation in our Board of Recommendation, the following people, speaking for their respectable institutions, acknowledge the importance and competence of the symposium and recommend supporting the organization: </p>
+
+      <div class="recommendations">
+        <div>
+          <img src="../images/tudelft.png" />
+          <div>
+            <div class="name">Prof. ir. K.Ch.A.M. Luyben</div>
+            <div class="function">Rector Magnificus Delft University of Technology</div>
+          </div>
+        </div>
+        <div>
+					<img src="../images/tueindhoven.png" />
+          <div>
+            <div class="name">Prof. dr. ir. F.P.T Baaijens</div>
+            <div class="function">Rector Magnificus Eindhoven University of Technology</div>
+          </div>
+				</div>
+        <div>
+					<img src="../images/FoxIT.png" />
+          <div>
+            <div class="name">R. Prins</div>
+            <div class="function">CTO &amp; Co-founder of Fox-IT</div>
+          </div>
+				</div>
+        <div>
+					<img src="../images/ing.png" />
+          <div>
+            <div class="name">R. Bening</div>
+            <div class="function">CISO of ING</div>
+          </div>
+				</div>
+        <div>
+					<img src="../images/tno.png" />
+          <div>
+            <div class="name">P. de Krom</div>
+            <div class="function">CEO of TNO</div>
+          </div>
+				</div>
+        <div>
+					<img src="../images/riscure.png" />
+          <div>
+            <div class="name">M. Witteman</div>
+            <div class="function">CEO Riscure</div>
+          </div>
+				</div>
+        <div>
+					<img src="../images/rabobank.png" />
+          <div>
+            <div class="name">W. Draijer</div>
+            <div class="function">Chairman of the Rabobank Executive Board</div>
+          </div>
+				</div>
+      </div>
+    </section>
+
+    <section class="location">
+      <h1>Location</h1>
+
+      <google-map latitude="52.0085314" longitude="4.362748900000042" zoom="18" api-key="AIzaSyCyFpVar9C1a9QuybOwfjj25vjRmWNn1hg" disable-map-type-control disable-zoom draggable="false">
+        <google-map-marker latitude="52.0085314" longitude="4.362748900000042" title="Theater de Veste"></google-map-marker>
+      </google-map>
+
+      <p>The symposium will take place in Theater de Veste, which is located at the center of Delft. It is easily accessible by public transport, car and bike. It is a five-minute walk from Delft Central Station. There is a bus stop called "Zuidpoort" near the entrance, you can get there by taking bus 60, 62, 69, 80, 81 or 121. </p>
+
+      <p>The parking facility "Zuidpoort" is right next to the theatre. Please follow the signs to "Parking Zuidpoort". </p>
+
+      <p>For more information on the location see: <a href="http://www.theaterdeveste.nl">www.theaterdeveste.nl</a></p>
+
+      <p>
+        <b>Theater de Veste</b><br />
+        <i>Vesteplein 1<br />
+        2611 WG<br />
+        Delft</i>
+      </p>
+    </section>
+
+    <section>
+      <h1>Committee</h1>
+
+      <p>This symposium is organized by the Symposium Committee of Mathematics and Computer Science Study Association 'Christiaan Huygens'. The members of the committee are:</p>
+
+      <div class="committee">
+        <div>
+					<iron-icon icon="icons:gavel"></iron-icon>
+          <div>
+            <div class="name">Chantal Olieman</div>
+            <div class="function">Chairman</div>
+          </div>
+				</div>
+        <div>
+					<iron-icon icon="notification:event-note"></iron-icon>
+          <div>
+            <div class="name">Roy Klip</div>
+            <div class="function">Secretary</div>
+          </div>
+				</div>
+        <div>
+					<iron-icon icon="editor:attach-money"></iron-icon>
+          <div>
+            <div class="name">Daphne van Tetering</div>
+            <div class="function">Treasurer</div>
+          </div>
+				</div>
+        <div>
+					<iron-icon icon="social:group"></iron-icon>
+          <div>
+            <div class="name">Jacqueline Zijdenbos</div>
+            <div class="function">Promotional affairs</div>
+          </div>
+				</div>
+        <div>
+					<iron-icon icon="social:school"></iron-icon>
+          <div>
+            <div class="name">Elsje Burgers</div>
+            <div class="function">Lecture affairs</div>
+          </div>
+				</div>
+        <div>
+					<iron-icon icon="social:school"></iron-icon>
+          <div>
+            <div class="name">Menno Looman</div>
+            <div class="function">Lecture affairs</div>
+          </div>
+				</div>
+        <div>
+					<iron-icon icon="notification:sms-failed"></iron-icon>
+          <div>
+            <div class="name">Beer van der Drift</div>
+            <div class="function">Qualitate Qua</div>
+          </div>
+				</div>
+      </div>
+    </section>
+
+    <section>
+      <h1>Board of Advice</h1>
+
+      <p>For acquiring contacts with several parties, we have turned to the long experience and wisdom of professors, researchers and employees from our university for support and tips. These people form the Board of Advice. Our Board of Advice consists of:</p>
+
+      <div class="advice">
+        <div>
+					<div class="name">Prof. dr. ir. G. Jongbloed</div>
+					<div class="faculty">Professor of Statistics | Faculty of EEMCS TU Delft</div>
+				</div>
+        <div>
+					<div class="name">E.M. Vreede</div>
+					<div class="faculty">Institute Program Manager | Faculty of EEMCS TU Delft</div>
+				</div>
+        <div>
+					<div class="name">S.E. Verwer</div>
+					<div class="faculty">Assistant Professor in Cyber Security Group | Faculty of EEMCS TU Delft</div>
+				</div>
+        <div>
+					<div class="name">Z. Erkin</div>
+					<div class="faculty">Assistant Professor in Cyber Security Group | Faculty of EEMCS TU Delft</div>
+				</div>
+      </div>
+    </section>
+    <section class="contact">
+      <h1>Contact</h1>
+
+      <p>For more information or any questions, please contact us by e-mail: <a href="mailto:symposium@ch.tudelft.nl">symposium@ch.tudelft.nl</a>. We will try to get back to you as soon as possible.</p>
+    </section>
   </template>
   <script>
     Polymer({

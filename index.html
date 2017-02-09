@@ -87,7 +87,7 @@
     <style>
       html {
         margin: 0;
-        --primary-color: #5DC5EA;
+        --primary-color: #231657;
         --secondary-color: #F39200;
         --tertiary-color: #8BD1EF;
 
@@ -101,20 +101,26 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         letter-spacing: 0.02em;
+        background-color: #eeeeee;
       }
 
       header {
         position: fixed;
         height: 64px;
-        background-color: white;
+        background-color: #231657;
+        color: #fafafa;
         width: 100%;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        text-transform: uppercase;
         font-weight: bold;
         top: 0;
+        z-index: 5;
         box-shadow: 0 2px 5px rgba(0,0,0,.26);
+      }
+
+      header .title {
+        margin: auto 15px;
       }
 
       header label {
@@ -128,12 +134,12 @@
 
       nav {
         margin: 20px;
-        background-color: white;
+        background-color: #231657;
       }
 
       nav a {
         margin: 0 10px;
-        color: #212121;
+        color: #fafafa;
         opacity: 1;
         transition: opacity 0.2s ease-in-out;
       }
@@ -182,6 +188,14 @@
         }
       }
 
+      iron-lazy-pages {
+        max-width: 800px;
+        width: 80vw;
+        min-width: 450px;
+        margin: 0 auto;
+        padding-top: 10px;
+      }
+
       .spacing {
         margin-top: 64px;
       }
@@ -202,7 +216,7 @@
     <app-route id="route" pattern="/:page"></app-route>
 
     <header>
-      <span>Symposium</span>
+      <span class="title">Symposium</span>
       <label for="menu">Menu</label>
       <input id="menu" type="checkbox" />
       <nav>
