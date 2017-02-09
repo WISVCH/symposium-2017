@@ -1,207 +1,133 @@
-<link rel="import" href="symposium-card/symposium-page-card.html">
-
-<link rel="import" href="../../bower_components/paper-item/paper-item.html">
-
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-
 <dom-module id="symposium-program">
   <template>
-    <style include="iron-flex iron-flex-alignment">
     <style>
       :host {
         display: block;
-        padding: 0 0 16px;
+      }
+
+      section {
+        padding: 15px;
+        margin-bottom: 20px;
+        background-color: white;
       }
 
       h1 {
         margin-top: 0;
       }
 
-      .heading {
+      table {
+        width: 100%;
+        text-align: center;
+      }
+
+      thead {
         background-color: #231657;
         color: #FFFFFF;
       }
 
-      .time {
-        width: 100px;
-      }
-
-      .underline {
+      tbody td {
         border-bottom: 1px rgba(128,128,128,0.3) solid;
-        margin: 0 8px;
       }
 
-      paper-item {
-        padding: 4px 0 0;
-        text-align: center;
-      }
-
-      @media (max-width: 800px) {
-        .time {
-          width: 50px;
-        }        
+      tr {
+        height: 50px;
       }
     </style>
-
-    <symposium-page-card>
-      
+    <section>
       <h1>Program</h1>
       <p>On two moments the program is divided in tracks. One track will be more focused on computer science. The other track will be more focused on mathematics</p>
 
       <p><b>Please note that all lectures are in English</b></p>
 
-      <div class="layout vertical">
-        <paper-item class="layout horizontal heading">
-          <div class="time">
-            Time
-          </div>
-          <div class="flex">
-            Program
-          </div>
-        </paper-item>
-
-        <template is="dom-repeat" items="{{schedule}}">
-          <paper-item class="layout horizontal">
-            <div class="time underline">
-              {{item.time}}
-            </div>
-            <template is="dom-repeat" items="{{item.activities}}" as="activity">
-              <div class$="{{activity.flex}} underline">
-                {{activity.activity}}
-              </div>
-            </template>
-          </paper-item>
-        </template>
-
-      </div>
-    </symposium-page-card>
-
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th colspan="2">Program</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>8:30</td>
+            <td colspan="2">Registration</td>
+          </tr>
+          <tr>
+            <td>9:15</td>
+            <td colspan="2">Official opening</td>
+          </tr>
+          <tr>
+            <td>9:30</td>
+            <td colspan="2">Opening lecture</td>
+          </tr>
+          <tr>
+            <td>10:00</td>
+            <td colspan="2">Coffee break</td>
+          </tr>
+          <tr>
+            <td>10:30</td>
+            <td>Lecture track 1</td>
+            <td>Lecture track 2</td>
+          </tr>
+          <tr>
+            <td>11:15</td>
+            <td colspan="2">Transfer</td>
+          </tr>
+          <tr>
+            <td>11:30</td>
+            <td colspan="2">Lecture</td>
+          </tr>
+          <tr>
+            <td>12:15</td>
+            <td colspan="2">Transfer</td>
+          </tr>
+          <tr>
+            <td>12:30</td>
+            <td colspan="2">PhD projects</td>
+          </tr>
+          <tr>
+            <td>13:00</td>
+            <td colspan="2">Lunch</td>
+          </tr>
+          <tr>
+            <td>13:45</td>
+            <td colspan="2">Introduction debate</td>
+          </tr>
+          <tr>
+            <td>14:00</td>
+            <td colspan="2">Transfer</td>
+          </tr>
+          <tr>
+            <td>14:15</td>
+            <td>Lecture track 1</td>
+            <td>Lecture track 2</td>
+          </tr>
+          <tr>
+            <td>15:00</td>
+            <td colspan="2">Coffee break</td>
+          </tr>
+          <tr>
+            <td>15:30</td>
+            <td colspan="2">Final lecture</td>
+          </tr>
+          <tr>
+            <td>16:15</td>
+            <td colspan="2">Transfer</td>
+          </tr>
+          <tr>
+            <td>16:30</td>
+            <td colspan="2">Debate</td>
+          </tr>
+          <tr>
+            <td>17:15</td>
+            <td colspan="2">Drinks</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </template>
   <script>
     Polymer({
-      is: 'symposium-program',
-      properties: {
-        schedule: {
-          type: Array,
-          value: [{
-              time: "8:30",
-              activities: [{
-                activity: "Registration",
-                flex: "flex"
-            }]},
-            {
-              time: "9:15",
-              activities: [{
-                activity: "Official opening",
-                flex: "flex"
-            }]},
-            {
-              time: "9:30",
-              activities: [{
-                activity: "Opening lecture",
-                flex: "flex"
-            }]},
-            {
-              time: "10:00",
-              activities: [{
-                activity: "Coffee break",
-                flex: "flex"
-            }]},
-            {
-              time: "10:30",
-              activities: [{
-                activity: "Lecture track 1",
-                flex: "flex"
-              },
-              {
-                activity: "Lecture track 2",
-                flex: "flex"
-            }]},
-            {
-              time: "11:15",
-              activities: [{
-                activity: "Transfer",
-                flex: "flex"
-            }]},
-            {
-              time: "11:30",
-              activities: [{
-                activity: "Lecture",
-                flex: "flex"
-            }]},
-            {
-              time: "12:15",
-              activities: [{
-                activity: "Transfer",
-                flex: "flex"
-            }]},
-            {
-              time: "12:30",
-              activities: [{
-                activity: "PhD projects",
-                flex: "flex"
-            }]},
-            {
-              time: "13:00",
-              activities: [{
-                activity: "Lunch",
-                flex: "flex"
-            }]},
-            {
-              time: "13:45",
-              activities: [{
-                activity: "Introduction debate",
-                flex: "flex"
-            }]},
-            {
-              time: "14:00",
-              activities: [{
-                activity: "Transfer",
-                flex: "flex"
-            }]},
-            {
-              time: "14:15",
-              activities: [{
-                activity: "Lecture track 1",
-                flex: "flex"
-              },
-              {
-                activity: "Lecture track 2",
-                flex: "flex"
-            }]},
-            {
-              time: "15:00",
-              activities: [{
-                activity: "Coffee break",
-                flex: "flex"
-            }]},
-            {
-              time: "15:30",
-              activities: [{
-                activity: "Final lecture",
-                flex: "flex"
-            }]},
-            {
-              time: "16:15",
-              activities: [{
-                activity: "Transfer",
-                flex: "flex"
-            }]},
-            {
-              time: "16:30",
-              activities: [{
-                activity: "Debate",
-                flex: "flex"
-            }]},
-            {
-              time: "17:15",
-              activities: [{
-                activity: "Drinks",
-                flex: "flex"
-            }]},
-          ]
-        }
-      },
+      is: 'symposium-program'
     });
   </script>
 </dom-module>

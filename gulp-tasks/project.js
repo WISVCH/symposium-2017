@@ -18,7 +18,7 @@ const polymer = require('polymer-build');
 const polymerJSON = path.join(process.cwd(), 'polymer.json');
 const project = new polymer.PolymerProject(polymerJSON);
 
-const buildPath = 'build';
+const buildPath = path.join('build', '2017');
 const serviceWorkerPath = 'service-worker.js';
 const swPrecacheConfig = require('../sw-precache-config.json');
 

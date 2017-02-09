@@ -37,11 +37,9 @@
     <meta name="msapplication-TileColor" content="#EEEEEE">
     <meta name="msapplication-tap-highlight" content="no">
 
-    <link rel="import" href="index-imports.html" async>
-
     <script>
-      if (window.location.href.indexOf("#/") === -1) {
-        window.location.href += "#/";
+      if (window.location.href.indexOf("2017") === -1) {
+        window.location.href += "2017/";
       }
 
       // Setup Polymer options
@@ -83,6 +81,8 @@
         });
       }
     </script>
+
+    <link rel="import" href="index-imports.html" async>
 
     <style>
       html {
@@ -188,7 +188,7 @@
         }
       }
 
-      iron-lazy-pages {
+      .pages {
         max-width: 800px;
         width: 80vw;
         min-width: 450px;
@@ -208,12 +208,17 @@
         color: var(--paper-orange-500);
         font-weight: 600;
       }
+
+      footer {
+        background-color: white;
+        padding: 15px;
+      }
     </style>
   </head>
   <body>
     <!-- app-location binds to the app's URL -->
-    <app-location id="location" use-hash-as-path></app-location>
-    <app-route id="route" pattern="/:page"></app-route>
+    <app-location id="location"></app-location>
+    <app-route id="route" pattern="/2017/:page"></app-route>
 
     <header>
       <span class="title">Symposium</span>
@@ -221,22 +226,24 @@
       <input id="menu" type="checkbox" />
       <nav>
         <iron-selector attr-for-selected="data-route" id="navigation">
-          <a data-route="" href="#/">Home</a>
-          <a data-route="" href="#/program">Program</a>
+          <a data-route="" href="/2017/">Home</a>
+          <a data-route="program" href="/2017/program/">Program</a>
         </iron-selector>
       </nav>
     </header>
 
     <div class="spacing"></div>
 
-    <iron-lazy-pages id="pages" attr-for-selected="data-route" fallback-selection="404">
-      <symposium-homepage data-route="" data-path="src/symposium-homepage.html"></symposium-homepage>
-      <symposium-program data-route="program" data-path="src/symposium-program.html"></symposium-program>
-    </iron-lazy-pages>
+    <div class="pages">
+      <iron-lazy-pages id="pages" attr-for-selected="data-route" fallback-selection="404">
+        <symposium-homepage data-route="" data-path="/2017/src/symposium-homepage.html"></symposium-homepage>
+        <symposium-program data-route="program" data-path="/2017/src/symposium-program.html"></symposium-program>
+      </iron-lazy-pages>
 
-    <footer>
-      <wisvch-footer></wisvch-footer>
-    </footer>
+      <footer>
+        <wisvch-footer></wisvch-footer>
+      </footer>
+    </div>
 
     <script>
     (function(document, window) {
@@ -248,7 +255,7 @@
       navigation.addEventListener('selected-changed', function(e) {
         const selected = e.detail.value;
         route.data.page = selected;
-        location.path = '/' + selected;
+        location.path = '/2017/' + selected + '/';
         pages.selected = selected;
         menu.checked = false;
       });

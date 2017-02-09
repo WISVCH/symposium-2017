@@ -16,9 +16,12 @@ const analyzer = new Analyzer({
   scanners: new Map([['html', [new HtmlCustomElementReferenceScanner()]]])
 });
 
-const buildFolder = path.resolve(process.cwd(), 'build');
+const buildFolder = path.resolve(process.cwd(), 'build', '2017');
 const temporaryFolder = path.resolve(process.cwd(), 'index-build');
 const temporaryBuildFolderLocation = path.resolve(buildFolder, 'index-build/**/*');
+
+const p = dom5.predicates;
+const isImport = p.AND(p.hasTagName('link'), p.hasSpaceSeparatedAttrValue('rel', 'import'));
 
 const scaffold = () =>
   analyzer.analyze('index.html')
@@ -30,7 +33,7 @@ const scaffold = () =>
       const astNode = element.astNode;
       if (astNode.parentNode.tagName === 'iron-lazy-pages') {
         const route = dom5.getAttribute(astNode, 'data-route');
-        const childLocation = dom5.getAttribute(astNode, 'data-path').substring(1);
+        const childLocation = dom5.getAttribute(astNode, 'data-path').substring(6);
 
         const fileContent = fs.readFileSync(childLocation, 'UTF-8');
         const parsedDocument = parse5.parse(fileContent);
@@ -42,9 +45,21 @@ const scaffold = () =>
         replacedSection.childNodes = childContent.childNodes;
         dom5.replace(astNode, replacedSection);
 
+        let indexImportsHtml = fs.readFileSync('index-imports.html', 'UTF-8');
+        indexImportsHtml = indexImportsHtml.replace(/bower_components/g, '/2017/bower_components');
+
+        dom5.queryAll(parsedDocument, isImport)
+            .forEach(node => {
+              let importHref = path.relative(process.cwd(), path.resolve(path.dirname(childLocation), dom5.getAttribute(node, 'href')));
+              importHref = importHref.replace(/bower_components/, '/2017/bower_components');
+              importHref = importHref.replace(/src/, '/2017/src')
+              indexImportsHtml += `<link rel="import" async href="${importHref}">`;
+            });
+
         const indexLocation = `${route ? `${route}/` : ''}index.html`;
         fs.ensureDirSync(path.resolve(temporaryFolder, route));
         fs.writeFileSync(path.resolve(temporaryFolder, indexLocation), parse5.serialize(ast));
+        fs.writeFileSync(path.resolve(temporaryFolder, route, 'index-imports.html'), indexImportsHtml);
 
         dom5.replace(replacedSection, astNode);
       }
