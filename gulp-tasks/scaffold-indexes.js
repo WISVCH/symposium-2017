@@ -66,9 +66,11 @@ const scaffold = () =>
     }
   });
 
-const mergeIntoBuild = () =>
-  gulp.src(temporaryBuildFolderLocation).
-      pipe(gulp.dest(buildFolder));
+const mergeIntoBuild = () => {
+  fs.writeFileSync(path.resolve(process.cwd(), 'build', 'index.html'), '<script>window.location += "2017/"</script>');
+  return gulp.src(temporaryBuildFolderLocation)
+             .pipe(gulp.dest(buildFolder));
+};
 
 module.exports = {
   scaffold: scaffold,
