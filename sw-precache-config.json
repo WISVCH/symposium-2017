@@ -4,10 +4,11 @@
     "/manifest.json",
     "/images-optimized/**",
     "/src/**",
-    "/bower_components/webcomponentsjs/webcomponents-lite.min.js"
+    "/index-imports.html",
+    "/bower_components/**"
   ],
   "navigateFallback": "/index.html",
-   "replacePrefix": "/2017",
+  "replacePrefix": "/2017",
   "runtimeCaching": [{
     "urlPattern": "/https:\\/\\/fonts\\.googleapis\\.com\\//",
     "handler": "cacheFirst"
