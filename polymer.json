@@ -3,7 +3,7 @@
   "shell": "index.html",
   "sources": [
    "src/**/*",
-   "images/**/*",
+   "images-optimized/**/*",
    "bower.json"
   ],
   "fragments": [
