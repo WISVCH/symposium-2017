@@ -100,6 +100,7 @@ function linter() {
 // with their own service workers
 gulp.task('default', gulp.series([
   clean([ 'build', 'index-build' ]),
+  optimizeImages.ensureOptimizeImages,
   scaffoldIndexes.scaffold,
   project.merge(source, dependencies),
   scaffoldIndexes.mergeIntoBuild,
