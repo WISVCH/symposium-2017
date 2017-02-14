@@ -3,12 +3,13 @@
   "shell": "index.html",
   "sources": [
    "src/**/*",
-   "images/**/*",
+   "images-optimized/**/*",
    "bower.json"
   ],
   "fragments": [
     "src/symposium-homepage.html",
-    "src/symposium-program.html"
+    "src/symposium-program.html",
+    "index-imports.html"
   ],
   "extraDependencies": [
     "manifest.json",

@@ -6,7 +6,9 @@ const glob = require('glob');
 const root = path.resolve(process.cwd(), 'images');
 const optimizedImagesRoot = path.resolve(process.cwd(), 'images-optimized');
 const imageOptions = {
-  merchandise: '450,scale-down'
+  banner: '760,scale-down',
+  impression: '510,scale-down',
+  sponsors: '200,scale-down'
 };
 
 const optimizeImages = () =>
