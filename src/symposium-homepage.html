@@ -24,15 +24,16 @@
       }
 
       .banner img {
-        margin-top: 10px;
+        margin-top: 8px;
         width: 95%;
         height: auto;
       }
 
       section {
-        padding: 15px;
-        margin-bottom: 20px;
+        padding: 16px;
+        margin-bottom: 16px;
         background-color: white;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
 
       .photos {
@@ -41,7 +42,7 @@
       }
 
       .photos div {
-        padding: 0 5px;
+        padding: 0 4px;
         flex: 1;
         flex-basis: 250px;
       }
@@ -85,7 +86,6 @@
       .committee > div, .advice > div {
         border-bottom: 1px rgba(128,128,128,0.3) solid;
         display: flex;
-        height: 75px;
       }
 
       .committee div div {
@@ -99,14 +99,26 @@
       }
 
       iron-icon {
-        margin: 25px;
+        margin: 24px;
         color: #ff9800;
       }
 
       .advice > div {
         flex-direction: column;
         justify-content: center;
-        padding-left: 15px;
+        padding: 8px 0 8px 16px;
+      }
+
+      @media(max-width: 500px) {
+        section {
+          margin-bottom: 0;
+          box-shadow: none;
+          border-bottom: 1px solid #e8e8e8;
+        }
+
+        h1 {
+          word-break: break-all;
+        }
       }
     </style>
     <div class="banner">

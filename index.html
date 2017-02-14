@@ -120,7 +120,7 @@
       }
 
       header .title {
-        margin: auto 15px;
+        margin: auto 16px;
       }
 
       header label {
@@ -149,10 +149,37 @@
       }
 
       .logo {
-        margin: 5px 20px;
+        margin: 4px 20px;
       }
 
-      @media (max-width: 400px) {
+      .pages {
+        max-width: 800px;
+        width: 80vw;
+        margin: 0 auto;
+        padding-top: 10px;
+      }
+
+      .spacing {
+        margin-top: 64px;
+      }
+
+      [data-route="404"] {
+        display: none;
+      }
+
+      .title {
+        color: var(--paper-orange-500);
+        font-weight: 600;
+      }
+
+      footer {
+        background-color: #231657;
+        color: white;
+        padding: 15px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 500px) {
         nav {
           display: block;
           margin: 0;
@@ -160,7 +187,7 @@
           width: 100%;
           border-top: solid 1px #e7e7e7;
           text-align: center;
-          line-height: 25px;
+          line-height: 24px;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
           visibility: collapse;
@@ -186,32 +213,15 @@
         header label {
           display: block;
         }
-      }
 
-      .pages {
-        max-width: 800px;
-        width: 80vw;
-        min-width: 450px;
-        margin: 0 auto;
-        padding-top: 10px;
-      }
+        .pages {
+          min-width: 100%;
+          padding-top: 0;
+        }
 
-      .spacing {
-        margin-top: 64px;
-      }
-
-      [data-route="404"] {
-        display: none;
-      }
-
-      .title {
-        color: var(--paper-orange-500);
-        font-weight: 600;
-      }
-
-      footer {
-        background-color: white;
-        padding: 15px;
+        footer {
+          box-shadow: none;
+        }
       }
     </style>
   </head>
