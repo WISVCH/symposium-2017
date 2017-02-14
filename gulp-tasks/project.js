@@ -15,10 +15,12 @@ const gulp = require('gulp');
 const mergeStream = require('merge-stream');
 const polymer = require('polymer-build');
 
-const polymerJSON = require(global.config.polymerJsonPath);
+const polymerJSON = path.join(process.cwd(), 'polymer.json');
 const project = new polymer.PolymerProject(polymerJSON);
-const bundledPath = path.join(global.config.build.rootDirectory, global.config.build.bundledDirectory);
-const unbundledPath = path.join(global.config.build.rootDirectory, global.config.build.unbundledDirectory);
+
+const buildPath = path.join('build', '2017');
+const serviceWorkerPath = 'service-worker.js';
+const swPrecacheConfig = require('../sw-precache-config.json');
 
 // This is the heart of polymer-build, and exposes much of the
 // work that Polymer CLI usually does for you
@@ -54,39 +56,13 @@ function rejoin() {
 // either bundled or unbundled. If this argument is omitted it will output both
 function merge(source, dependencies) {
   return function output() {
-    const mergedFiles = mergeStream(source(), dependencies())
-      .pipe(project.analyzer);
-    const bundleType = global.config.build.bundleType;
-    let outputs = [];
+    const mergedFiles = mergeStream(source(), dependencies());
 
-    if (bundleType === 'both' || bundleType === 'bundled') {
-      outputs.push(writeBundledOutput(polymer.forkStream(mergedFiles)));
-    }
-    if (bundleType === 'both' || bundleType === 'unbundled') {
-      outputs.push(writeUnbundledOutput(polymer.forkStream(mergedFiles)));
-    }
-
-    return Promise.all(outputs);
+    return new Promise(resolve => {
+      mergedFiles.pipe(gulp.dest(buildPath))
+        .on('end', resolve);
+    });
   };
-}
-
-// Run the files through a bundling step which will vulcanize/shard them
-// then output to the dest dir
-function writeBundledOutput(stream) {
-  return new Promise(resolve => {
-    stream.pipe(project.bundler)
-      .pipe(gulp.dest(bundledPath))
-      .on('end', resolve);
-  });
-}
-
-// Just output files to the dest dir without bundling. This is for projects that
-// use HTTP/2 server push
-function writeUnbundledOutput(stream) {
-  return new Promise(resolve => {
-    stream.pipe(gulp.dest(unbundledPath))
-      .on('end', resolve);
-  });
 }
 
 // Returns a function which takes an argument for the user to specify the kind
@@ -95,37 +71,12 @@ function writeUnbundledOutput(stream) {
 // If this argument is omitted it will create service workers for both bundled
 // and unbundled output
 function serviceWorker() {
-  const bundleType = global.config.build.bundleType;
-  let workers = [];
-
-  if (bundleType === 'both' || bundleType === 'bundled') {
-    workers.push(writeBundledServiceWorker());
-  }
-  if (bundleType === 'both' || bundleType === 'unbundled') {
-    workers.push(writeUnbundledServiceWorker());
-  }
-
-  return Promise.all(workers);
-}
-
-// Returns a Promise to generate a service worker for bundled output
-function writeBundledServiceWorker() {
   return polymer.addServiceWorker({
     project: project,
-    buildRoot: bundledPath,
-    swConfig: global.config.swPrecacheConfig,
-    serviceWorkerPath: global.config.serviceWorkerPath,
+    buildRoot: buildPath,
+    swPrecacheConfig: swPrecacheConfig,
+    path: serviceWorkerPath,
     bundled: true
-  });
-}
-
-// Returns a Promise to generate a service worker for unbundled output
-function writeUnbundledServiceWorker() {
-  return polymer.addServiceWorker({
-    project: project,
-    buildRoot: unbundledPath,
-    swConfig: global.config.swPrecacheConfig,
-    serviceWorkerPath: global.config.serviceWorkerPath
   });
 }
 

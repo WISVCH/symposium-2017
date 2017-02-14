@@ -11,7 +11,7 @@
     <link rel="icon" href="favicon.ico">
 
     <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/2017/manifest.json">
 
     <!-- See https://goo.gl/qRE0vM -->
     <meta name="theme-color" content="#EEEEEE">
@@ -38,10 +38,10 @@
     <meta name="msapplication-tap-highlight" content="no">
 
     <script>
-      if (window.location.href.indexOf("#/") === -1) {
-        window.location.href += "#/";
+      if (window.location.href.indexOf("2017") === -1) {
+        window.location.href += "2017/";
       }
-    
+
       // Setup Polymer options
       window.Polymer = {
         dom: 'shadow',
@@ -77,24 +77,208 @@
       // Load pre-caching Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('service-worker.js');
+          navigator.serviceWorker.register('/2017/service-worker.js');
         });
       }
     </script>
 
-    <link rel="import" href="src/symposium-app/symposium-app.html">
+    <link rel="import" href="/2017/index-imports.html" async>
 
     <style>
+      html {
+        margin: 0;
+        --primary-color: #231657;
+        --secondary-color: #F39200;
+        --tertiary-color: #8BD1EF;
+
+        --header-height: 64px;
+      }
+
       body {
         margin: 0;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        line-height: 1.5;
-        min-height: 100vh;
+        color: #212121;
+        font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        letter-spacing: 0.02em;
         background-color: #eeeeee;
+      }
+
+      header {
+        position: fixed;
+        height: 64px;
+        background-color: #231657;
+        color: #fafafa;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        font-weight: bold;
+        top: 0;
+        z-index: 5;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+      }
+
+      header .title {
+        margin: auto 16px;
+      }
+
+      header label {
+        display: none;
+        margin: 20px;
+      }
+
+      header input {
+        display: none;
+      }
+
+      nav {
+        margin: 20px;
+        background-color: #231657;
+      }
+
+      nav a {
+        margin: 0 10px;
+        color: #fafafa;
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      nav a:hover {
+        opacity: 0.6;
+      }
+
+      .logo {
+        margin: 4px 20px;
+      }
+
+      .pages {
+        max-width: 800px;
+        width: 80vw;
+        margin: 0 auto;
+        padding-top: 10px;
+      }
+
+      .spacing {
+        margin-top: 64px;
+      }
+
+      [data-route="404"] {
+        display: none;
+      }
+
+      .title {
+        color: var(--paper-orange-500);
+        font-weight: 600;
+      }
+
+      footer {
+        background-color: #231657;
+        color: white;
+        padding: 15px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 500px) {
+        nav {
+          display: block;
+          margin: 0;
+          padding: 10px;
+          width: 100%;
+          border-top: solid 1px #e7e7e7;
+          text-align: center;
+          line-height: 24px;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+          visibility: collapse;
+          opacity: 0;
+          transition: visibility 0s, opacity 0.25s;
+        }
+
+        header input:checked ~ nav {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        iron-selector {
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        a {
+          padding: 8px 0;
+        }
+
+        header label {
+          display: block;
+        }
+
+        .pages {
+          min-width: 100%;
+          padding-top: 0;
+        }
+
+        footer {
+          box-shadow: none;
+        }
       }
     </style>
   </head>
   <body>
-    <symposium-app></symposium-app>
+    <!-- app-location binds to the app's URL -->
+    <app-location id="location"></app-location>
+    <app-route id="route" pattern="/2017/:page"></app-route>
+
+    <header>
+      <span class="title">Symposium</span>
+      <label for="menu">Menu</label>
+      <input id="menu" type="checkbox" />
+      <nav>
+        <iron-selector attr-for-selected="data-route" id="navigation">
+          <a data-route="" href="/2017/">Home</a>
+          <a data-route="program" href="/2017/program/">Program</a>
+        </iron-selector>
+      </nav>
+    </header>
+
+    <div class="spacing"></div>
+
+    <div class="pages">
+      <iron-lazy-pages id="pages" attr-for-selected="data-route" fallback-selection="404">
+        <symposium-homepage data-route="" data-path="/2017/src/symposium-homepage.html"></symposium-homepage>
+        <symposium-program data-route="program" data-path="/2017/src/symposium-program.html"></symposium-program>
+      </iron-lazy-pages>
+
+      <footer>
+        <wisvch-footer></wisvch-footer>
+      </footer>
+    </div>
+
+    <script>
+    (function(document, window) {
+      const navigation = document.getElementById('navigation');
+      const location = document.getElementById('location');
+      const route = document.getElementById('route');
+      const pages = document.getElementById('pages');
+      const menu = document.getElementById('menu');
+      navigation.addEventListener('selected-changed', function(e) {
+        const selected = e.detail.value;
+        route.data.page = selected;
+        location.path = '/2017/' + selected + '/';
+        pages.selected = selected;
+        menu.checked = false;
+      });
+      location.addEventListener('route-changed', function(e) {
+        route.route = e.detail.value;
+      });
+      route.addEventListener('data-changed', function(e) {
+        navigation.selected = e.detail.value.page;
+      });
+      if ('serviceWorker' in window.navigator) {
+        window.navigator.serviceWorker.register('/service-worker.js')
+      }
+    })(document, window);
+    </script>
   </body>
 </html>
