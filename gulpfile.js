@@ -53,7 +53,7 @@ function minify() {
 function source() {
   return project.splitSource()
       // Add your own build tasks here!
-      .pipe(gulpif(/\.js$/, babel({presets: ['babili']})))
+      .pipe(gulpif(/\.js$/, babel({presets: ['babili'], comments: false})))
       .pipe(gulpif(/\.css$/, cssSlam()))
       .pipe(gulpif(/\.html$/, cssSlam()))
       .pipe(gulpif(/\.html$/, minify()))
@@ -66,7 +66,7 @@ function source() {
 // case you need it :)
 function dependencies() {
   return project.splitDependencies()
-      .pipe(gulpif(/\.js$/, babel({presets: ['babili']})))
+      .pipe(gulpif(/\.js$/, babel({presets: ['babili'], comments: false})))
       .pipe(gulpif(/\.css$/, cssSlam()))
       .pipe(gulpif(/\.html$/, cssSlam()))
       .pipe(gulpif(/\.html$/, minify()))

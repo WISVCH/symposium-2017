@@ -2,5 +2,8 @@
   "name": "symposium",
   "short_name": "symposium",
   "start_url": "/",
-  "display": "standalone"
+  "display": "standalone",
+  "icons": [],
+  "background_color": "#eeeeee",
+  "theme_color": "#231657"
 }

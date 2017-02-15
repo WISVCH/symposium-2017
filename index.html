@@ -14,7 +14,7 @@
     <link rel="manifest" href="/2017/manifest.json">
 
     <!-- See https://goo.gl/qRE0vM -->
-    <meta name="theme-color" content="#EEEEEE">
+    <meta name="theme-color" content="#231657">
 
     <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -34,7 +34,7 @@
 
     <!-- Tile icon for Windows 8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/manifest/icon-144x144.png">
-    <meta name="msapplication-TileColor" content="#EEEEEE">
+    <meta name="msapplication-TileColor" content="#231657">
     <meta name="msapplication-tap-highlight" content="no">
 
     <script>
@@ -238,6 +238,7 @@
         <iron-selector attr-for-selected="data-route" id="navigation">
           <a data-route="" href="/2017/">Home</a>
           <a data-route="program" href="/2017/program/">Program</a>
+          <!--<a data-route="tickets" href="/2017/tickets/">Tickets</a>-->
         </iron-selector>
       </nav>
     </header>
@@ -248,6 +249,7 @@
       <iron-lazy-pages id="pages" attr-for-selected="data-route" fallback-selection="404">
         <symposium-homepage data-route="" data-path="/2017/src/symposium-homepage.html"></symposium-homepage>
         <symposium-program data-route="program" data-path="/2017/src/symposium-program.html"></symposium-program>
+        <!--<symposium-tickets data-route="tickets" data-path="/2017/src/symposium-tickets.html"></symposium-tickets>-->
       </iron-lazy-pages>
 
       <footer>
