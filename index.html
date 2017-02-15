@@ -96,6 +96,8 @@
 
       body {
         margin: 0;
+        height: calc(100vh - 80px);
+        padding-top: 80px; /* 64px + 16px */
         color: #212121;
         font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -156,11 +158,13 @@
         max-width: 800px;
         width: 80vw;
         margin: 0 auto;
-        padding-top: 10px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
       }
 
-      .spacing {
-        margin-top: 64px;
+      iron-lazy-pages {
+        flex: 1;
       }
 
       [data-route="404"] {
@@ -242,8 +246,6 @@
         </iron-selector>
       </nav>
     </header>
-
-    <div class="spacing"></div>
 
     <div class="pages">
       <iron-lazy-pages id="pages" attr-for-selected="data-route" fallback-selection="404">
