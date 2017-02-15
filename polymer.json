@@ -4,7 +4,8 @@
   "sources": [
    "src/**/*",
    "images-optimized/**/*",
-   "bower.json"
+   "bower.json",
+   ".htaccess"
   ],
   "fragments": [
     "src/symposium-homepage.html",
