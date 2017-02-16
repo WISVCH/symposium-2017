@@ -1,3 +1,7 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./symposium-tickets-firebase.html">
+<link rel="import" href="./symposium-tickets-payments.html">
+
 <dom-module id="symposium-tickets">
   <template>
     <style>
@@ -26,12 +30,19 @@
     <section>
       <h1>Tickets</h1>
       <p>This is the section where you can buy your tickets for the Symposium.</p>
+
+      <symposium-tickets-payments></symposium-tickets-payments>
+      <symposium-tickets-firebase></symposium-tickets-firebase>
    </section>
    
   </template>
   <script>
+  'use strict';
+
+  (function() {
     Polymer({
       is: 'symposium-tickets'
     });
+  })();
   </script>
 </dom-module>
