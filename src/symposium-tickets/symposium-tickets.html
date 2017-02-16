@@ -19,21 +19,94 @@
       h1 {
         margin-top: 0;
       }
-      
+
       @media(max-width: 500px) {
         section {
           margin-bottom: 0;
         }
       }
-    </style>
-    
-    <section>
-      <h1>Tickets</h1>
 
+      .types {
+        display: flex;
+        text-align: center;
+      }
+
+      .types > div {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        padding: 5px;
+      }
+
+      .types label {
+        flex: 8;
+      }
+
+      .types input, .types span {
+        flex: 1;
+      }
+
+      .types label {
+        display: flex;
+      }
+
+      .types span {
+        flex: 1;
+        align-self: center;
+      }
+
+      .types input {
+        margin: 0 auto;
+      }
+
+      [for="student"] {
+        background-color: #66bb6a;
+      }
+
+      [for="alumni"] {
+        background-color: #5c6bc0;
+      }
+
+      [for="ngi-ngn"] {
+        background-color: #ff7043;
+      }
+
+      [for="external"] {
+        background-color: #ffe574;
+      }
+    </style>
+
+    <section>
       <symposium-tickets-payments></symposium-tickets-payments>
       <symposium-tickets-firebase></symposium-tickets-firebase>
-   </section>
-   
+
+      <h1>Tickets</h1>
+
+      <div class="types">
+        <div>
+          <label for="student"><span>Student</span></label>
+          <span>Price 5 &euro;</span>
+          <input id="student" type="radio" name="type" />
+        </div>
+        <div>
+          <label for="alumni"><span>Alumni/TU Delft employee</span></label>
+          <span>Price 25 &euro;</span>
+          <input id="alumni" type="radio" name="type" />
+        </div>
+        <div>
+          <label for="ngi-ngn"><span>Ngi-NGN employee</span></label>
+          <span>Price 25 &euro;</span>
+          <input id="ngi-ngn" type="radio" name="type" />
+        </div>
+        <div>
+          <label for="external"><span>External</span></label>
+          <span>Price 80 &euro;</span>
+          <input id="external" type="radio" name="type" />
+        </div>
+      </div>
+    </section>
+
   </template>
   <script>
   'use strict';
