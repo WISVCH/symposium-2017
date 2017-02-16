@@ -3,7 +3,7 @@
 <link rel="import" href="./symposium-tickets-payments.html">
 
 
-<dom-module id="symposium-tickets">
+<dom-module id="symposium-tickets-button">
   <template>
     <style>
       :host {
@@ -13,10 +13,10 @@
     </style>
 
     <section>
-      <symposium-tickets-payments></symposium-tickets-payments>
-      <symposium-tickets-firebase></symposium-tickets-firebase>
+      <symposium-tickets-firebase id="firebase"></symposium-tickets-firebase>
+      <symposium-tickets-payments id="payments"></symposium-tickets-payments>
 
-      <button disabled>Buy!</button>
+      <button on-tap="pay">Buy!</button>
     </section>
 
   </template>
@@ -25,7 +25,29 @@
 
   (function() {
     Polymer({
-      is: 'symposium-tickets'
+      is: 'symposium-tickets-button',
+      properties: {
+        _user: Object
+      },
+      attached: function() {
+        this.$.firebase.addEventListener('anonymous-login', function(e) {
+          this._user = e.detail;
+        }.bind(this));
+      },
+      pay: function() {
+        if (!this._user) {
+          this.$.firebase.addEventListener('anonymous-login', function(e) {
+            this._user = e.detail;
+            this._payWithPayments();
+          }.bind(this));
+          this.$.firebase.signInAnonymously();
+        } else {
+          this._payWithPayments();
+        }
+      },
+      _payWithPayments: function() {
+        this.$.payments.pay(this._user);
+      }
     });
   })();
   </script>
