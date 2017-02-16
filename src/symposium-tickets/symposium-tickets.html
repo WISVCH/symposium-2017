@@ -1,6 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="./symposium-tickets-firebase.html">
-<link rel="import" href="./symposium-tickets-payments.html">
+<link rel="import" href="./symposium-tickets-button.html">
 
 <dom-module id="symposium-tickets">
   <template>
@@ -78,9 +77,6 @@
     </style>
 
     <section>
-      <symposium-tickets-payments></symposium-tickets-payments>
-      <symposium-tickets-firebase></symposium-tickets-firebase>
-
       <h1>Tickets</h1>
 
       <div class="types">
@@ -105,6 +101,13 @@
           <input id="external" type="radio" name="type" />
         </div>
       </div>
+
+      <label>Full name: <input type="name" /></label>
+      <label>Email: <input type="email" /></label>
+
+      <symposium-tickets-button>
+        <button disabled>Buy!</button>
+      </symposium-tickets-button>
     </section>
 
   </template>
