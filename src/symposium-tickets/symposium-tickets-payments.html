@@ -1,7 +1,15 @@
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
 <dom-module id="symposium-tickets-payments">
   <template>
     <style>
     </style>
+
+    <iron-ajax auto
+      url="http://localhost:9000/api/products/SYMPOSIUM/2016"
+      on-response="onProducts"
+      on-error="onProducts"
+    ></iron-ajax>
     
   </template>
   <script>
@@ -10,7 +18,20 @@
   (function() {
     Polymer({
       is: 'symposium-tickets-payments',
-    })    
+      properties: {
+        tickets: Object,
+      },
+      
+      onProducts: function(e) {
+        if (e.detail.succeeded) {
+          console.log(e.detail.response);
+          this.fire('tickets', {tickets: e.detail.response})
+        } else {
+          // TODO: handle error
+          console.log('Unable to get tickets.');
+        }
+      }
+    });
   })();
   </script>
 </dom-module>
