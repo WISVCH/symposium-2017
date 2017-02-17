@@ -29,6 +29,10 @@ When adding dependencies later, it is advised to add them to the `bower.json` fi
 $ yarn run serve
 ```
 
+### Ordering tickets
+
+To be able to order tickets, you need to run [WISVCH/Payments](https://github.com/wisvch/payments) on `localhost:9000`.
+
 ## Building Your Application
 
 ```
