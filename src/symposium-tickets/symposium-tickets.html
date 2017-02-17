@@ -74,6 +74,19 @@
       [for="external"] {
         background-color: #ffe574;
       }
+
+      .field, symposium-tickets-button {
+        margin: 8px;
+        display: flex;
+      }
+
+      .field > label {
+        min-width: 100px;
+      }
+
+      input {
+        min-width: 200px;
+      }
     </style>
 
     <section>
@@ -102,8 +115,12 @@
         </label>
       </div>
 
-      <label>Full name: <input name="name" type="name" /></label>
-      <label>Email: <input name="email" type="email" /></label>
+      <div class="field">
+        <label>Full name:</label><input name="name" type="name" />
+      </div>
+      <div class="field">
+        <label>Email:</label><input name="email" type="email" />
+      </div>
 
       <symposium-tickets-button>
         <button disabled>Buy!</button>
