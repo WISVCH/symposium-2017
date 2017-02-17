@@ -54,10 +54,14 @@
           returnUrl: window.location.origin + '/2017/thank-you/',
         };
         this.$.tryOrder.generateRequest();
+
+        return new Promise(function(resolve) {
+          this._resolvePromise = resolve
+        }.bind(this));
       },
 
       onOrder: function(e) {
-        this.fire('order-created', e.detail.response);
+        this._resolvePromise(e.detail.response);
       }
     });
   })();

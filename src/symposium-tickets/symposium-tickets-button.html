@@ -56,14 +56,17 @@
           return;
         }
         this.$.button.textContent = 'Processing...';
-        this.$.payments.addEventListener('order-created', function(e) {
-          var order = e.detail;
-          this.$.firebase.addEventListener('firebase-updated', function() {
+
+        // Go to payments to obtain new order
+        this.$.payments.pay(this._user, selectedTicket.value)
+        .then(function(order) {
+          // Save all data of user with new order
+          this.$.firebase.save(name, email, selectedTicket.value, order.publicReference)
+          .then(function() {
+            // Firebase data is saved, redirect user to complete Mollie payment
             window.location = order.url;
-          });
-          this.$.firebase.save(name, email, selectedTicket.value, order.publicReference);
+          })
         }.bind(this));
-        this.$.payments.pay(this._user, selectedTicket.value);
       }
     });
   })();
