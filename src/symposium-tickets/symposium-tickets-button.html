@@ -16,7 +16,7 @@
       <symposium-tickets-firebase id="firebase"></symposium-tickets-firebase>
       <symposium-tickets-payments id="payments"></symposium-tickets-payments>
 
-      <button on-tap="pay">Buy!</button>
+      <button id="button" on-tap="pay">Buy!</button>
     </section>
 
   </template>
@@ -46,7 +46,24 @@
         }
       },
       _payWithPayments: function() {
-        this.$.payments.pay(this._user);
+        // Yeah don't like this.
+        var selectedTicket = this.parentNode.querySelector('input[name="type"]:checked');
+        var name = this.parentNode.querySelector('input[name="name"]').value;
+        var email = this.parentNode.querySelector('input[name="email"]').value;
+        if (!(selectedTicket && name && email)) {
+          // TODO: toast it
+          window.alert('Please select a ticket and fill in the fields');
+          return;
+        }
+        this.$.button.textContent = 'Processing...';
+        this.$.payments.addEventListener('order-created', function(e) {
+          var order = e.detail;
+          this.$.firebase.addEventListener('firebase-updated', function() {
+            window.location = order.url;
+          });
+          this.$.firebase.save(name, email, selectedTicket.value, order.publicReference);
+        }.bind(this));
+        this.$.payments.pay(this._user, selectedTicket.value);
       }
     });
   })();

@@ -1,5 +1,6 @@
 <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-database.js"></script>
 
 <script>
 'use strict';
@@ -7,6 +8,9 @@
 (function() {
   Polymer({
     is: 'symposium-tickets-firebase',
+    properties: {
+      _user: Object
+    },
     attached: function() {
       var config = {
         apiKey: "AIzaSyBODXtH6tdWrV3spgzMKSGw27SqwGkWdEI",
@@ -19,6 +23,7 @@
           // User is signed in.
           var isAnonymous = user.isAnonymous;
           var uid = user.uid;
+          this._user = user;
           this.fire('anonymous-login', user);
         }
       }.bind(this));
@@ -30,6 +35,16 @@
         var errorMessage = error.message;
         console.log(error);
       });
+    },
+    save: function(name, email, ticketName, reference) {
+      firebase.database().ref('orders/' + this._user.uid).set({
+        name: name,
+        email: email,
+        ticketName: ticketName,
+        reference: reference
+      }).then(function() {
+        this.fire('firebase-updated');
+      }.bind(this))
     }
   })
 })();

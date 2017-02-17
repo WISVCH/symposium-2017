@@ -10,7 +10,7 @@
       on-response="onProducts"
       on-error="onProducts"
     ></iron-ajax>
-    
+
     <iron-ajax
       id="tryOrder"
       url="http://localhost:9000/api/orders"
@@ -19,7 +19,7 @@
       on-response="onOrder"
       on-error="onOrder"
     ></iron-ajax>
-    
+
   </template>
   <script>
   'use strict';
@@ -28,39 +28,36 @@
     Polymer({
       is: 'symposium-tickets-payments',
       properties: {
-        tickets: Object,
+        tickets: {
+          type: Object,
+          notify: true
+        }
       },
-      
+
       onProducts: function(e) {
         if (e.detail.succeeded) {
-          console.log(e.detail.response);
           this.tickets = e.detail.response;
-          // this.fire('tickets', {tickets: e.detail.response})
         } else {
           // TODO: handle error
           console.log('Unable to get tickets.');
         }
       },
 
-      pay: function(user) {
-        console.log(user);
+      pay: function(user, ticketName) {
+        var selectedTicket = this.tickets.find(function(ticket) {
+          return ticket.name === ticketName;
+        });
         this.$.tryOrder.body = {
-          productKeys: [this.tickets[0].key],
+          productKeys: [selectedTicket.key],
           name: 'testName',
           email: 'testEmail',
-          returnUrl: 'http://localhost:8737/2017/mollie-callback',
+          returnUrl: window.location.origin + '/2017/thank-you/',
         };
         this.$.tryOrder.generateRequest();
       },
 
       onOrder: function(e) {
-        console.log('response');
-        if (e.detail.succeeded) {
-          console.log(e.detail.response);
-          window.location = e.detail.response.url;
-        } else {
-          // TODO: handle order error
-        }
+        this.fire('order-created', e.detail.response);
       }
     });
   })();
