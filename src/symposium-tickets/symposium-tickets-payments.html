@@ -11,6 +11,15 @@
       on-error="onProducts"
     ></iron-ajax>
     
+    <iron-ajax
+      id="tryOrder"
+      url="http://localhost:9000/api/orders"
+      content-type="application/json"
+      method="POST"
+      on-response="onOrder"
+      on-error="onOrder"
+    ></iron-ajax>
+    
   </template>
   <script>
   'use strict';
@@ -25,10 +34,32 @@
       onProducts: function(e) {
         if (e.detail.succeeded) {
           console.log(e.detail.response);
-          this.fire('tickets', {tickets: e.detail.response})
+          this.tickets = e.detail.response;
+          // this.fire('tickets', {tickets: e.detail.response})
         } else {
           // TODO: handle error
           console.log('Unable to get tickets.');
+        }
+      },
+
+      pay: function(user) {
+        console.log(user);
+        this.$.tryOrder.body = {
+          productKeys: [this.tickets[0].key],
+          name: 'testName',
+          email: 'testEmail',
+          returnUrl: 'http://localhost:8737/2017/mollie-callback',
+        };
+        this.$.tryOrder.generateRequest();
+      },
+
+      onOrder: function(e) {
+        console.log('response');
+        if (e.detail.succeeded) {
+          console.log(e.detail.response);
+          window.location = e.detail.response.url;
+        } else {
+          // TODO: handle order error
         }
       }
     });
