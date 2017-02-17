@@ -2,24 +2,26 @@
 set -e
 
 # Install programs required for build
-apk --no-cache add nodejs-lts git
-npm install -g yarn bower
+apk --no-cache add nodejs git curl
+apk --update add tar
+curl -o- -L https://yarnpkg.com/install.sh | sh
+npm install -g bower
 
 # Fetch dependencies
-yarn
+$HOME/.yarn/bin/yarn
 bower --allow-root install
 
 # compress images and build
-yarn run build optimize-images
-yarn run build
+$HOME/.yarn/bin/yarn run build optimize-images
+$HOME/.yarn/bin/yarn run build
 cp -r ./build/. /srv/www
 
 # Uninstall installed build dependencies and remove cache
-yarn cache clean
+$HOME/.yarn/bin/yarn cache clean
 bower --allow-root cache clean
 npm cache clean
-npm uninstall -g yarn bower
-apk del nodejs-lts git
+npm uninstall -g bower
+apk del nodejs git curl tar
 
 #Delete folder used for build
-rm -r /tmp
+rm -r /tmp $HOME/.yarn
