@@ -82,6 +82,10 @@
             // Firebase data is saved, redirect user to complete Mollie payment
             window.location = order.url;
           })
+          .catch(function(e) {
+            this.$.button.textContent = 'Buy!';
+            window.alert('Oops something went wrong. Did you enter all fields and a valid email?');
+          }.bind(this));
         }.bind(this));
       }
     });
