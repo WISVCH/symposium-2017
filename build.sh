@@ -5,7 +5,7 @@ set -e
 apk --no-cache add nodejs git curl
 apk --update add tar
 curl -o- -L https://yarnpkg.com/install.sh | sh
-npm install -g bower
+$HOME/.yarn/bin/yarn global add bower
 
 # Fetch dependencies
 $HOME/.yarn/bin/yarn
@@ -20,7 +20,7 @@ cp -r ./build/. /srv/www
 $HOME/.yarn/bin/yarn cache clean
 bower --allow-root cache clean
 npm cache clean
-npm uninstall -g bower
+$HOME/.yarn/bin/yarn global remove bower
 apk del nodejs git curl tar
 
 #Delete folder used for build
