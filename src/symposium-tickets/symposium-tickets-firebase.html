@@ -37,11 +37,10 @@
       });
     },
     save: function(name, email, ticketName, reference) {
-      return firebase.database().ref('orders/' + this._user.uid).set({
+      return firebase.database().ref('orders/' + reference + '/' + this._user.uid).set({
         name: name,
         email: email,
-        ticketName: ticketName,
-        reference: reference
+        ticketName: ticketName
       });
     }
   })
