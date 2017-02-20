@@ -16,7 +16,7 @@
   "extraDependencies": [
     "manifest.json",
     "favicon.ico",
-    "bower_components/webcomponentsjs/webcomponents-lite.js",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js",
     "index-build/**/*"
   ]
 }
