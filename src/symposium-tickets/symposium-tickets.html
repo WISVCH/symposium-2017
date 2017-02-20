@@ -33,11 +33,11 @@
 
       .types > label {
         flex: 1;
-        flex-basis: 150px;
+        flex-basis: calc(50% - 16px);
         display: flex;
-          flex-direction: column;
+        flex-direction: column;
         height: 200px;
-        padding: 5px;
+        padding: 8px;
         justify-content: space-between;
       }
 
@@ -81,12 +81,26 @@
         display: flex;
       }
 
+      symposium-tickets-button {
+        justify-content: space-around;
+      }
+
       .field > label {
-        min-width: 100px;
+        width: 100%;
+      }
+
+      .field > label > * {
+        width: 100%;
       }
 
       input {
-        min-width: 200px;
+        border: none;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      input:focus {
+        outline: -webkit-focus-ring-color auto 1px;
+        border-bottom: 2px solid var(--primary-color);
       }
     </style>
 
@@ -117,10 +131,10 @@
       </div>
 
       <div class="field">
-        <label>Full name: <input name="name" type="name" /></label>
+        <label><div>Full name:</div><input name="name" type="name" /></label>
       </div>
       <div class="field">
-        <label>Email: <input name="email" type="email" /></label>
+        <label><div>Email:</div><input name="email" type="email" /></label>
       </div>
 
       <symposium-tickets-button>
