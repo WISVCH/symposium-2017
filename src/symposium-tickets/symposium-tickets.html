@@ -35,7 +35,7 @@
         flex: 1;
         flex-basis: 150px;
         display: flex;
-        flex-direction: column;
+          flex-direction: column;
         height: 200px;
         padding: 5px;
         justify-content: space-between;
@@ -47,6 +47,8 @@
 
       .types > label {
         margin: 8px;
+        padding: 0;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
 
       .types > label > * {
@@ -54,25 +56,24 @@
         font-size: 20px;
       }
 
-     .types > label > :first-child {
+      .types > label > :first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-weight: 600;
         min-height: 60px;
-        border-bottom: 1px solid #464646;
+        background-color: #ff9800;
+        color: white;
+        font-size: 20px;
       }
 
-      [for="student"] {
-        background-color: #66bb6a;
+      .types > label > :last-child {
+        margin-bottom: 8px;
       }
 
-      [for="alumni"] {
-        background-color: #5c6bc0;
-      }
-
-      [for="ngi-ngn"] {
-        background-color: #ff7043;
-      }
-
-      [for="external"] {
-        background-color: #ffe574;
+      .types > label > span {
+        font-size: 50px;
+        font-weight: 300;
       }
 
       .field, symposium-tickets-button {
