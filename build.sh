@@ -14,7 +14,8 @@ bower --allow-root install
 # compress images and build
 $HOME/.yarn/bin/yarn run build optimize-images
 $HOME/.yarn/bin/yarn run build
-cp -r ./build/. /srv/www
+mkdir -p /srv/www/2017
+cp -r ./build/. /srv/www/2017/
 
 # Uninstall installed build dependencies and remove cache
 $HOME/.yarn/bin/yarn cache clean
