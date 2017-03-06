@@ -7,8 +7,9 @@ const root = path.resolve(process.cwd(), 'images');
 const optimizedImagesRoot = path.resolve(process.cwd(), 'images-optimized');
 const imageOptions = {
   banner: '760,scale-down',
+  sponsors: '200,scale-down',
   impression: '510,scale-down',
-  sponsors: '200,scale-down'
+  recommendations: '200,scale-down'
 };
 
 const optimizeImages = () =>
