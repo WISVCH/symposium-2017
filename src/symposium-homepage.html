@@ -51,34 +51,26 @@
         max-width: 100%;
       }
 
-      .funded {
-        margin: 16px auto;
+      .sponsors {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: space-between;
       }
 
-      .partners {
-        flex: 1;
-      }
-
-      .sponsors {
-        flex: 2;
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .sponsors h2 {
-        width: 100%;
-      }
-
       .sponsors > div {
         flex: 1;
-        flex-basis: 200px;
+        flex-basis: 240px;
+        max-width: 280px;
+        margin: auto;
         display: flex;
-        max-width: 50%;
         flex-direction: column;
+      }
+
+      .sponsors img {
+        margin: auto;
+        max-width: 80%;
+        max-height: 150px;
       }
 
       .recommendations {
@@ -97,12 +89,9 @@
         justify-content: space-between;
       }
 
-      .partners img,
-      .sponsors img,
       .recommendations img {
-        margin: 0 auto;
+        margin: auto;
         max-width: 80%;
-        max-height: 80%;
       }
 
       .recommendations .function {
@@ -148,7 +137,11 @@
         }
 
         h1 {
-          word-break: break-all;
+          word-break: keep-all;
+        }
+
+        .sponsors > div {
+          margin: 30px auto;
         }
       }
     </style>
@@ -159,37 +152,30 @@
     <section>
       <h1>Partners &amp Sponsors</h1>
 
-      <div class="funded">
-        <div class="partners">
-          <h2>Presented by</h2>
-          <div>
-            <img src="/2017/images-optimized/sponsors/CH.png" alt="CH"/>
-          </div>
-          <div>
-            <img src="/2017/images-optimized/recommendations/tudelft.png" alt="TU-Delft"/>
-          </div>
+      <div class="sponsors">
+        <div>
+          <img src="/2017/images-optimized/sponsors/UL.png" alt="UL"/>
         </div>
-
-        <div class="sponsors">
-          <h2>Sponsors</h2>
-          <div>
-            <img src="/2017/images-optimized/sponsors/UL.png" alt="UL"/>
-          </div>
-          <div>
-            <img src="/2017/images-optimized/recommendations/ing.png" alt="ING"/>
-          </div>
-          <div>
-            <img src="/2017/images-optimized/sponsors/Thales.png" alt="Thales"/>
-          </div>
-          <div>
-            <img src="/2017/images-optimized/sponsors/ngingn.png" alt="Ngi-NGN"/>
-          </div>
-          <div>
-            <img src="/2017/images-optimized/sponsors/Timmanfonds.png" alt="Timmanfonds"/>
-          </div>
-          <div>
-            <img src="/2017/images-optimized/sponsors/stud.png" alt="StuD"/>
-          </div>
+        <div>
+          <img src="/2017/images-optimized/recommendations/ing.png" alt="ING"/>
+        </div>
+        <div>
+          <img src="/2017/images-optimized/sponsors/Thales.png" alt="Thales"/>
+        </div>
+        <div>
+          <img src="/2017/images-optimized/sponsors/ngingn.png" alt="Ngi-NGN"/>
+        </div>
+        <div>
+          <img src="/2017/images-optimized/sponsors/Timmanfonds.png" alt="Timmanfonds"/>
+        </div>
+        <div>
+          <img src="/2017/images-optimized/sponsors/stud.png" alt="StuD"/>
+        </div>
+        <div>
+          <img src="/2017/images-optimized/sponsors/CH.png" alt="CH"/>
+        </div>
+        <div>
+          <img src="/2017/images-optimized/recommendations/tudelft.png" alt="TU-Delft"/>
         </div>
       </div>
     </section>
