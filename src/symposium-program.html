@@ -27,7 +27,6 @@
       }
 
       tbody td {
-        min-width: 100px;
         border-bottom: 1px rgba(128,128,128,0.3) solid;
       }
 
@@ -35,11 +34,23 @@
         height: 50px;
       }
 
-      .topic {
+      td p {
+        margin: 10px 0 0 0;
+      }
+
+      td a {
+        color: black;
+        text-decoration: none;
+      }
+
+      td a:hover {
+        text-decoration: underline;
+      }
+
+      .lecturer {
+        margin: 0 16px 6px 16px;
         font-size: 14px;
         color: #93a1a1;
-        margin: 0 16px 6px 16px;
-        text-align: justify;
       }
 
       @media(max-width: 500px) {
@@ -54,7 +65,7 @@
 
       <p><b>Please note that all lectures are in English</b></p>
       <table>
-        <col width="100px">
+        <col width=10%>
         <col width=50%>
         <col width=50%>
         <thead>
@@ -82,8 +93,13 @@
           </tr>
           <tr>
             <td>10:30</td>
-            <td>Lecture by Herbert Bos</td>
-            <td>Lecture by Wieb Bosma</td>
+            <td>
+              <p><a href="#">New generation of security problems</a></p>
+              <p class="lecturer"> by Herbert Bos</p>
+            </td>
+            <td>
+              <p>Lecture by Wieb Bosma</p>
+            </td>
           </tr>
           <tr>
             <td>11:15</td>
@@ -91,7 +107,9 @@
           </tr>
           <tr>
             <td>11:30</td>
-            <td>Lecture by Bart Seghers (Thales)</td>
+            <td>
+              <p>Lecture by Bart Seghers (Thales)</p>
+            </td>
             <td>TBA</td>
           </tr>
           <tr>
@@ -117,8 +135,8 @@
           <tr>
             <td>14:15</td>
             <td>
-              <p>Lecture by Gjoko Krstic (UL)</p>
-              <p class="topic"><i>The risk of botnets through malware infected IoT devices: how to protect from being vulnerable</i>&emsp;<a href="#">read&nbsp;more</a></p>
+              <p><a href="#">The risk of botnets through malware infected IoT devices: how to protect from being vulnerable</a></p>
+              <p class="lecturer">by Gjoko Krstic, UL</p>
             </td>
             <td>Lecture by ING</td>
           </tr>
