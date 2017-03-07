@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <base href="2017">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>Symposium</title>
+    <meta name="description" content="The key to your privacy, the science behind cyber security">
+
+    <link rel="icon" href="favicon.ico">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/2017/manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#231657">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Symposium">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Symposium">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" href="images/manifest/icon-48x48.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/manifest/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="images/manifest/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/manifest/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="images/manifest/icon-192x192.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/manifest/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#231657">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <script>
+      if (window.location.href.indexOf("2017") === -1) {
+        window.location.href += "2017/";
+      }
+    </script>
+
+    <link rel="import" href="/2017/index-imports.html" async>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-database.js"></script>
+
+    <style>
+      html {
+        margin: 0;
+        --primary-color: #231657;
+        --secondary-color: #F39200;
+        --tertiary-color: #8BD1EF;
+
+        --header-height: 64px;
+      }
+
+      body {
+        margin: 0;
+        height: calc(100vh - 80px);
+        padding-top: 80px; /* 64px + 16px */
+        color: #212121;
+        font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        letter-spacing: 0.02em;
+        background-color: #eeeeee;
+      }
+
+      header {
+        position: fixed;
+        height: 64px;
+        background-color: #231657;
+        color: #fafafa;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        font-weight: bold;
+        top: 0;
+        z-index: 5;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+      }
+
+      header .title {
+        margin: auto 16px;
+      }
+
+      header label {
+        display: none;
+        margin: 20px;
+      }
+
+      header input {
+        display: none;
+      }
+
+      nav {
+        margin: 20px;
+        background-color: #231657;
+      }
+
+      nav a {
+        margin: 0 10px;
+        color: #fafafa;
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      nav a:hover {
+        opacity: 0.6;
+      }
+
+      .logo {
+        margin: 4px 20px;
+      }
+
+      .pages {
+        max-width: 800px;
+        width: 80vw;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      iron-lazy-pages {
+        flex: 1;
+        display: block;
+      }
+
+      .spacing {
+        margin-top: 64px;
+      }
+
+      iron-lazy-pages > *:not([data-path]):not(.fast-path):not(.iron-selected) {
+        display: none;
+      }
+
+      .title {
+        color: var(--paper-orange-500);
+        font-weight: 600;
+      }
+
+      section {
+        padding: 16px;
+        margin-bottom: 16px;
+        background-color: white;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      footer {
+        background-color: #231657;
+        color: white;
+        padding: 15px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 500px) {
+        body {
+          height: calc(100vh - 64px);
+          padding-top: 64px;
+        }
+
+        nav {
+          display: block;
+          margin: 0;
+          padding: 10px;
+          width: 100%;
+          border-top: solid 1px #e7e7e7;
+          text-align: center;
+          line-height: 24px;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+          visibility: collapse;
+          opacity: 0;
+          transition: visibility 0s, opacity 0.25s;
+        }
+
+        header input:checked ~ nav {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        iron-selector {
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        a {
+          padding: 8px 0;
+        }
+
+        header label {
+          display: block;
+        }
+
+        .pages {
+          min-width: 100%;
+          padding-top: 0;
+        }
+
+        section {
+          margin-bottom: 0;
+          box-shadow: none;
+          border-bottom: 1px solid #e8e8e8;
+        }
+
+        footer {
+          box-shadow: none;
+        }
+      }
+
+      .tickets {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .ticket {
+        flex: 1;
+      }
+
+      .ticket:not(.External) {
+        display: none;
+      }
+
+      .ticket:not(.invoice-REQUESTED) {
+        order: 1;
+      }
+
+      #password, #login {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="password" id="password" />
+    <input type="submit" id="login" />
+
+    <label>Update all invoices <input type="submit" id="invoices" /></label>
+    <template is="dom-bind" id="app">
+      <div class="tickets">
+        <template is="dom-repeat" items="[[items]]" as="ticket">
+          <div class$="ticket [[ticket.ticketName]] invoice-[[ticket.invoice]]"
+               data-ticket-name$="[[ticket.ticketName]]"
+               data-name$="[[ticket.name]]" data-email$="[[ticket.email]]"
+               data-reference$="[[ticket.reference]]" data-uid$="[[ticket.uid]]">
+               [[ticket.name]]: [[ticket.email]] <input type="checkbox" checked$="[[ticket.invoiceSet]]"/>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <script>
+    (function(document, window) {
+      window.addEventListener('WebComponentsReady', function() {
+        var app = document.getElementById('app');
+        var login = document.getElementById('login');
+        var password = document.getElementById('password');
+        var invoices = document.getElementById('invoices');
+
+        login.onclick = function() {
+          firebase.auth().signInWithEmailAndPassword('karimo@ch.tudelft.nl', password.value)
+          .catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword('karimo@ch.tudelft.nl', password.value).catch(function(error) {
+              console.log(error);
+            });
+          });
+        }
+
+        invoices.onclick = function() {
+          var todo = document.querySelectorAll('[type="checkbox"]');
+          for (var i = 0; i < todo.length; i++) {
+            var checkbox = todo[i];
+            var data = checkbox.parentNode.dataset;
+
+            firebase.database().ref('orders/' + data.reference + '/' + data.uid).set({
+              name: data.name,
+              email: data.email,
+              ticketName: data.ticketName,
+              invoice: checkbox.checked ? 'SENT' : 'REQUESTED'
+            });
+          }
+        }
+
+        var config = {
+          apiKey: "AIzaSyBODXtH6tdWrV3spgzMKSGw27SqwGkWdEI",
+          authDomain: "wisvch-symposium.firebaseapp.com",
+          databaseURL: "https://wisvch-symposium.firebaseio.com",
+        };
+        firebase.initializeApp(config);
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            password.style.display = 'none';
+            login.style.display = 'none';
+            // User is signed in.
+            firebase.database().ref().child('orders').on('value', function(snapshot) {
+              app.items = [];
+              snapshot.forEach(function(child) {
+                child.forEach(function(ticket) {
+                  var value = ticket.val();
+                  fetch('http://localhost:9000/api/orders/' + child.key).then(function(response) {
+                    response.json()
+                    .then(function(value) {
+                      console.log(value);
+                      if (value.status === 'PAID') {
+                        app.items.push({
+                          name: value.name,
+                          email: value.email,
+                          reference: child.key,
+                          uid: ticket.key,
+                          invoice: value.invoice,
+                          ticketName: value.ticketName,
+                          invoiceSet: value.invoice === 'SENT'
+                        });
+                        app.items = app.items.slice();
+                      }
+                    });
+                  });
+                });
+              });
+            });
+          } else {
+            password.style.display = 'inline-block';
+            login.style.display = 'inline-block';
+          }
+        }.bind(this));
+      });
+
+      // Load webcomponentsjs polyfill if browser does not support native Web Components
+      (function() {
+        'use strict';
+        var onload = function() {
+          // For native Imports, manually fire WebComponentsReady so user code
+          // can use the same code path for native and polyfill'd imports.
+          if (!window.HTMLImports) {
+            document.dispatchEvent(
+              new CustomEvent('WebComponentsReady', {bubbles: true})
+            );
+          }
+        };
+        var webComponentsSupported = (
+          'registerElement' in document
+          && 'import' in document.createElement('link')
+          && 'content' in document.createElement('template')
+        );
+        if (!webComponentsSupported) {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'bower_components/webcomponentsjs/webcomponents-lite.min.js';
+          script.onload = onload;
+          document.head.appendChild(script);
+        } else {
+          onload();
+        }
+      })();
+    })(document, window);
+    </script>
+  </body>
+</html>
