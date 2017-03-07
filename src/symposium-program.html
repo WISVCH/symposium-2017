@@ -27,11 +27,19 @@
       }
 
       tbody td {
+        min-width: 100px;
         border-bottom: 1px rgba(128,128,128,0.3) solid;
       }
 
       tr {
         height: 50px;
+      }
+
+      .topic {
+        font-size: 14px;
+        color: #93a1a1;
+        margin: 0 16px 6px 16px;
+        text-align: justify;
       }
 
       @media(max-width: 500px) {
@@ -45,8 +53,10 @@
       <p>On two moments the program is divided in tracks. One track will be more focused on computer science. The other track will be more focused on mathematics</p>
 
       <p><b>Please note that all lectures are in English</b></p>
-
       <table>
+        <col width="100px">
+        <col width=50%>
+        <col width=50%>
         <thead>
           <tr>
             <th>Time</th>
@@ -106,7 +116,10 @@
           </tr>
           <tr>
             <td>14:15</td>
-            <td>Lecture by Gjoko Krstic (UL)</td>
+            <td>
+              <p>Lecture by Gjoko Krstic (UL)</p>
+              <p class="topic"><i>The risk of botnets through malware infected IoT devices: how to protect from being vulnerable</i>&emsp;<a href="#">read&nbsp;more</a></p>
+            </td>
             <td>Lecture by ING</td>
           </tr>
           <tr>
