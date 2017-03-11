@@ -63,6 +63,11 @@ docker run -p 8080:80 symposium:latest
 ```
 The `-p 8080:80` indicates that the container has its internal port `80` exposed to port `8080` on the host machine. This means that the application is now visible on port `8080`. You can also specify older builds with replacing the `:latest` tag with another version like `:7d9495d03763`.
 
+If you need to manually inspect the machine with terminal access, execute:
+```
+docker run -it -p 8081:80 symposium:latest sh
+```
+
 ### Clean
 Performing builds creates images that take up storage space. To clean some of this storage space, you can use these commands:
 ```
