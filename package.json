@@ -6,8 +6,7 @@
   },
   "scripts": {
     "build": "node ./node_modules/gulp/bin/gulp.js",
-    "serve": "yarn run build ensure-images-optimized && polymer serve -p 8737 --proxy-path 2017 --proxy-target http://127.0.0.1:8737/",
-    "serve-build": "yarn run build ensure-images-optimized && polymer serve -p 8737 build"
+    "serve": "yarn run build ensure-images-optimized && polymer serve -p 8737 --proxy-path 2017 --proxy-target http://127.0.0.1:8737/"
   },
   "devDependencies": {
     "babel-preset-babili": "^0.0.9",

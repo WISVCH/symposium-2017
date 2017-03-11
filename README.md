@@ -41,7 +41,7 @@ both run through HTML, CSS, and JS optimizers.
 You can serve the built version with:
 
 ```
-$ yarn run serve-build
+$ yarn run serve build
 ```
 ## Docker
 ### Build
