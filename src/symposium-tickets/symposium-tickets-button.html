@@ -36,7 +36,7 @@
 
     <section>
       <symposium-tickets-firebase id="firebase"></symposium-tickets-firebase>
-      <symposium-tickets-payments id="payments"></symposium-tickets-payments>
+      <symposium-tickets-payments id="payments" on-payments-failed="showPaymentsError"></symposium-tickets-payments>
 
       <span id="errorMessage">Please select a ticket and fill in the fields</span>
       <button id="button" on-tap="pay">Buy!</button>
@@ -98,6 +98,11 @@
             window.alert('Oops something went wrong. Did you enter all fields and a valid email?');
           }.bind(this));
         }.bind(this));
+      },
+      showPaymentsError: function() {
+        this.$.errorMessage.textContent = 'We were unable to process your request. Please try again later.';
+        this.$.errorMessage.style.display = 'block';
+        this.$.button.textContent = 'Processing failed.';
       }
     });
   })();

@@ -38,12 +38,16 @@
         if (e.detail.succeeded) {
           this.tickets = e.detail.response;
         } else {
-          // TODO: handle error
           console.log('Unable to get tickets.');
         }
       },
 
       pay: function(user, ticketName) {
+        // We are offline or payments is down
+        if (!this.tickets) {
+          this.fire('payments-failed');
+          return;
+        }
         var selectedTicket = this.tickets.find(function(ticket) {
           return ticket.name === ticketName;
         });
