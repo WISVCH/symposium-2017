@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>Symposium</title>
+    <title>WISVCH Symposium 2017</title>
     <meta name="description" content="The key to your privacy, the science behind cyber security">
 
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="/2017/favicon.ico">
 
     <!-- See https://goo.gl/OOhYW5 -->
     <link rel="manifest" href="/2017/manifest.json">
@@ -18,23 +18,30 @@
 
     <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Symposium">
+    <meta name="application-name" content="WISVCH Symposium 2017">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Symposium">
+    <meta name="apple-mobile-web-app-title" content="WISVCH Symposium 2017">
 
     <!-- Homescreen icons -->
-    <link rel="apple-touch-icon" sizes="128x128" href="images/manifest/icon-128x128.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/manifest/icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="images/manifest/icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="images/manifest/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="/2017/images-optimized/manifest/icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/2017/images-optimized/manifest/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/2017/images-optimized/manifest/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/2017/images-optimized/manifest/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="200x200" href="/2017/images-optimized/manifest/icon-200x200.png">
 
     <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/manifest/icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/2017/images-optimized/manifest/icon-144x144.png">
     <meta name="msapplication-TileColor" content="#231657">
     <meta name="msapplication-tap-highlight" content="no">
+
+    <meta property="og:title" content="WISVCH Symposium 2017" />
+    <meta property="og:description" content="The key to your privacy, the science behind cyber security" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://symposium.ch.tudelft.nl/2017/" />
+    <meta property="og:image" content="https://symposium.ch.tudelft.nl/2017/images-optimized/manifest/icon-200x200.png" />
 
     <script>
       // Setup Polymer options
@@ -219,6 +226,9 @@
         <symposium-homepage data-route="" data-path="/2017/src/symposium-homepage.html"></symposium-homepage>
         <symposium-program data-route="program" data-path="/2017/src/symposium-program.html"></symposium-program>
         <!--<symposium-tickets data-route="tickets" data-path="/2017/src/symposium-tickets.html"></symposium-tickets>-->
+        <section data-route="404">
+          It looks like the page you are searching for does not exist.
+        </section>
       </iron-lazy-pages>
 
       <footer>
