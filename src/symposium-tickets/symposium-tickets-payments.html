@@ -49,9 +49,9 @@
         });
         this.$.tryOrder.body = {
           productKeys: [selectedTicket.key],
-          name: 'testName',
-          email: 'testEmail',
-          returnUrl: window.location.origin + '/2017/thank-you/',
+          name: user.name,
+          email: user.email,
+          returnUrl: window.location.origin + '/2017/thank-you',
         };
         this.$.tryOrder.generateRequest();
 

@@ -27,12 +27,18 @@
         border-radius: 4px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
+
+      #errorMessage {
+        display: none;
+        color: red;
+      }
     </style>
 
     <section>
       <symposium-tickets-firebase id="firebase"></symposium-tickets-firebase>
       <symposium-tickets-payments id="payments"></symposium-tickets-payments>
 
+      <span id="errorMessage">Please select a ticket and fill in the fields</span>
       <button id="button" on-tap="pay">Buy!</button>
     </section>
 
@@ -68,14 +74,18 @@
         var name = this.parentNode.querySelector('input[name="name"]').value;
         var email = this.parentNode.querySelector('input[name="email"]').value;
         if (!(selectedTicket && name && email)) {
-          // TODO: toast it
-          window.alert('Please select a ticket and fill in the fields');
+          this.$.errorMessage.style.display = 'block';
           return;
         }
         this.$.button.textContent = 'Processing...';
 
+        var user = {
+          name: name,
+          email: email
+        };
+
         // Go to payments to obtain new order
-        this.$.payments.pay(this._user, selectedTicket.value)
+        this.$.payments.pay(user, selectedTicket.value)
         .then(function(order) {
           // Save all data of user with new order
           this.$.firebase.save(name, email, selectedTicket.value, order.publicReference)
