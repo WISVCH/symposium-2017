@@ -14,6 +14,8 @@ const path = require('path');
 const gulp = require('gulp');
 const mergeStream = require('merge-stream');
 const polymer = require('polymer-build');
+const gulpif = require('gulp-if');
+const gulpreplace = require('gulp-replace');
 
 const polymerJSON = path.join(process.cwd(), 'polymer.json');
 const project = new polymer.PolymerProject(polymerJSON);
@@ -59,7 +61,9 @@ function merge(source, dependencies) {
     const mergedFiles = mergeStream(source(), dependencies());
 
     return new Promise(resolve => {
-      mergedFiles.pipe(gulp.dest(buildPath))
+      mergedFiles
+        .pipe(gulpif(/\.html$/, gulpreplace('http://localhost:9000/api', 'https://ch.tudelft.nl/payments/api')))
+        .pipe(gulp.dest(buildPath))
         .on('end', resolve);
     });
   };
