@@ -34,6 +34,25 @@
         height: 50px;
       }
 
+      td p {
+        margin: 10px 2px 0 2px;
+      }
+
+      td a {
+        color: #212121;
+        text-decoration: none;
+      }
+
+      td a:hover {
+        text-decoration: underline;
+      }
+
+      .lecturer {
+        margin: 0 16px 10px 16px;
+        font-size: 14px;
+        color: #737373;
+      }
+
       @media(max-width: 500px) {
         section {
           margin-bottom: 0;
@@ -45,8 +64,10 @@
       <p>On two moments the program is divided in tracks. One track will be more focused on computer science. The other track will be more focused on mathematics</p>
 
       <p><b>Please note that all lectures are in English</b></p>
-
       <table>
+        <col width=10%>
+        <col width=45%>
+        <col width=45%>
         <thead>
           <tr>
             <th>Time</th>
@@ -64,7 +85,10 @@
           </tr>
           <tr>
             <td>9:30</td>
-            <td colspan="2">Opening lecture</td>
+            <td colspan="2">
+              <p><a href="#">Opening lecture</a></p>
+              <p class="lecturer">by Phil Zimmerman</p>
+            </td>
           </tr>
           <tr>
             <td>10:00</td>
@@ -72,8 +96,14 @@
           </tr>
           <tr>
             <td>10:30</td>
-            <td>Lecture track 1</td>
-            <td>Lecture track 2</td>
+            <td>
+              <p><a href="#">New generation of security problems</a></p>
+              <p class="lecturer"> by Herbert Bos, VU Amsterdam</p>
+            </td>
+            <td>
+              <p><a href="#">Lecture</a></p>
+              <p class="lecturer">by Wieb Bosman, Radboud University</p>
+            </td>
           </tr>
           <tr>
             <td>11:15</td>
@@ -81,8 +111,11 @@
           </tr>
           <tr>
             <td>11:30</td>
-            <td>Lecture track 1</td>
-            <td>Lecture track 2</td>
+            <td>
+              <p>Lecture</p>
+              <p class="lecturer">by Bart Seghers, Thales</p>
+            </td>
+            <td>TBA</td>
           </tr>
           <tr>
             <td>12:15</td>
@@ -106,8 +139,14 @@
           </tr>
           <tr>
             <td>14:15</td>
-            <td>Lecture track 1</td>
-            <td>Lecture track 2</td>
+            <td>
+              <p><a href="#">The risk of botnets through malware infected IoT devices: how to protect from being vulnerable</a></p>
+              <p class="lecturer">by Gjoko Krstic, UL</p>
+            </td>
+            <td>
+              <p><a href="#">Lecture</a></p>
+              <p class="lecturer">by ING</p>
+            </td>
           </tr>
           <tr>
             <td>15:00</td>
