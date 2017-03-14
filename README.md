@@ -47,6 +47,9 @@ You can serve the built version with:
 ```
 $ yarn run serve build
 ```
+
+Open localhost:8737/2017/ to view the application
+
 ## Docker
 ### Build
 Before you are able to use deploy the container, the container first has to be built. This is done with:
@@ -66,6 +69,8 @@ To view the container after it has finished building run:
 docker run -p 8080:80 symposium:latest
 ```
 The `-p 8080:80` indicates that the container has its internal port `80` exposed to port `8080` on the host machine. This means that the application is now visible on port `8080`. You can also specify older builds with replacing the `:latest` tag with another version like `:7d9495d03763`.
+
+Open localhost:8080/2017/ to view the application
 
 If you need to manually inspect the machine with terminal access, execute:
 ```
