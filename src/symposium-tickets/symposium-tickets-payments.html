@@ -5,7 +5,8 @@
     <style>
     </style>
 
-    <iron-ajax auto
+    <iron-ajax
+      id="products"
       url="http://localhost:9000/api/products/SYMPOSIUM/2016"
       on-response="onProducts"
       on-error="onProducts"
@@ -32,6 +33,10 @@
           type: Object,
           notify: true
         }
+      },
+
+      attached: function() {
+        this.$.products.generateRequest();
       },
 
       onProducts: function(e) {
