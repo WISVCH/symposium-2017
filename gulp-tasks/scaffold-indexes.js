@@ -16,7 +16,7 @@ const analyzer = new Analyzer({
   scanners: new Map([['html', [new HtmlCustomElementReferenceScanner()]]])
 });
 
-const buildFolder = path.resolve(process.cwd(), 'build', '2017');
+const buildFolder = path.resolve(process.cwd(), 'build');
 const temporaryFolder = path.resolve(process.cwd(), 'index-build');
 const temporaryBuildFolderLocation = path.resolve(buildFolder, 'index-build/**/*');
 
@@ -68,7 +68,6 @@ const scaffold = () =>
   });
 
 const mergeIntoBuild = () => {
-  fs.writeFileSync(path.resolve(process.cwd(), 'build', 'index.html'), '<script>window.location += "2017/"</script>');
   return gulp.src(temporaryBuildFolderLocation)
              .pipe(gulp.dest(buildFolder));
 };

@@ -40,7 +40,8 @@
       return firebase.database().ref('orders/' + reference + '/' + this._user.uid).set({
         name: name,
         email: email,
-        ticketName: ticketName
+        ticketName: ticketName,
+        invoice: ticketName === 'External' ? 'REQUESTED' : 'NOT_APPLICABLE'
       });
     }
   })

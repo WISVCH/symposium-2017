@@ -5,7 +5,8 @@
     <style>
     </style>
 
-    <iron-ajax auto
+    <iron-ajax
+      id="products"
       url="http://localhost:9000/api/products/SYMPOSIUM/2016"
       on-response="onProducts"
       on-error="onProducts"
@@ -34,24 +35,32 @@
         }
       },
 
+      attached: function() {
+        this.$.products.generateRequest();
+      },
+
       onProducts: function(e) {
         if (e.detail.succeeded) {
           this.tickets = e.detail.response;
         } else {
-          // TODO: handle error
           console.log('Unable to get tickets.');
         }
       },
 
       pay: function(user, ticketName) {
+        // We are offline or payments is down
+        if (!this.tickets) {
+          this.fire('payments-failed');
+          return;
+        }
         var selectedTicket = this.tickets.find(function(ticket) {
           return ticket.name === ticketName;
         });
         this.$.tryOrder.body = {
           productKeys: [selectedTicket.key],
-          name: 'testName',
-          email: 'testEmail',
-          returnUrl: window.location.origin + '/2017/thank-you/',
+          name: user.name,
+          email: user.email,
+          returnUrl: window.location.origin + '/2017/thank-you',
         };
         this.$.tryOrder.generateRequest();
 
