@@ -1,0 +1,110 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./symposium-tickets-firebase.html">
+<link rel="import" href="./symposium-tickets-payments.html">
+
+
+<dom-module id="symposium-tickets-button">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      section {
+        width: 80%;
+        text-align: center;
+      }
+
+      button {
+        margin-top: 8px;
+        padding: 8px;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 600;
+        background-color: #231657;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      #errorMessage {
+        display: none;
+        color: red;
+      }
+    </style>
+
+    <section>
+      <symposium-tickets-firebase id="firebase"></symposium-tickets-firebase>
+      <symposium-tickets-payments id="payments" on-payments-failed="showPaymentsError"></symposium-tickets-payments>
+
+      <span id="errorMessage">Select a ticket and fill in all fields.</span>
+      <button id="button" on-tap="pay">Buy!</button>
+    </section>
+
+  </template>
+  <script>
+  'use strict';
+
+  (function() {
+    Polymer({
+      is: 'symposium-tickets-button',
+      properties: {
+        _user: Object
+      },
+      attached: function() {
+        this.$.firebase.addEventListener('anonymous-login', function(e) {
+          this._user = e.detail;
+        }.bind(this));
+      },
+      pay: function() {
+        if (!this._user) {
+          this.$.firebase.addEventListener('anonymous-login', function(e) {
+            this._user = e.detail;
+            this._payWithPayments();
+          }.bind(this));
+          this.$.firebase.signInAnonymously();
+        } else {
+          this._payWithPayments();
+        }
+      },
+      _payWithPayments: function() {
+        // Yeah don't like this.
+        var selectedTicket = this.parentNode.querySelector('input[name="type"]:checked');
+        var name = this.parentNode.querySelector('input[name="name"]').value;
+        var email = this.parentNode.querySelector('input[name="email"]').value;
+        if (!(selectedTicket && name && email)) {
+          this.$.errorMessage.style.display = 'block';
+          return;
+        }
+        this.$.button.textContent = 'Processing...';
+
+        var user = {
+          name: name,
+          email: email
+        };
+
+        // Go to payments to obtain new order
+        this.$.payments.pay(user, selectedTicket.value)
+        .then(function(order) {
+          // Save all data of user with new order
+          this.$.firebase.save(name, email, selectedTicket.value, order.publicReference)
+          .then(function() {
+            // Firebase data is saved, redirect user to complete Mollie payment
+            window.location = order.url;
+          })
+          .catch(function(e) {
+            this.$.button.textContent = 'Buy!';
+            window.alert('Oops something went wrong. Did you enter all fields and a valid email?');
+          }.bind(this));
+        }.bind(this));
+      },
+      showPaymentsError: function() {
+        this.$.errorMessage.textContent = 'We were unable to process your request. Please try again later.';
+        this.$.errorMessage.style.display = 'block';
+        this.$.button.textContent = 'Processing failed.';
+      }
+    });
+  })();
+  </script>
+</dom-module>

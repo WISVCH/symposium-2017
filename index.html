@@ -56,7 +56,7 @@
       };
     </script>
 
-    <link rel="import" href="/2017/index-imports.html" async>
+    <link rel="import" href="index-imports.html" async>
 
     <style>
       html {
@@ -139,15 +139,27 @@
 
       iron-lazy-pages {
         flex: 1;
+        display: block;
       }
 
-      [data-route="404"] {
+      .spacing {
+        margin-top: 64px;
+      }
+
+      iron-lazy-pages > *:not([data-path]):not(.fast-path):not(.iron-selected) {
         display: none;
       }
 
       .title {
         color: var(--paper-orange-500);
         font-weight: 600;
+      }
+
+      section {
+        padding: 16px;
+        margin-bottom: 16px;
+        background-color: white;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
 
       footer {
@@ -202,6 +214,12 @@
           padding-top: 0;
         }
 
+        section {
+          margin-bottom: 0;
+          box-shadow: none;
+          border-bottom: 1px solid #e8e8e8;
+        }
+
         footer {
           box-shadow: none;
         }
@@ -221,7 +239,7 @@
         <iron-selector attr-for-selected="data-route" id="navigation">
           <a data-route="" href="/2017/">Home</a>
           <a data-route="program" href="/2017/program/">Program</a>
-          <!--<a data-route="tickets" href="/2017/tickets/">Tickets</a>-->
+          <a data-route="tickets" href="/2017/tickets/">Tickets</a>
         </iron-selector>
       </nav>
     </header>
@@ -230,7 +248,13 @@
       <iron-lazy-pages id="pages" attr-for-selected="data-route" fallback-selection="404">
         <symposium-homepage data-route="" data-path="/2017/src/symposium-homepage.html"></symposium-homepage>
         <symposium-program data-route="program" data-path="/2017/src/symposium-program.html"></symposium-program>
-        <!--<symposium-tickets data-route="tickets" data-path="/2017/src/symposium-tickets.html"></symposium-tickets>-->
+        <symposium-tickets data-route="tickets" data-path="/2017/src/symposium-tickets/symposium-tickets.html"></symposium-tickets>
+        <section data-route="thank-you">
+          Thank you for ordering a ticket. We are looking forward to you attending the symposium!
+        </section>
+        <section data-route="404">
+          It looks like the page you are searching for does not exist.
+        </section>
       </iron-lazy-pages>
 
       <footer>
@@ -300,7 +324,6 @@
           navigator.serviceWorker.register('/2017/service-worker.js');
         });
       }
-
     })(document, window);
     </script>
   </body>

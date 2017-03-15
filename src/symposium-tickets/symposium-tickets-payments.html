@@ -1,0 +1,78 @@
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="symposium-tickets-payments">
+  <template>
+    <style>
+    </style>
+
+    <iron-ajax
+      id="products"
+      url="http://localhost:9000/api/products/SYMPOSIUM/2016"
+      on-response="onProducts"
+      on-error="onProducts"
+    ></iron-ajax>
+
+    <iron-ajax
+      id="tryOrder"
+      url="http://localhost:9000/api/orders"
+      content-type="application/json"
+      method="POST"
+      on-response="onOrder"
+      on-error="onOrder"
+    ></iron-ajax>
+
+  </template>
+  <script>
+  'use strict';
+
+  (function() {
+    Polymer({
+      is: 'symposium-tickets-payments',
+      properties: {
+        tickets: {
+          type: Object,
+          notify: true
+        }
+      },
+
+      attached: function() {
+        this.$.products.generateRequest();
+      },
+
+      onProducts: function(e) {
+        if (e.detail.succeeded) {
+          this.tickets = e.detail.response;
+        } else {
+          console.log('Unable to get tickets.');
+        }
+      },
+
+      pay: function(user, ticketName) {
+        // We are offline or payments is down
+        if (!this.tickets) {
+          this.fire('payments-failed');
+          return;
+        }
+        var selectedTicket = this.tickets.find(function(ticket) {
+          return ticket.name === ticketName;
+        });
+        this.$.tryOrder.body = {
+          productKeys: [selectedTicket.key],
+          name: user.name,
+          email: user.email,
+          returnUrl: window.location.origin + '/2017/thank-you',
+        };
+        this.$.tryOrder.generateRequest();
+
+        return new Promise(function(resolve) {
+          this._resolvePromise = resolve
+        }.bind(this));
+      },
+
+      onOrder: function(e) {
+        this._resolvePromise(e.detail.response);
+      }
+    });
+  })();
+  </script>
+</dom-module>

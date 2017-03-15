@@ -42,6 +42,7 @@ const scaffold = () =>
 
         const replacedSection = dom5.constructors.element('div');
         dom5.setAttribute(replacedSection, 'data-route', route);
+        dom5.setAttribute(replacedSection, 'class', 'fast-path');
         replacedSection.childNodes = childContent.childNodes;
         dom5.replace(astNode, replacedSection);
 

@@ -10,12 +10,13 @@
   "fragments": [
     "src/symposium-homepage.html",
     "src/symposium-program.html",
+    "src/symposium-tickets/symposium-tickets.html",
     "index-imports.html"
   ],
   "extraDependencies": [
     "manifest.json",
     "favicon.ico",
-    "bower_components/webcomponentsjs/webcomponents-lite.js",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js",
     "index-build/**/*"
   ]
 }
