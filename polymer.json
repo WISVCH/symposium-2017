@@ -11,7 +11,8 @@
     "src/symposium-homepage.html",
     "src/symposium-program.html",
     "src/symposium-tickets/symposium-tickets.html",
-    "index-imports.html"
+    "index-imports.html",
+    "karim.html"
   ],
   "extraDependencies": [
     "manifest.json",
