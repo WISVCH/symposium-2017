@@ -54,7 +54,7 @@ const scaffold = () =>
               let importHref = path.relative(process.cwd(), path.resolve(path.dirname(childLocation), dom5.getAttribute(node, 'href')));
               importHref = importHref.replace(/bower_components/, '/2017/bower_components');
               importHref = importHref.replace(/src/, '/2017/src')
-              indexImportsHtml += `<link rel="import" async href="${importHref}">`;
+              indexImportsHtml += `<link rel="import" href="${importHref}">`;
             });
 
         const indexLocation = `${route ? `${route}/` : ''}index.html`;
