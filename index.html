@@ -278,6 +278,8 @@
           location.path = '2017/' + selected + (selected && '/');
           pages.selected = selected;
           menu.checked = false;
+          // Scroll to top when changing page
+          window.scroll(0,0);
         });
         location.addEventListener('route-changed', function(e) {
           route.route = e.detail.value;
