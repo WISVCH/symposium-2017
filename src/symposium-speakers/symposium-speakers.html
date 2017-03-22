@@ -1,0 +1,47 @@
+<link rel="import" href="./symposium-speaker.html">
+
+<dom-module id="symposium-speakers">
+  <template>
+    <style>
+       :host {
+        display: block;
+      }
+      
+      section {
+        padding: 16px;
+        margin-bottom: 20px;
+        background-color: white;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+      
+      h1 {
+        margin-top: 0;
+      }
+      
+      @media(max-width: 500px) {
+        section {
+          margin-bottom: 0;
+        }
+      }
+    </style>
+    <section>
+      <h1>Speakers</h1>
+      <p>Below, speakers for the symposium can be found.</p>
+
+      <symposium-speaker name="Person 1" image="../../images-optimized/speakers/speaker-placeholder.png">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda officia, modi adipisci totam maiores vel praesentium provident et, eum culpa aperiam quaerat incidunt dolores debitis? Ipsa soluta quibusdam, quisquam fuga. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis voluptas harum ex, reiciendis nihil voluptatem repudiandae amet sed. Expedita veniam, consequuntur asperiores dolorem quo explicabo molestiae beatae dolorum consequatur nulla.
+      </symposium-speaker>
+      
+      <symposium-speaker name="Person 2" image="../../images-optimized/speakers/speaker-placeholder.png">
+        Tacos normcore af deep v. Wolf migas next level shoreditch flannel, master cleanse umami bespoke chartreuse you probably haven't heard of them pop-up. Pitchfork kombucha shoreditch, fam hell of knausgaard PBR&B pickled normcore kinfolk paleo vegan lomo brooklyn tilde. Asymmetrical ugh chambray, vaporware sustainable brunch tattooed polaroid slow-carb thundercats gluten-free stumptown seitan vegan church-key. Bespoke wolf la croix drinking vinegar aesthetic kinfolk. Vice crucifix shabby chic, austin waistcoat stumptown cardigan lo-fi kogi cray microdosing venmo. Venmo knausgaard bitters lomo, waistcoat irony wayfarers mumblecore tilde austin microdosing pour-over.
+      </symposium-speaker>
+    
+    </section>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'symposium-speakers'
+    });
+  </script>
+</dom-module>
