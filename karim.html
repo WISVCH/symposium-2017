@@ -258,9 +258,9 @@
         var invoices = document.getElementById('invoices');
 
         login.onclick = function() {
-          firebase.auth().signInWithEmailAndPassword('karimo@ch.tudelft.nl', password.value)
+          firebase.auth().signInWithEmailAndPassword('penningmeester@ch.tudelft.nl', password.value)
           .catch(function(error) {
-            firebase.auth().createUserWithEmailAndPassword('karimo@ch.tudelft.nl', password.value).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword('penningmeester@ch.tudelft.nl', password.value).catch(function(error) {
               console.log(error);
             });
           });
@@ -295,21 +295,21 @@
             firebase.database().ref().child('orders').on('value', function(snapshot) {
               app.items = [];
               snapshot.forEach(function(child) {
-                child.forEach(function(ticket) {
-                  var value = ticket.val();
+                child.forEach(function(ticketFirebase) {
+                  var ticket = ticketFirebase.val();
                   fetch('http://localhost:9000/api/orders/' + child.key).then(function(response) {
                     response.json()
                     .then(function(value) {
                       console.log(value);
                       if (value.status === 'PAID') {
                         app.items.push({
-                          name: value.name,
-                          email: value.email,
+                          name: ticket.name,
+                          email: ticket.email,
                           reference: child.key,
                           uid: ticket.key,
-                          invoice: value.invoice,
-                          ticketName: value.ticketName,
-                          invoiceSet: value.invoice === 'SENT'
+                          invoice: ticket.invoice,
+                          ticketName: ticket.ticketName,
+                          invoiceSet: ticket.invoice === 'SENT'
                         });
                         app.items = app.items.slice();
                       }
