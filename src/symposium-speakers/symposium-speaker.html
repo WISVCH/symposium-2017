@@ -1,39 +1,27 @@
 <dom-module id="symposium-speaker">
   <template>
     <style>
-       :host {
+      :host {
         display: block;
-        margin-top: 32px;
       }
 
-       .speaker {
-         text-align: center;
-       }
+      .speaker {
+        text-align: center;
+      }
 
       h3 {
         margin-bottom: 0;
       }
-      
-      p {
-        margin: 0;
-      }
-      
-      img {
-        margin: 8px 8px 0 0;
-      }
 
-     .photo {
-       height: 200px;
-       width: 200px;
-       border-radius: 50%;
-     }
+      img {
+        border-radius: 50%;
+      }
     </style>
 
     <div class="speaker">
-      <img class="photo" src="[[image]]" alt="speaker">
+      <img class="photo" src="[[image]]" alt="[[name]]">
       <h3>[[name]]</h3>
       <i>[[title]]</i>
-      <br><br>
       <p class="content"><content></content></p>
     </div>
   </template>
