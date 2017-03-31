@@ -26,5 +26,5 @@ RewriteEngine On
 
   # If the requested resource doesn't exist, use index.html
   # If the request is not for a valid file
-  RewriteCond %{REQUEST_URI} !.(js|html|jpg|JPG|jpeg|png|gif|swf|svg|json|txt|xml|css)$
+  RewriteCond %{REQUEST_URI} !.(js|html|jpg|JPG|jpeg|png|gif|swf|svg|json|txt|xml|css|ico)$
   RewriteRule ^ /2017/index.html
