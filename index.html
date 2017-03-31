@@ -275,7 +275,7 @@
         navigation.addEventListener('selected-changed', function(e) {
           var selected = e.detail.value;
           route.data.page = selected;
-          location.path = '2017/' + selected + (selected && '/');
+          location.path = '2017/' + selected;// TODO(Tim): change this back, when Symposium is deployed in Docker + (selected && '/');
           pages.selected = selected;
           menu.checked = false;
           // Scroll to top when changing page
