@@ -239,6 +239,7 @@
         <iron-selector attr-for-selected="data-route" id="navigation">
           <a data-route="" href="/2017/">Home</a>
           <a data-route="program" href="/2017/program">Program</a>
+          <a data-route="speakers" href="/2017/speakers">Speakers</a>
           <a data-route="tickets" href="/2017/tickets">Tickets</a>
         </iron-selector>
       </nav>
@@ -248,6 +249,7 @@
       <iron-lazy-pages id="pages" attr-for-selected="data-route" fallback-selection="404">
         <symposium-homepage data-route="" data-path="/2017/src/symposium-homepage.html"></symposium-homepage>
         <symposium-program data-route="program" data-path="/2017/src/symposium-program.html"></symposium-program>
+        <symposium-speakers data-route="speakers" data-path="/2017/src/symposium-speakers/symposium-speakers.html"></symposium-speakers>
         <symposium-tickets data-route="tickets" data-path="/2017/src/symposium-tickets/symposium-tickets.html"></symposium-tickets>
         <section data-route="thank-you">
           Thank you for ordering a ticket. We are looking forward to you attending the symposium!
@@ -273,9 +275,11 @@
         navigation.addEventListener('selected-changed', function(e) {
           var selected = e.detail.value;
           route.data.page = selected;
-          location.path = '2017/' + selected + (selected && '/');
+          location.path = '2017/' + selected;// TODO(Tim): change this back, when Symposium is deployed in Docker + (selected && '/');
           pages.selected = selected;
           menu.checked = false;
+          // Scroll to top when changing page
+          window.scroll(0,0);
         });
         location.addEventListener('route-changed', function(e) {
           route.route = e.detail.value;
