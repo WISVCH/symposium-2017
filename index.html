@@ -238,9 +238,9 @@
       <nav>
         <iron-selector attr-for-selected="data-route" id="navigation">
           <a data-route="" href="/2017/">Home</a>
-          <a data-route="program" href="/2017/program">Program</a>
-          <a data-route="speakers" href="/2017/speakers">Speakers</a>
-          <a data-route="tickets" href="/2017/tickets">Tickets</a>
+          <a data-route="program" href="/2017/program/">Program</a>
+          <a data-route="speakers" href="/2017/speakers/">Speakers</a>
+          <a data-route="tickets" href="/2017/tickets/">Tickets</a>
         </iron-selector>
       </nav>
     </header>
@@ -275,7 +275,7 @@
         navigation.addEventListener('selected-changed', function(e) {
           var selected = e.detail.value;
           route.data.page = selected;
-          location.path = '2017/' + selected;// TODO(Tim): change this back, when Symposium is deployed in Docker + (selected && '/');
+          location.path = '2017/' + selected + (selected && '/');
           pages.selected = selected;
           menu.checked = false;
           // Scroll to top when changing page
