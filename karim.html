@@ -225,18 +225,16 @@
       .ticket:not(.invoice-REQUESTED) {
         order: 1;
       }
-
-      #password, #login {
-        display: none;
-      }
     </style>
   </head>
   <body>
-    <input type="password" id="password" />
+    <label>Email: <input type="email" id="email" /></label>
+    <label>Password: <input type="password" id="password" /></label>
     <input type="submit" id="login" />
 
     <label>Update all invoices <input type="submit" id="invoices" /></label>
     <template is="dom-bind" id="app">
+      <span>Number of tickets sold: [[items.length]]</span>
       <div class="tickets">
         <template is="dom-repeat" items="[[items]]" as="ticket">
           <div class$="ticket [[ticket.ticketName]] invoice-[[ticket.invoice]]"
@@ -255,12 +253,13 @@
         var app = document.getElementById('app');
         var login = document.getElementById('login');
         var password = document.getElementById('password');
+        var email = document.getElementById('email');
         var invoices = document.getElementById('invoices');
 
         login.onclick = function() {
-          firebase.auth().signInWithEmailAndPassword('penningmeester@ch.tudelft.nl', password.value)
+          firebase.auth().signInWithEmailAndPassword(email.value, password.value)
           .catch(function(error) {
-            firebase.auth().createUserWithEmailAndPassword('penningmeester@ch.tudelft.nl', password.value).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword(email.value, password.value).catch(function(error) {
               console.log(error);
             });
           });
@@ -289,7 +288,8 @@
         firebase.initializeApp(config);
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
-            password.style.display = 'none';
+            password.parentNode.style.display = 'none';
+            email.parentNode.style.display = 'none';
             login.style.display = 'none';
             // User is signed in.
             firebase.database().ref().child('orders').on('value', function(snapshot) {
@@ -319,8 +319,9 @@
               });
             });
           } else {
-            password.style.display = 'inline-block';
-            login.style.display = 'inline-block';
+            password.parentNode.style.display = 'inline-block';
+            email.parentNode.style.display = 'inline-block';
+            login.parentNode.style.display = 'inline-block';
           }
         }.bind(this));
       });
