@@ -38,7 +38,7 @@
       <symposium-tickets-firebase id="firebase"></symposium-tickets-firebase>
       <symposium-tickets-payments id="payments" on-payments-failed="showPaymentsError"></symposium-tickets-payments>
 
-      <span id="errorMessage">Select a ticket and fill in all fields.</span>
+      <span id="errorMessage">Select a ticket and fill in all fields. External tickets also require company details.</span>
       <button id="button" on-tap="pay">Buy!</button>
     </section>
 
@@ -56,6 +56,9 @@
         this.$.firebase.addEventListener('anonymous-login', function(e) {
           this._user = e.detail;
         }.bind(this));
+        this.parentNode.querySelector('#external').onclick = function(e) {
+          this.parentNode.querySelector('.company').style.display = 'block';
+        }.bind(this);
       },
       pay: function() {
         if (!this._user) {
@@ -77,18 +80,26 @@
           this.$.errorMessage.style.display = 'block';
           return;
         }
-        this.$.button.textContent = 'Processing...';
-
         var user = {
           name: name,
           email: email
         };
+        var companyName = this.parentNode.querySelector('input[name="name"]').value;
+        var companyPostalAddress = this.parentNode.querySelector('input[name="companypostaladdress"]').value;
+        if (selectedTicket.value === 'External') {
+          if (!(companyName && companyPostalAddress)) {
+            this.$.errorMessage.style.display = 'block';
+            return;
+          }
+        }
+        this.$.button.textContent = 'Processing...';
+
 
         // Go to payments to obtain new order
         this.$.payments.pay(user, selectedTicket.value)
         .then(function(order) {
           // Save all data of user with new order
-          this.$.firebase.save(name, email, selectedTicket.value, order.publicReference)
+          this.$.firebase.save(name, email, selectedTicket.value, order.publicReference, companyName, companyPostalAddress)
           .then(function() {
             // Firebase data is saved, redirect user to complete Mollie payment
             window.location = order.url;

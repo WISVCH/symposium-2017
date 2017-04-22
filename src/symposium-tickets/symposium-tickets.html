@@ -109,6 +109,10 @@
         text-align: center;
         font-size: small;
       }
+
+      .company {
+        display: none;
+      }
     </style>
 
     <section>
@@ -142,6 +146,15 @@
       </div>
       <div class="field">
         <label><span>Email:</span><input name="email" type="email" /></label>
+      </div>
+
+      <div class="company">
+        <div class="field">
+          <label><span>Company name:</span><input name="companyname" type="name" /></label>
+        </div>
+        <div class="field">
+          <label><span>Company postal address:</span><input name="companypostaladdress" type="text" placeholder="Mekelweg 4, 2628 CD Delft"/></label>
+        </div>
       </div>
 
       <symposium-tickets-button>
