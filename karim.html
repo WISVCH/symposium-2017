@@ -271,12 +271,14 @@
             var checkbox = todo[i];
             var data = checkbox.parentNode.dataset;
 
-            firebase.database().ref('orders/' + data.reference + '/' + data.uid).set({
-              name: data.name,
-              email: data.email,
-              ticketName: data.ticketName,
-              invoice: checkbox.checked ? 'SENT' : 'REQUESTED'
-            });
+            if (data.ticketName === 'External') {
+              firebase.database().ref('orders/' + data.reference + '/' + data.uid).set({
+                name: data.name,
+                email: data.email,
+                ticketName: data.ticketName,
+                invoice: checkbox.checked ? 'SENT' : 'REQUESTED'
+              });
+            }
           }
         }
 
@@ -300,13 +302,12 @@
                   fetch('http://localhost:9000/api/orders/' + child.key).then(function(response) {
                     response.json()
                     .then(function(value) {
-                      console.log(value);
                       if (value.status === 'PAID') {
                         app.items.push({
                           name: ticket.name,
                           email: ticket.email,
                           reference: child.key,
-                          uid: ticket.key,
+                          uid: ticketFirebase.key,
                           invoice: ticket.invoice,
                           ticketName: ticket.ticketName,
                           invoiceSet: ticket.invoice === 'SENT'
