@@ -9,7 +9,7 @@
     "neon-elements": "PolymerElements/neon-elements#^1.0.0",
     "app-layout": "PolymerElements/app-layout#^0.10.4",
     "app-route": "PolymerElements/app-route#^0.9.2",
-    "google-map": "GoogleWebComponents/google-map#^1.1.14",
+    "google-map": "TimvdLippe/google-map#intersection-observer",
     "wisvch-footer": "wisvch/wisvch-footer#^1.0.0",
     "iron-lazy-pages": "TimvdLippe/iron-lazy-pages#2.0-preview"
   },
@@ -27,6 +27,7 @@
     "iron-selector": "2.0-preview",
     "iron-lazy-pages": "2.0-preview",
     "webcomponentsjs": "^0.7.20",
-    "custom-elements": "master"
+    "custom-elements": "master",
+    "google-map": "intersection-observer"
   }
 }

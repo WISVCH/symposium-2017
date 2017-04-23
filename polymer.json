@@ -8,6 +8,8 @@
    ".htaccess"
   ],
   "fragments": [
+    "bower_components/google-apis/google-maps-api.html",
+    "bower_components/google-map/google-map-marker.html",
     "src/symposium-homepage.html",
     "src/symposium-program.html",
     "src/symposium-tickets/symposium-tickets.html",
