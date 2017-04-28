@@ -225,6 +225,11 @@
       .ticket:not(.invoice-REQUESTED) {
         order: 1;
       }
+
+      textarea {
+        width: 500px;
+        height: 100px;
+      }
     </style>
   </head>
   <body>
@@ -234,6 +239,11 @@
 
     <label>Update all invoices <input type="submit" id="invoices" /></label>
     <template is="dom-bind" id="app">
+      <div>
+        <textarea>[[csvNames]]</textarea>
+        <textarea>[[csvEverything]]</textarea>
+      </div>
+
       <span>Number of tickets sold: [[items.length]]</span>
       <div class="tickets">
         <template is="dom-repeat" items="[[items]]" as="ticket">
@@ -294,10 +304,12 @@
             // User is signed in.
             firebase.database().ref().child('orders').on('value', function(snapshot) {
               app.items = [];
+              app.csvNames = '';
+              app.csvEverything = '';
               snapshot.forEach(function(child) {
                 child.forEach(function(ticketFirebase) {
                   var ticket = ticketFirebase.val();
-                  fetch('http://localhost:9000/api/orders/' + child.key).then(function(response) {
+                  fetch('https://ch.tudelft.nl/payments/api/orders/' + child.key).then(function(response) {
                     response.json()
                     .then(function(value) {
                       console.log(value);
@@ -312,6 +324,8 @@
                           invoiceSet: ticket.invoice === 'SENT'
                         });
                         app.items = app.items.slice();
+                        app.csvNames += ticket.name + '\n';
+                        app.csvEverything += ticket.name + ',' + ticket.ticketName + ',' + ticket.email + '\n';
                       }
                     });
                   });
