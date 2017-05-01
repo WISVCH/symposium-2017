@@ -36,12 +36,14 @@
         console.log(error);
       });
     },
-    save: function(name, email, ticketName, reference) {
+    save: function(name, email, ticketName, reference, companyName, companyPostalAddress) {
       return firebase.database().ref('orders/' + reference + '/' + this._user.uid).set({
         name: name,
         email: email,
         ticketName: ticketName,
-        invoice: ticketName === 'External' ? 'REQUESTED' : 'NOT_APPLICABLE'
+        invoice: ticketName === 'External' ? 'REQUESTED' : 'NOT_APPLICABLE',
+        companyname: companyName,
+        companypostaladdress: companyPostalAddress
       });
     }
   })
