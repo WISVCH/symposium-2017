@@ -36,6 +36,36 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
 
+      .thanks h1 {
+        text-align: center;
+      }
+
+      .thanks ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      #slider {
+        position: relative;
+        overflow: hidden;
+      }
+
+      #slider ul {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        height: 512px;
+        list-style: none;
+      }
+
+      #slider ul li {
+        position: relative;
+        display: block;
+        float: left;
+        margin: 0;
+        padding: 0;
+      }
+
       .photos {
         display: flex;
         flex-wrap: wrap;
@@ -138,6 +168,21 @@
     <div class="banner">
       <img src="/2017/images-optimized/banner/banner_nobg.png" alt="The key to your privacy.">
     </div>
+
+    <section class="thanks">
+      <h1>Thank you all for coming!</h1>
+      <div class="after">
+        <div class="photos" id="slider">
+          <ul>
+            <li><img src="/2017/images/edition2017/after_01.jpg" alt="Symposium 2016/2017 01"></li>
+            <li><img src="/2017/images/edition2017/after_02.jpg" alt="Symposium 2016/2017 02"></li>
+            <li><img src="/2017/images/edition2017/after_03.jpg" alt="Symposium 2016/2017 03"></li>
+            <li><img src="/2017/images/edition2017/after_04.jpg" alt="Symposium 2016/2017 04"></li>
+            <li><img src="/2017/images/edition2017/after_05.jpg" alt="Symposium 2016/2017 05"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <section class="description">
       <h1>Information</h1>
@@ -392,7 +437,21 @@
   </template>
   <script>
     Polymer({
-      is: 'symposium-homepage'
+      is: 'symposium-homepage',
+      attached: function() {
+
+          this.current = 0;
+          this.images = [1,2,3,4,5].map(function(i) {
+              return 'images-optimized/edition2017/after_0' + i + '.jpg';
+          });
+          var numimages = this.images.length;
+          setInterval(function() {
+              this.current++;
+              if (this.current === numimages) {
+                  this.current = 0;
+              }
+          }.bind(this), 5000);
+      }
     });
   </script>
 </dom-module>
