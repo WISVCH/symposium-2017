@@ -5,6 +5,7 @@
 <link rel="import" async href="../bower_components/iron-icons/social-icons.html">
 <link rel="import" async href="../bower_components/iron-icons/notification-icons.html">
 <link rel="import" async href="../bower_components/iron-icons/editor-icons.html">
+<link rel="import" async href="symposium-carousel.html">
 
 <dom-module id="symposium-homepage">
   <template>
@@ -38,32 +39,6 @@
 
       .thanks h1 {
         text-align: center;
-      }
-
-      .thanks ul {
-        margin: 0;
-        padding: 0;
-      }
-
-      #slider {
-        position: relative;
-        overflow: hidden;
-      }
-
-      #slider ul {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        height: 512px;
-        list-style: none;
-      }
-
-      #slider ul li {
-        position: relative;
-        display: block;
-        float: left;
-        margin: 0;
-        padding: 0;
       }
 
       .photos {
@@ -171,17 +146,13 @@
 
     <section class="thanks">
       <h1>Thank you all for coming!</h1>
-      <div class="after">
-        <div class="photos" id="slider">
-          <ul>
-            <li><img src="/2017/images/edition2017/after_01.jpg" alt="Symposium 2016/2017 01"></li>
-            <li><img src="/2017/images/edition2017/after_02.jpg" alt="Symposium 2016/2017 02"></li>
-            <li><img src="/2017/images/edition2017/after_03.jpg" alt="Symposium 2016/2017 03"></li>
-            <li><img src="/2017/images/edition2017/after_04.jpg" alt="Symposium 2016/2017 04"></li>
-            <li><img src="/2017/images/edition2017/after_05.jpg" alt="Symposium 2016/2017 05"></li>
-          </ul>
-        </div>
-      </div>
+      <symposium-carousel items="1">
+        <img src="/2017/images-optimized/edition2017/after_01.jpg" alt="Symposium 2016/2017 01" height="100%" width="100%"/>
+        <img src="/2017/images-optimized/edition2017/after_02.jpg" alt="Symposium 2016/2017 02" height="100%" width="100%"/>
+        <img src="/2017/images-optimized/edition2017/after_03.jpg" alt="Symposium 2016/2017 03" height="100%" width="100%"/>
+        <img src="/2017/images-optimized/edition2017/after_04.jpg" alt="Symposium 2016/2017 04" height="100%" width="100%"/>
+        <img src="/2017/images-optimized/edition2017/after_05.jpg" alt="Symposium 2016/2017 05" height="100%" width="100%"/>
+      </symposium-carousel>
     </section>
 
     <section class="description">
@@ -437,21 +408,7 @@
   </template>
   <script>
     Polymer({
-      is: 'symposium-homepage',
-      attached: function() {
-
-          this.current = 0;
-          this.images = [1,2,3,4,5].map(function(i) {
-              return 'images-optimized/edition2017/after_0' + i + '.jpg';
-          });
-          var numimages = this.images.length;
-          setInterval(function() {
-              this.current++;
-              if (this.current === numimages) {
-                  this.current = 0;
-              }
-          }.bind(this), 5000);
-      }
+      is: 'symposium-homepage'
     });
   </script>
 </dom-module>

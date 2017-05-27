@@ -10,7 +10,8 @@ const imageOptions = {
   sponsors: '200',
   impression: '510',
   recommendations: '200',
-  speakers: '200x200,crop'
+  speakers: '200x200,crop',
+  edition2017: '650x433,crop'
 };
 
 const optimizeImages = () =>
