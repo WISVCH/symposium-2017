@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+
+<dom-module id="symposium-carousel">
+  <template>
+    <style>
+      :host {
+        display: block;
+        height: 80%;
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      @media(max-width: 500px) {
+        :host {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    </style>
+    <content></content>
+  </template>
+  <script>
+    Polymer({
+      is: 'symposium-carousel',
+      attached: function() {
+        var images = Polymer.dom(this).querySelectorAll('img');
+        for (var j = 1; j < images.length; j++) {
+          images[j].style.display = 'none';
+        }
+        var i = 0;
+        setInterval(function() {
+          images[i].style.display = 'none';
+          i++;
+          if (i === images.length) {
+            i = 0;
+          }
+          images[i].style.display = 'block';
+        }.bind(this), 2500);
+      }
+    });
+  </script>
+</dom-module>

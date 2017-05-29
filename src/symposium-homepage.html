@@ -5,6 +5,7 @@
 <link rel="import" async href="../bower_components/iron-icons/social-icons.html">
 <link rel="import" async href="../bower_components/iron-icons/notification-icons.html">
 <link rel="import" async href="../bower_components/iron-icons/editor-icons.html">
+<link rel="import" async href="symposium-carousel.html">
 
 <dom-module id="symposium-homepage">
   <template>
@@ -34,6 +35,10 @@
         margin-bottom: 16px;
         background-color: white;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      .thanks h1 {
+        text-align: center;
       }
 
       .photos {
@@ -138,6 +143,17 @@
     <div class="banner">
       <img src="/2017/images-optimized/banner/banner_nobg.png" alt="The key to your privacy.">
     </div>
+
+    <section class="thanks">
+      <h1>Thank you all for coming!</h1>
+      <symposium-carousel items="1">
+        <img src="/2017/images-optimized/edition2017/after_01.jpg" alt="Symposium 2016/2017 01" height="100%" width="100%"/>
+        <img src="/2017/images-optimized/edition2017/after_02.jpg" alt="Symposium 2016/2017 02" height="100%" width="100%"/>
+        <img src="/2017/images-optimized/edition2017/after_03.jpg" alt="Symposium 2016/2017 03" height="100%" width="100%"/>
+        <img src="/2017/images-optimized/edition2017/after_04.jpg" alt="Symposium 2016/2017 04" height="100%" width="100%"/>
+        <img src="/2017/images-optimized/edition2017/after_05.jpg" alt="Symposium 2016/2017 05" height="100%" width="100%"/>
+      </symposium-carousel>
+    </section>
 
     <section class="description">
       <h1>Information</h1>
